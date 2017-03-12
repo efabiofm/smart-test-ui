@@ -1,0 +1,28 @@
+{
+    "smartTestUiApp": {
+        "ejecucionPrueba" : {
+            "home": {
+                "title": "Ejecucion Pruebas",
+                "createLabel": "Crear nuevo Ejecucion Prueba",
+                "createOrEditLabel": "Crear o editar Ejecucion Prueba",
+                "search": "Search for Ejecucion Prueba"
+            },
+            "created": "Un nuevo Ejecucion Prueba ha sido creado con el identificador {{ param }}",
+            "updated": "Un Ejecucion Prueba ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Ejecucion Prueba ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Ejecucion Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Ejecucion Prueba"
+            },
+            "nombre": "Nombre",
+            "fecha": "Fecha",
+            "tiempoRespuesta": "Tiempo Respuesta",
+            "resultado": "Resultado",
+            "jhUserId": "Jh User Id",
+            "activo": "Activo",
+            "prueba": "Prueba"
+        }
+    }
+}

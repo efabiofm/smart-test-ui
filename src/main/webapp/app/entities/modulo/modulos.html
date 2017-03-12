@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="smartTestUiApp.modulo.home.title">Modulos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="modulo.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="smartTestUiApp.modulo.home.createLabel">
+                        Create new Modulo
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="smartTestUiApp.modulo.nombre">Nombre</span></th>
+                    <th><span data-translate="smartTestUiApp.modulo.url">Url</span></th>
+                    <th><span data-translate="smartTestUiApp.modulo.activo">Activo</span></th>
+                    <th><span data-translate="smartTestUiApp.modulo.servicio">Servicio</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="modulo in vm.modulos track by modulo.id">
+                    <td><a ui-sref="modulo-detail({id:modulo.id})">{{modulo.id}}</a></td>
+                    <td>{{modulo.nombre}}</td>
+                    <td>{{modulo.url}}</td>
+                    <td>{{modulo.activo}}</td>
+                    <td>
+                        <span ng-repeat="servicio in modulo.servicios">
+                            <a class="form-control-static" ui-sref="servicio-detail({id: servicio.id})">{{servicio.nombre}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="modulo-detail({id:modulo.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="modulo.edit({id:modulo.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="modulo.delete({id:modulo.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

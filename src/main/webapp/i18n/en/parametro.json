@@ -1,0 +1,24 @@
+{
+    "smartTestUiApp": {
+        "parametro" : {
+            "home": {
+                "title": "Parametros",
+                "createLabel": "Create a new Parametro",
+                "createOrEditLabel": "Create or edit a Parametro",
+                "search": "Search for Parametro"
+            },
+            "created": "A new Parametro is created with identifier {{ param }}",
+            "updated": "A Parametro is updated with identifier {{ param }}",
+            "deleted": "A Parametro is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Parametro {{ id }}?"
+            },
+            "detail": {
+                "title": "Parametro"
+            },
+            "nombre": "Nombre",
+            "tipoParametro": "Tipo Parametro",
+            "metodo": "Metodo"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "planPrueba",
+            "relationshipName": "prueba",
+            "otherEntityName": "prueba",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170312235411",
+    "entityTableName": "plan_prueba",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

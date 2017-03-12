@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="smartTestUiApp.prueba.detail.title">Prueba</span> {{vm.prueba.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartTestUiApp.prueba.nombre">Nombre</span></dt>
+        <dd>
+            <span>{{vm.prueba.nombre}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.body">Body</span></dt>
+        <dd>
+            <span>{{vm.prueba.body}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.activo">Activo</span></dt>
+        <dd>
+            <span>{{vm.prueba.activo}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.ambiente">Ambiente</span></dt>
+        <dd>
+            <a ui-sref="ambiente-detail({id:vm.prueba.ambienteId})">{{vm.prueba.ambienteNombre}}</a>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.modulo">Modulo</span></dt>
+        <dd>
+            <a ui-sref="modulo-detail({id:vm.prueba.moduloId})">{{vm.prueba.moduloNombre}}</a>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.servicio">Servicio</span></dt>
+        <dd>
+            <a ui-sref="servicio-detail({id:vm.prueba.servicioId})">{{vm.prueba.servicioNombre}}</a>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.prueba.metodo">Metodo</span></dt>
+        <dd>
+            <a ui-sref="metodo-detail({id:vm.prueba.metodoId})">{{vm.prueba.metodoNombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="prueba-detail.edit({id:vm.prueba.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
