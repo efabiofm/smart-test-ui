@@ -1,0 +1,23 @@
+{
+    "smartTestUiApp": {
+        "planPrueba" : {
+            "home": {
+                "title": "Plan Pruebas",
+                "createLabel": "Create a new Plan Prueba",
+                "createOrEditLabel": "Create or edit a Plan Prueba",
+                "search": "Search for Plan Prueba"
+            },
+            "created": "A new Plan Prueba is created with identifier {{ param }}",
+            "updated": "A Plan Prueba is updated with identifier {{ param }}",
+            "deleted": "A Plan Prueba is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Plan Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Plan Prueba"
+            },
+            "nombre": "Nombre",
+            "prueba": "Prueba"
+        }
+    }
+}

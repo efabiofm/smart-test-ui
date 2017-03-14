@@ -1,0 +1,70 @@
+entity Ambiente {
+	nombre String required,
+    descripcion String,
+    activo Boolean
+}
+
+entity Modulo {
+	nombre String required,
+    url String required,
+	activo Boolean
+}
+
+entity Servicio {
+	nombre String required,
+    url String required,
+	activo Boolean	
+}
+
+entity Metodo {
+	nombre String required,
+    url String required,
+	activo Boolean
+}
+
+entity Parametro {
+	nombre String required
+}
+
+entity TipoParametro {
+	nombre String required
+}
+
+entity Prueba {
+	nombre String required,
+    body String required,
+    activo Boolean
+}
+
+entity PlanPrueba {
+	nombre String required
+}
+
+entity EjecucionPrueba {
+	nombre String,
+	fecha LocalDate,
+    tiempoRespuesta Integer,
+    resultado String,
+    jhUserId Integer,
+    activo Boolean
+}
+
+relationship ManyToMany {
+	Ambiente{modulo(nombre)} to Modulo{ambiente},
+    Modulo{servicio(nombre)} to Servicio{modulo},
+    Servicio{metodo(nombre)} to Metodo{servicio},
+    PlanPrueba{prueba(nombre)} to Prueba{planPrueba},
+    Metodo{parametro(nombre)} to Parametro{metodo}
+}
+
+relationship ManyToOne {
+	Prueba{ambiente(nombre)} to Ambiente{prueba},
+    Prueba{modulo(nombre)} to Modulo{prueba},
+    Prueba{servicio(nombre)} to Servicio{prueba},
+    Prueba{metodo(nombre)} to Metodo{prueba},
+    EjecucionPrueba{prueba(nombre)} to Prueba{ejecucionPrueba},
+    Parametro{tipoParametro} to TipoParametro{parametro}
+}
+
+dto * with mapstruct
+service all with serviceClass

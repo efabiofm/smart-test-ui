@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "prueba",
+            "otherEntityName": "prueba",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "tiempoRespuesta",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "resultado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "jhUserId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170312235412",
+    "entityTableName": "ejecucion_prueba",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

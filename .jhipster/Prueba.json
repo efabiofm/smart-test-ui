@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ambiente",
+            "otherEntityName": "ambiente",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "modulo",
+            "otherEntityName": "modulo",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "servicio",
+            "otherEntityName": "servicio",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "metodo",
+            "otherEntityName": "metodo",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ejecucionPrueba",
+            "otherEntityName": "ejecucionPrueba",
+            "otherEntityRelationshipName": "prueba"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "planPrueba",
+            "otherEntityName": "planPrueba",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "prueba"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "body",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170312235410",
+    "entityTableName": "prueba",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

@@ -1,0 +1,26 @@
+{
+    "smartTestUiApp": {
+        "ambiente" : {
+            "home": {
+                "title": "Ambientes",
+                "createLabel": "Create a new Ambiente",
+                "createOrEditLabel": "Create or edit a Ambiente",
+                "search": "Search for Ambiente"
+            },
+            "created": "A new Ambiente is created with identifier {{ param }}",
+            "updated": "A Ambiente is updated with identifier {{ param }}",
+            "deleted": "A Ambiente is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ambiente {{ id }}?"
+            },
+            "detail": {
+                "title": "Ambiente"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "activo": "Activo",
+            "modulo": "Modulo",
+            "prueba": "Prueba"
+        }
+    }
+}
