@@ -128,6 +128,35 @@ public class UserService {
         return user;
     }
 
+//    Tiene uso realizar otro aparte o para la misma cosa tener
+//    public User createUserQuenti(ManagedUserVM managedUserVM) {
+//        User user = new User();
+//        user.setLogin(managedUserVM.getLogin());
+//        user.setFirstName(managedUserVM.getFirstName());
+//        user.setLastName(managedUserVM.getLastName());
+//        user.setEmail(managedUserVM.getEmail());
+//        if (managedUserVM.getLangKey() == null) {
+//            user.setLangKey("en"); // default language
+//        } else {
+//            user.setLangKey(managedUserVM.getLangKey());
+//        }
+//        if (managedUserVM.getAuthorities() != null) {
+//            Set<Authority> authorities = new HashSet<>();
+//            managedUserVM.getAuthorities().forEach(
+//                authority -> authorities.add(authorityRepository.findOne(authority))
+//            );
+//            user.setAuthorities(authorities);
+//        }
+//        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+//        user.setPassword(encryptedPassword);
+//        user.setResetKey(RandomUtil.generateResetKey());
+//        user.setResetDate(null);
+//        user.setActivated(true);
+//        userRepository.save(user);
+//        log.debug("Created Information for User: {}", user);
+//        return user;
+//    }
+
     public void updateUser(String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);

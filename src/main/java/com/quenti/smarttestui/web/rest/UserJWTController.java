@@ -36,6 +36,12 @@ public class UserJWTController {
 
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
+//        System.out.println("Este es el mop: " + loginVM.getUsername() +loginVM.getPassword());
+        String user = loginVM.getUsername();
+        String password = loginVM.getPassword();
+//        String jsonWToken = tokenProvider.createToken(authenticationToken, false);
+        System.out.println("hola mop" + user + password);
+
 
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
