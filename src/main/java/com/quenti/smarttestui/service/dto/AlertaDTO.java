@@ -17,11 +17,10 @@ public class AlertaDTO implements Serializable {
     @NotNull
     private String mensaje;
 
-    private Boolean activo;
-
+    private Boolean activo = true;
 
     private Long tipoAlertaId;
-    
+
 
     private String tipoAlertaMetodo;
 
