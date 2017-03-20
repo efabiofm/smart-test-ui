@@ -9,10 +9,11 @@
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "parametro",
             "relationshipName": "metodo",
             "otherEntityName": "metodo",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "parametro"
+            "otherEntityField": "nombre",
+            "ownerSide": true
         }
     ],
     "fields": [
@@ -22,6 +23,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20170312235408",

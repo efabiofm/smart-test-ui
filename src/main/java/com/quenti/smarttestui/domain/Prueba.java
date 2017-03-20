@@ -23,10 +23,6 @@ public class Prueba implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
-
-    @NotNull
     @Column(name = "body", nullable = false)
     private String body;
 
@@ -59,19 +55,6 @@ public class Prueba implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public Prueba nombre(String nombre) {
-        this.nombre = nombre;
-        return this;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getBody() {
@@ -226,7 +209,6 @@ public class Prueba implements Serializable {
     public String toString() {
         return "Prueba{" +
             "id=" + id +
-            ", nombre='" + nombre + "'" +
             ", body='" + body + "'" +
             ", activo='" + activo + "'" +
             '}';

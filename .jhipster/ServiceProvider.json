@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "header",
+            "otherEntityName": "header",
+            "otherEntityRelationshipName": "serviceProvider"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "serviceProviderId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170320005141",
+    "entityTableName": "service_provider",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

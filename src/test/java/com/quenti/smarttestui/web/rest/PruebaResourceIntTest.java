@@ -40,9 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmartTestUiApp.class)
 public class PruebaResourceIntTest {
 
-    private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
-    private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
-
     private static final String DEFAULT_BODY = "AAAAAAAAAA";
     private static final String UPDATED_BODY = "BBBBBBBBBB";
 
@@ -89,7 +86,6 @@ public class PruebaResourceIntTest {
      */
     public static Prueba createEntity(EntityManager em) {
         Prueba prueba = new Prueba()
-                .nombre(DEFAULT_NOMBRE)
                 .body(DEFAULT_BODY)
                 .activo(DEFAULT_ACTIVO);
         return prueba;
@@ -117,7 +113,6 @@ public class PruebaResourceIntTest {
         List<Prueba> pruebaList = pruebaRepository.findAll();
         assertThat(pruebaList).hasSize(databaseSizeBeforeCreate + 1);
         Prueba testPrueba = pruebaList.get(pruebaList.size() - 1);
-        assertThat(testPrueba.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testPrueba.getBody()).isEqualTo(DEFAULT_BODY);
         assertThat(testPrueba.isActivo()).isEqualTo(DEFAULT_ACTIVO);
     }
@@ -141,25 +136,6 @@ public class PruebaResourceIntTest {
         // Validate the Alice in the database
         List<Prueba> pruebaList = pruebaRepository.findAll();
         assertThat(pruebaList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkNombreIsRequired() throws Exception {
-        int databaseSizeBeforeTest = pruebaRepository.findAll().size();
-        // set the field null
-        prueba.setNombre(null);
-
-        // Create the Prueba, which fails.
-        PruebaDTO pruebaDTO = pruebaMapper.pruebaToPruebaDTO(prueba);
-
-        restPruebaMockMvc.perform(post("/api/pruebas")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(pruebaDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Prueba> pruebaList = pruebaRepository.findAll();
-        assertThat(pruebaList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -192,7 +168,6 @@ public class PruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(prueba.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
             .andExpect(jsonPath("$.[*].body").value(hasItem(DEFAULT_BODY.toString())))
             .andExpect(jsonPath("$.[*].activo").value(hasItem(DEFAULT_ACTIVO.booleanValue())));
     }
@@ -208,7 +183,6 @@ public class PruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(prueba.getId().intValue()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
             .andExpect(jsonPath("$.body").value(DEFAULT_BODY.toString()))
             .andExpect(jsonPath("$.activo").value(DEFAULT_ACTIVO.booleanValue()));
     }
@@ -231,7 +205,6 @@ public class PruebaResourceIntTest {
         // Update the prueba
         Prueba updatedPrueba = pruebaRepository.findOne(prueba.getId());
         updatedPrueba
-                .nombre(UPDATED_NOMBRE)
                 .body(UPDATED_BODY)
                 .activo(UPDATED_ACTIVO);
         PruebaDTO pruebaDTO = pruebaMapper.pruebaToPruebaDTO(updatedPrueba);
@@ -245,7 +218,6 @@ public class PruebaResourceIntTest {
         List<Prueba> pruebaList = pruebaRepository.findAll();
         assertThat(pruebaList).hasSize(databaseSizeBeforeUpdate);
         Prueba testPrueba = pruebaList.get(pruebaList.size() - 1);
-        assertThat(testPrueba.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testPrueba.getBody()).isEqualTo(UPDATED_BODY);
         assertThat(testPrueba.isActivo()).isEqualTo(UPDATED_ACTIVO);
     }

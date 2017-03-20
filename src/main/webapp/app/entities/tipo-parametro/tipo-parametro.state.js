@@ -105,6 +105,7 @@
                         entity: function () {
                             return {
                                 nombre: null,
+                                activo: null,
                                 id: null
                             };
                         }

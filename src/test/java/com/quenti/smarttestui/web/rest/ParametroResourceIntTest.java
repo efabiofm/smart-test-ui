@@ -43,6 +43,9 @@ public class ParametroResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean UPDATED_ACTIVO = true;
+
     @Inject
     private ParametroRepository parametroRepository;
 
@@ -83,7 +86,8 @@ public class ParametroResourceIntTest {
      */
     public static Parametro createEntity(EntityManager em) {
         Parametro parametro = new Parametro()
-                .nombre(DEFAULT_NOMBRE);
+                .nombre(DEFAULT_NOMBRE)
+                .activo(DEFAULT_ACTIVO);
         return parametro;
     }
 
@@ -110,6 +114,7 @@ public class ParametroResourceIntTest {
         assertThat(parametroList).hasSize(databaseSizeBeforeCreate + 1);
         Parametro testParametro = parametroList.get(parametroList.size() - 1);
         assertThat(testParametro.getNombre()).isEqualTo(DEFAULT_NOMBRE);
+        assertThat(testParametro.isActivo()).isEqualTo(DEFAULT_ACTIVO);
     }
 
     @Test
@@ -163,7 +168,8 @@ public class ParametroResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(parametro.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())));
+            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
+            .andExpect(jsonPath("$.[*].activo").value(hasItem(DEFAULT_ACTIVO.booleanValue())));
     }
 
     @Test
@@ -177,7 +183,8 @@ public class ParametroResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(parametro.getId().intValue()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()));
+            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
+            .andExpect(jsonPath("$.activo").value(DEFAULT_ACTIVO.booleanValue()));
     }
 
     @Test
@@ -198,7 +205,8 @@ public class ParametroResourceIntTest {
         // Update the parametro
         Parametro updatedParametro = parametroRepository.findOne(parametro.getId());
         updatedParametro
-                .nombre(UPDATED_NOMBRE);
+                .nombre(UPDATED_NOMBRE)
+                .activo(UPDATED_ACTIVO);
         ParametroDTO parametroDTO = parametroMapper.parametroToParametroDTO(updatedParametro);
 
         restParametroMockMvc.perform(put("/api/parametros")
@@ -211,6 +219,7 @@ public class ParametroResourceIntTest {
         assertThat(parametroList).hasSize(databaseSizeBeforeUpdate);
         Parametro testParametro = parametroList.get(parametroList.size() - 1);
         assertThat(testParametro.getNombre()).isEqualTo(UPDATED_NOMBRE);
+        assertThat(testParametro.isActivo()).isEqualTo(UPDATED_ACTIVO);
     }
 
     @Test

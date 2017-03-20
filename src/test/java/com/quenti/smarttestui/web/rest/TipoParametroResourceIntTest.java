@@ -43,6 +43,9 @@ public class TipoParametroResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean UPDATED_ACTIVO = true;
+
     @Inject
     private TipoParametroRepository tipoParametroRepository;
 
@@ -83,7 +86,8 @@ public class TipoParametroResourceIntTest {
      */
     public static TipoParametro createEntity(EntityManager em) {
         TipoParametro tipoParametro = new TipoParametro()
-                .nombre(DEFAULT_NOMBRE);
+                .nombre(DEFAULT_NOMBRE)
+                .activo(DEFAULT_ACTIVO);
         return tipoParametro;
     }
 
@@ -110,6 +114,7 @@ public class TipoParametroResourceIntTest {
         assertThat(tipoParametroList).hasSize(databaseSizeBeforeCreate + 1);
         TipoParametro testTipoParametro = tipoParametroList.get(tipoParametroList.size() - 1);
         assertThat(testTipoParametro.getNombre()).isEqualTo(DEFAULT_NOMBRE);
+        assertThat(testTipoParametro.isActivo()).isEqualTo(DEFAULT_ACTIVO);
     }
 
     @Test
@@ -163,7 +168,8 @@ public class TipoParametroResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tipoParametro.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())));
+            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
+            .andExpect(jsonPath("$.[*].activo").value(hasItem(DEFAULT_ACTIVO.booleanValue())));
     }
 
     @Test
@@ -177,7 +183,8 @@ public class TipoParametroResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(tipoParametro.getId().intValue()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()));
+            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
+            .andExpect(jsonPath("$.activo").value(DEFAULT_ACTIVO.booleanValue()));
     }
 
     @Test
@@ -198,7 +205,8 @@ public class TipoParametroResourceIntTest {
         // Update the tipoParametro
         TipoParametro updatedTipoParametro = tipoParametroRepository.findOne(tipoParametro.getId());
         updatedTipoParametro
-                .nombre(UPDATED_NOMBRE);
+                .nombre(UPDATED_NOMBRE)
+                .activo(UPDATED_ACTIVO);
         TipoParametroDTO tipoParametroDTO = tipoParametroMapper.tipoParametroToTipoParametroDTO(updatedTipoParametro);
 
         restTipoParametroMockMvc.perform(put("/api/tipo-parametros")
@@ -211,6 +219,7 @@ public class TipoParametroResourceIntTest {
         assertThat(tipoParametroList).hasSize(databaseSizeBeforeUpdate);
         TipoParametro testTipoParametro = tipoParametroList.get(tipoParametroList.size() - 1);
         assertThat(testTipoParametro.getNombre()).isEqualTo(UPDATED_NOMBRE);
+        assertThat(testTipoParametro.isActivo()).isEqualTo(UPDATED_ACTIVO);
     }
 
     @Test

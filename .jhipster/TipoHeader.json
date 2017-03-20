@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "header",
+            "otherEntityName": "header",
+            "otherEntityRelationshipName": "tipoHeader"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170320005140",
+    "entityTableName": "tipo_header",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

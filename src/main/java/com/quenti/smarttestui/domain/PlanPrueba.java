@@ -25,6 +25,9 @@ public class PlanPrueba implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
+    @Column(name = "activo")
+    private Boolean activo;
+
     @ManyToMany
     @JoinTable(name = "plan_prueba_prueba",
                joinColumns = @JoinColumn(name="plan_pruebas_id", referencedColumnName="ID"),
@@ -50,6 +53,19 @@ public class PlanPrueba implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean isActivo() {
+        return activo;
+    }
+
+    public PlanPrueba activo(Boolean activo) {
+        this.activo = activo;
+        return this;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public Set<Prueba> getPruebas() {
@@ -102,6 +118,7 @@ public class PlanPrueba implements Serializable {
         return "PlanPrueba{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

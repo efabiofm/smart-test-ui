@@ -41,13 +41,6 @@
     ],
     "fields": [
         {
-            "fieldName": "nombre",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "body",
             "fieldType": "String",
             "fieldValidateRules": [

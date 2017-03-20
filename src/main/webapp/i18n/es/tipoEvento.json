@@ -1,0 +1,24 @@
+{
+    "smartTestUiApp": {
+        "tipoEvento" : {
+            "home": {
+                "title": "Tipo Eventos",
+                "createLabel": "Crear nuevo Tipo Evento",
+                "createOrEditLabel": "Crear o editar Tipo Evento",
+                "search": "Search for Tipo Evento"
+            },
+            "created": "Un nuevo Tipo Evento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tipo Evento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tipo Evento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tipo Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Evento"
+            },
+            "nombre": "Nombre",
+            "activo": "Activo",
+            "bitacora": "Bitacora"
+        }
+    }
+}

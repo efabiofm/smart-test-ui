@@ -19,9 +19,6 @@ public class EjecucionPrueba implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nombre")
-    private String nombre;
-
     @Column(name = "fecha")
     private LocalDate fecha;
 
@@ -33,6 +30,9 @@ public class EjecucionPrueba implements Serializable {
 
     @Column(name = "jh_user_id")
     private Integer jhUserId;
+
+    @Column(name = "body")
+    private String body;
 
     @Column(name = "activo")
     private Boolean activo;
@@ -46,19 +46,6 @@ public class EjecucionPrueba implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public EjecucionPrueba nombre(String nombre) {
-        this.nombre = nombre;
-        return this;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public LocalDate getFecha() {
@@ -113,6 +100,19 @@ public class EjecucionPrueba implements Serializable {
         this.jhUserId = jhUserId;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public EjecucionPrueba body(String body) {
+        this.body = body;
+        return this;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     public Boolean isActivo() {
         return activo;
     }
@@ -163,11 +163,11 @@ public class EjecucionPrueba implements Serializable {
     public String toString() {
         return "EjecucionPrueba{" +
             "id=" + id +
-            ", nombre='" + nombre + "'" +
             ", fecha='" + fecha + "'" +
             ", tiempoRespuesta='" + tiempoRespuesta + "'" +
             ", resultado='" + resultado + "'" +
             ", jhUserId='" + jhUserId + "'" +
+            ", body='" + body + "'" +
             ", activo='" + activo + "'" +
             '}';
     }

@@ -68,7 +68,7 @@ class PruebaGatlingTest extends Simulation {
             .exec(http("Create new prueba")
             .post("/api/pruebas")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "body":"SAMPLE_TEXT", "activo":null}""")).asJSON
+            .body(StringBody("""{"id":null, "body":"SAMPLE_TEXT", "activo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_prueba_url"))).exitHereIfFailed
             .pause(10)

@@ -42,9 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmartTestUiApp.class)
 public class EjecucionPruebaResourceIntTest {
 
-    private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
-    private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
-
     private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
@@ -56,6 +53,9 @@ public class EjecucionPruebaResourceIntTest {
 
     private static final Integer DEFAULT_JH_USER_ID = 1;
     private static final Integer UPDATED_JH_USER_ID = 2;
+
+    private static final String DEFAULT_BODY = "AAAAAAAAAA";
+    private static final String UPDATED_BODY = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ACTIVO = false;
     private static final Boolean UPDATED_ACTIVO = true;
@@ -100,11 +100,11 @@ public class EjecucionPruebaResourceIntTest {
      */
     public static EjecucionPrueba createEntity(EntityManager em) {
         EjecucionPrueba ejecucionPrueba = new EjecucionPrueba()
-                .nombre(DEFAULT_NOMBRE)
                 .fecha(DEFAULT_FECHA)
                 .tiempoRespuesta(DEFAULT_TIEMPO_RESPUESTA)
                 .resultado(DEFAULT_RESULTADO)
                 .jhUserId(DEFAULT_JH_USER_ID)
+                .body(DEFAULT_BODY)
                 .activo(DEFAULT_ACTIVO);
         return ejecucionPrueba;
     }
@@ -131,11 +131,11 @@ public class EjecucionPruebaResourceIntTest {
         List<EjecucionPrueba> ejecucionPruebaList = ejecucionPruebaRepository.findAll();
         assertThat(ejecucionPruebaList).hasSize(databaseSizeBeforeCreate + 1);
         EjecucionPrueba testEjecucionPrueba = ejecucionPruebaList.get(ejecucionPruebaList.size() - 1);
-        assertThat(testEjecucionPrueba.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testEjecucionPrueba.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testEjecucionPrueba.getTiempoRespuesta()).isEqualTo(DEFAULT_TIEMPO_RESPUESTA);
         assertThat(testEjecucionPrueba.getResultado()).isEqualTo(DEFAULT_RESULTADO);
         assertThat(testEjecucionPrueba.getJhUserId()).isEqualTo(DEFAULT_JH_USER_ID);
+        assertThat(testEjecucionPrueba.getBody()).isEqualTo(DEFAULT_BODY);
         assertThat(testEjecucionPrueba.isActivo()).isEqualTo(DEFAULT_ACTIVO);
     }
 
@@ -171,11 +171,11 @@ public class EjecucionPruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ejecucionPrueba.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].tiempoRespuesta").value(hasItem(DEFAULT_TIEMPO_RESPUESTA)))
             .andExpect(jsonPath("$.[*].resultado").value(hasItem(DEFAULT_RESULTADO.toString())))
             .andExpect(jsonPath("$.[*].jhUserId").value(hasItem(DEFAULT_JH_USER_ID)))
+            .andExpect(jsonPath("$.[*].body").value(hasItem(DEFAULT_BODY.toString())))
             .andExpect(jsonPath("$.[*].activo").value(hasItem(DEFAULT_ACTIVO.booleanValue())));
     }
 
@@ -190,11 +190,11 @@ public class EjecucionPruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(ejecucionPrueba.getId().intValue()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.tiempoRespuesta").value(DEFAULT_TIEMPO_RESPUESTA))
             .andExpect(jsonPath("$.resultado").value(DEFAULT_RESULTADO.toString()))
             .andExpect(jsonPath("$.jhUserId").value(DEFAULT_JH_USER_ID))
+            .andExpect(jsonPath("$.body").value(DEFAULT_BODY.toString()))
             .andExpect(jsonPath("$.activo").value(DEFAULT_ACTIVO.booleanValue()));
     }
 
@@ -216,11 +216,11 @@ public class EjecucionPruebaResourceIntTest {
         // Update the ejecucionPrueba
         EjecucionPrueba updatedEjecucionPrueba = ejecucionPruebaRepository.findOne(ejecucionPrueba.getId());
         updatedEjecucionPrueba
-                .nombre(UPDATED_NOMBRE)
                 .fecha(UPDATED_FECHA)
                 .tiempoRespuesta(UPDATED_TIEMPO_RESPUESTA)
                 .resultado(UPDATED_RESULTADO)
                 .jhUserId(UPDATED_JH_USER_ID)
+                .body(UPDATED_BODY)
                 .activo(UPDATED_ACTIVO);
         EjecucionPruebaDTO ejecucionPruebaDTO = ejecucionPruebaMapper.ejecucionPruebaToEjecucionPruebaDTO(updatedEjecucionPrueba);
 
@@ -233,11 +233,11 @@ public class EjecucionPruebaResourceIntTest {
         List<EjecucionPrueba> ejecucionPruebaList = ejecucionPruebaRepository.findAll();
         assertThat(ejecucionPruebaList).hasSize(databaseSizeBeforeUpdate);
         EjecucionPrueba testEjecucionPrueba = ejecucionPruebaList.get(ejecucionPruebaList.size() - 1);
-        assertThat(testEjecucionPrueba.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testEjecucionPrueba.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testEjecucionPrueba.getTiempoRespuesta()).isEqualTo(UPDATED_TIEMPO_RESPUESTA);
         assertThat(testEjecucionPrueba.getResultado()).isEqualTo(UPDATED_RESULTADO);
         assertThat(testEjecucionPrueba.getJhUserId()).isEqualTo(UPDATED_JH_USER_ID);
+        assertThat(testEjecucionPrueba.getBody()).isEqualTo(UPDATED_BODY);
         assertThat(testEjecucionPrueba.isActivo()).isEqualTo(UPDATED_ACTIVO);
     }
 

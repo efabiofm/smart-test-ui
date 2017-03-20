@@ -26,6 +26,9 @@ public class TipoParametro implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
+    @Column(name = "activo")
+    private Boolean activo;
+
     @OneToMany(mappedBy = "tipoParametro")
     @JsonIgnore
     private Set<Parametro> parametros = new HashSet<>();
@@ -49,6 +52,19 @@ public class TipoParametro implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean isActivo() {
+        return activo;
+    }
+
+    public TipoParametro activo(Boolean activo) {
+        this.activo = activo;
+        return this;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public Set<Parametro> getParametros() {
@@ -101,6 +117,7 @@ public class TipoParametro implements Serializable {
         return "TipoParametro{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

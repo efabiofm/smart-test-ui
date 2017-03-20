@@ -43,6 +43,9 @@ public class PlanPruebaResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean UPDATED_ACTIVO = true;
+
     @Inject
     private PlanPruebaRepository planPruebaRepository;
 
@@ -83,7 +86,8 @@ public class PlanPruebaResourceIntTest {
      */
     public static PlanPrueba createEntity(EntityManager em) {
         PlanPrueba planPrueba = new PlanPrueba()
-                .nombre(DEFAULT_NOMBRE);
+                .nombre(DEFAULT_NOMBRE)
+                .activo(DEFAULT_ACTIVO);
         return planPrueba;
     }
 
@@ -110,6 +114,7 @@ public class PlanPruebaResourceIntTest {
         assertThat(planPruebaList).hasSize(databaseSizeBeforeCreate + 1);
         PlanPrueba testPlanPrueba = planPruebaList.get(planPruebaList.size() - 1);
         assertThat(testPlanPrueba.getNombre()).isEqualTo(DEFAULT_NOMBRE);
+        assertThat(testPlanPrueba.isActivo()).isEqualTo(DEFAULT_ACTIVO);
     }
 
     @Test
@@ -163,7 +168,8 @@ public class PlanPruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(planPrueba.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())));
+            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
+            .andExpect(jsonPath("$.[*].activo").value(hasItem(DEFAULT_ACTIVO.booleanValue())));
     }
 
     @Test
@@ -177,7 +183,8 @@ public class PlanPruebaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(planPrueba.getId().intValue()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()));
+            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
+            .andExpect(jsonPath("$.activo").value(DEFAULT_ACTIVO.booleanValue()));
     }
 
     @Test
@@ -198,7 +205,8 @@ public class PlanPruebaResourceIntTest {
         // Update the planPrueba
         PlanPrueba updatedPlanPrueba = planPruebaRepository.findOne(planPrueba.getId());
         updatedPlanPrueba
-                .nombre(UPDATED_NOMBRE);
+                .nombre(UPDATED_NOMBRE)
+                .activo(UPDATED_ACTIVO);
         PlanPruebaDTO planPruebaDTO = planPruebaMapper.planPruebaToPlanPruebaDTO(updatedPlanPrueba);
 
         restPlanPruebaMockMvc.perform(put("/api/plan-pruebas")
@@ -211,6 +219,7 @@ public class PlanPruebaResourceIntTest {
         assertThat(planPruebaList).hasSize(databaseSizeBeforeUpdate);
         PlanPrueba testPlanPrueba = planPruebaList.get(planPruebaList.size() - 1);
         assertThat(testPlanPrueba.getNombre()).isEqualTo(UPDATED_NOMBRE);
+        assertThat(testPlanPrueba.isActivo()).isEqualTo(UPDATED_ACTIVO);
     }
 
     @Test

@@ -104,11 +104,11 @@
                     resolve: {
                         entity: function () {
                             return {
-                                nombre: null,
                                 fecha: null,
                                 tiempoRespuesta: null,
                                 resultado: null,
                                 jhUserId: null,
+                                body: null,
                                 activo: null,
                                 id: null
                             };

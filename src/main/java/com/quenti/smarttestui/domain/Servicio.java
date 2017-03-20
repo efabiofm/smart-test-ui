@@ -34,10 +34,10 @@ public class Servicio implements Serializable {
     private Boolean activo;
 
     @ManyToMany
-    @JoinTable(name = "servicio_metodo",
+    @JoinTable(name = "servicio_modulo",
                joinColumns = @JoinColumn(name="servicios_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="metodos_id", referencedColumnName="ID"))
-    private Set<Metodo> metodos = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name="modulos_id", referencedColumnName="ID"))
+    private Set<Modulo> modulos = new HashSet<>();
 
     @OneToMany(mappedBy = "servicio")
     @JsonIgnore
@@ -45,7 +45,7 @@ public class Servicio implements Serializable {
 
     @ManyToMany(mappedBy = "servicios")
     @JsonIgnore
-    private Set<Modulo> modulos = new HashSet<>();
+    private Set<Metodo> metodos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -94,29 +94,29 @@ public class Servicio implements Serializable {
         this.activo = activo;
     }
 
-    public Set<Metodo> getMetodos() {
-        return metodos;
+    public Set<Modulo> getModulos() {
+        return modulos;
     }
 
-    public Servicio metodos(Set<Metodo> metodos) {
-        this.metodos = metodos;
+    public Servicio modulos(Set<Modulo> modulos) {
+        this.modulos = modulos;
         return this;
     }
 
-    public Servicio addMetodo(Metodo metodo) {
-        metodos.add(metodo);
-        metodo.getServicios().add(this);
+    public Servicio addModulo(Modulo modulo) {
+        modulos.add(modulo);
+        modulo.getServicios().add(this);
         return this;
     }
 
-    public Servicio removeMetodo(Metodo metodo) {
-        metodos.remove(metodo);
-        metodo.getServicios().remove(this);
+    public Servicio removeModulo(Modulo modulo) {
+        modulos.remove(modulo);
+        modulo.getServicios().remove(this);
         return this;
     }
 
-    public void setMetodos(Set<Metodo> metodos) {
-        this.metodos = metodos;
+    public void setModulos(Set<Modulo> modulos) {
+        this.modulos = modulos;
     }
 
     public Set<Prueba> getPruebas() {
@@ -144,29 +144,29 @@ public class Servicio implements Serializable {
         this.pruebas = pruebas;
     }
 
-    public Set<Modulo> getModulos() {
-        return modulos;
+    public Set<Metodo> getMetodos() {
+        return metodos;
     }
 
-    public Servicio modulos(Set<Modulo> modulos) {
-        this.modulos = modulos;
+    public Servicio metodos(Set<Metodo> metodos) {
+        this.metodos = metodos;
         return this;
     }
 
-    public Servicio addModulo(Modulo modulo) {
-        modulos.add(modulo);
-        modulo.getServicios().add(this);
+    public Servicio addMetodo(Metodo metodo) {
+        metodos.add(metodo);
+        metodo.getServicios().add(this);
         return this;
     }
 
-    public Servicio removeModulo(Modulo modulo) {
-        modulos.remove(modulo);
-        modulo.getServicios().remove(this);
+    public Servicio removeMetodo(Metodo metodo) {
+        metodos.remove(metodo);
+        metodo.getServicios().remove(this);
         return this;
     }
 
-    public void setModulos(Set<Modulo> modulos) {
-        this.modulos = modulos;
+    public void setMetodos(Set<Metodo> metodos) {
+        this.metodos = metodos;
     }
 
     @Override

@@ -16,10 +16,10 @@
         <dd>
             <span>{{vm.modulo.activo}}</span>
         </dd>
-        <dt><span data-translate="smartTestUiApp.modulo.servicio">Servicio</span></dt>
+        <dt><span data-translate="smartTestUiApp.modulo.ambiente">Ambiente</span></dt>
         <dd>
-            <span ng-repeat="servicio in vm.modulo.servicios">
-                <a ui-sref="servicio-detail({id: servicio.id})">{{servicio.nombre}}</a>{{$last ? '' : ', '}}
+            <span ng-repeat="ambiente in vm.modulo.ambientes">
+                <a ui-sref="ambiente-detail({id: ambiente.id})">{{ambiente.nombre}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

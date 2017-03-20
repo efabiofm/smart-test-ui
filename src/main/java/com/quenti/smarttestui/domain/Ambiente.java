@@ -32,15 +32,13 @@ public class Ambiente implements Serializable {
     @Column(name = "activo")
     private Boolean activo;
 
-    @ManyToMany
-    @JoinTable(name = "ambiente_modulo",
-               joinColumns = @JoinColumn(name="ambientes_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="modulos_id", referencedColumnName="ID"))
-    private Set<Modulo> modulos = new HashSet<>();
-
     @OneToMany(mappedBy = "ambiente")
     @JsonIgnore
     private Set<Prueba> pruebas = new HashSet<>();
+
+    @ManyToMany(mappedBy = "ambientes")
+    @JsonIgnore
+    private Set<Modulo> modulos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -89,31 +87,6 @@ public class Ambiente implements Serializable {
         this.activo = activo;
     }
 
-    public Set<Modulo> getModulos() {
-        return modulos;
-    }
-
-    public Ambiente modulos(Set<Modulo> modulos) {
-        this.modulos = modulos;
-        return this;
-    }
-
-    public Ambiente addModulo(Modulo modulo) {
-        modulos.add(modulo);
-        modulo.getAmbientes().add(this);
-        return this;
-    }
-
-    public Ambiente removeModulo(Modulo modulo) {
-        modulos.remove(modulo);
-        modulo.getAmbientes().remove(this);
-        return this;
-    }
-
-    public void setModulos(Set<Modulo> modulos) {
-        this.modulos = modulos;
-    }
-
     public Set<Prueba> getPruebas() {
         return pruebas;
     }
@@ -137,6 +110,31 @@ public class Ambiente implements Serializable {
 
     public void setPruebas(Set<Prueba> pruebas) {
         this.pruebas = pruebas;
+    }
+
+    public Set<Modulo> getModulos() {
+        return modulos;
+    }
+
+    public Ambiente modulos(Set<Modulo> modulos) {
+        this.modulos = modulos;
+        return this;
+    }
+
+    public Ambiente addModulo(Modulo modulo) {
+        modulos.add(modulo);
+        modulo.getAmbientes().add(this);
+        return this;
+    }
+
+    public Ambiente removeModulo(Modulo modulo) {
+        modulos.remove(modulo);
+        modulo.getAmbientes().remove(this);
+        return this;
+    }
+
+    public void setModulos(Set<Modulo> modulos) {
+        this.modulos = modulos;
     }
 
     @Override
