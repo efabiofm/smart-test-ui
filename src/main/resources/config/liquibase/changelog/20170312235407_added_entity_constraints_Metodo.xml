@@ -9,15 +9,15 @@
     <changeSet id="20170312235407-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="metodos_id"
-                                 baseTableName="metodo_parametro"
-                                 constraintName="fk_metodo_parametro_metodos_id"
+                                 baseTableName="metodo_servicio"
+                                 constraintName="fk_metodo_servicio_metodos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="metodo"/>
-        <addForeignKeyConstraint baseColumnNames="parametros_id"
-                                 baseTableName="metodo_parametro"
-                                 constraintName="fk_metodo_parametro_parametros_id"
+        <addForeignKeyConstraint baseColumnNames="servicios_id"
+                                 baseTableName="metodo_servicio"
+                                 constraintName="fk_metodo_servicio_servicios_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="parametro"/>
+                                 referencedTableName="servicio"/>
         
     </changeSet>
 </databaseChangeLog>

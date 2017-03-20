@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="smartTestUiApp.alerta.detail.title">Alerta</span> {{vm.alerta.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartTestUiApp.alerta.mensaje">Mensaje</span></dt>
+        <dd>
+            <span>{{vm.alerta.mensaje}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.alerta.activo">Activo</span></dt>
+        <dd>
+            <span>{{vm.alerta.activo}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.alerta.tipoAlerta">Tipo Alerta</span></dt>
+        <dd>
+            <a ui-sref="tipo-alerta-detail({id:vm.alerta.tipoAlertaId})">{{vm.alerta.tipoAlertaMetodo}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="alerta-detail.edit({id:vm.alerta.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

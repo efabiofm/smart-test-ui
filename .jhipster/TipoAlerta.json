@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "alerta",
+            "otherEntityName": "alerta",
+            "otherEntityRelationshipName": "tipoAlerta"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "metodo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170320005137",
+    "entityTableName": "tipo_alerta",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

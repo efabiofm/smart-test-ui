@@ -2,17 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "ambiente",
-            "relationshipName": "modulo",
-            "otherEntityName": "modulo",
-            "otherEntityField": "nombre",
-            "ownerSide": true
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "prueba",
             "otherEntityName": "prueba",
+            "otherEntityRelationshipName": "ambiente"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "modulo",
+            "otherEntityName": "modulo",
+            "ownerSide": false,
             "otherEntityRelationshipName": "ambiente"
         }
     ],

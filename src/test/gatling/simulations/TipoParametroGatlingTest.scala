@@ -68,7 +68,7 @@ class TipoParametroGatlingTest extends Simulation {
             .exec(http("Create new tipoParametro")
             .post("/api/tipo-parametros")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "activo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_tipoParametro_url"))).exitHereIfFailed
             .pause(10)

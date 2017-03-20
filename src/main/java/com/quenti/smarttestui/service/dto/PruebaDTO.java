@@ -15,9 +15,6 @@ public class PruebaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String nombre;
-
-    @NotNull
     private String body;
 
     private Boolean activo;
@@ -49,13 +46,6 @@ public class PruebaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
     public String getBody() {
         return body;
@@ -165,7 +155,6 @@ public class PruebaDTO implements Serializable {
     public String toString() {
         return "PruebaDTO{" +
             "id=" + id +
-            ", nombre='" + nombre + "'" +
             ", body='" + body + "'" +
             ", activo='" + activo + "'" +
             '}';

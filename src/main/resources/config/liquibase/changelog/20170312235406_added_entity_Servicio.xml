@@ -39,8 +39,8 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
-        <createTable tableName="servicio_metodo">
-            <column name="metodos_id" type="bigint">
+        <createTable tableName="servicio_modulo">
+            <column name="modulos_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="servicios_id" type="bigint">
@@ -48,7 +48,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="servicios_id, metodos_id" tableName="servicio_metodo"/>
+        <addPrimaryKey columnNames="servicios_id, modulos_id" tableName="servicio_modulo"/>
         
     </changeSet>
 </databaseChangeLog>

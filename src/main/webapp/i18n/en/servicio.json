@@ -19,9 +19,9 @@
             "nombre": "Nombre",
             "url": "Url",
             "activo": "Activo",
-            "metodo": "Metodo",
+            "modulo": "Modulo",
             "prueba": "Prueba",
-            "modulo": "Modulo"
+            "metodo": "Metodo"
         }
     }
 }

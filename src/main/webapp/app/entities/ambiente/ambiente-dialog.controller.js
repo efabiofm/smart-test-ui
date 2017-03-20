@@ -5,16 +5,16 @@
         .module('smartTestUiApp')
         .controller('AmbienteDialogController', AmbienteDialogController);
 
-    AmbienteDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Ambiente', 'Modulo', 'Prueba'];
+    AmbienteDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Ambiente', 'Prueba', 'Modulo'];
 
-    function AmbienteDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Ambiente, Modulo, Prueba) {
+    function AmbienteDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Ambiente, Prueba, Modulo) {
         var vm = this;
 
         vm.ambiente = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.modulos = Modulo.query();
         vm.pruebas = Prueba.query();
+        vm.modulos = Modulo.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

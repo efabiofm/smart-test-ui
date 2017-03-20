@@ -17,6 +17,7 @@
                 "title": "Tipo Parametro"
             },
             "nombre": "Nombre",
+            "activo": "Activo",
             "parametro": "Parametro"
         }
     }

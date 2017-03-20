@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity Ambiente and its DTO AmbienteDTO.
  */
-@Mapper(componentModel = "spring", uses = {ModuloMapper.class, })
+@Mapper(componentModel = "spring", uses = {})
 public interface AmbienteMapper {
 
     AmbienteDTO ambienteToAmbienteDTO(Ambiente ambiente);
@@ -17,16 +17,8 @@ public interface AmbienteMapper {
     List<AmbienteDTO> ambientesToAmbienteDTOs(List<Ambiente> ambientes);
 
     @Mapping(target = "pruebas", ignore = true)
+    @Mapping(target = "modulos", ignore = true)
     Ambiente ambienteDTOToAmbiente(AmbienteDTO ambienteDTO);
 
     List<Ambiente> ambienteDTOsToAmbientes(List<AmbienteDTO> ambienteDTOs);
-
-    default Modulo moduloFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        Modulo modulo = new Modulo();
-        modulo.setId(id);
-        return modulo;
-    }
 }

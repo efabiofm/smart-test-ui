@@ -6,7 +6,7 @@
             "otherEntityRelationshipName": "planPrueba",
             "relationshipName": "prueba",
             "otherEntityName": "prueba",
-            "otherEntityField": "nombre",
+            "otherEntityField": "id",
             "ownerSide": true
         }
     ],
@@ -17,6 +17,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20170312235411",

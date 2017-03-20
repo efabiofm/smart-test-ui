@@ -17,9 +17,13 @@ public class ParametroDTO implements Serializable {
     @NotNull
     private String nombre;
 
+    private Boolean activo;
+
 
     private Long tipoParametroId;
     
+    private Set<MetodoDTO> metodos = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -34,6 +38,13 @@ public class ParametroDTO implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
 
     public Long getTipoParametroId() {
         return tipoParametroId;
@@ -41,6 +52,14 @@ public class ParametroDTO implements Serializable {
 
     public void setTipoParametroId(Long tipoParametroId) {
         this.tipoParametroId = tipoParametroId;
+    }
+
+    public Set<MetodoDTO> getMetodos() {
+        return metodos;
+    }
+
+    public void setMetodos(Set<MetodoDTO> metodos) {
+        this.metodos = metodos;
     }
 
     @Override
@@ -69,6 +88,7 @@ public class ParametroDTO implements Serializable {
         return "ParametroDTO{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

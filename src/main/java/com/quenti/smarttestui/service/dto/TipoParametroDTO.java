@@ -17,6 +17,8 @@ public class TipoParametroDTO implements Serializable {
     @NotNull
     private String nombre;
 
+    private Boolean activo;
+
 
     public Long getId() {
         return id;
@@ -31,6 +33,13 @@ public class TipoParametroDTO implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     @Override
@@ -59,6 +68,7 @@ public class TipoParametroDTO implements Serializable {
         return "TipoParametroDTO{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

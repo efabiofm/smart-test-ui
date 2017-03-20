@@ -22,7 +22,7 @@
                     <th><span data-translate="smartTestUiApp.servicio.nombre">Nombre</span></th>
                     <th><span data-translate="smartTestUiApp.servicio.url">Url</span></th>
                     <th><span data-translate="smartTestUiApp.servicio.activo">Activo</span></th>
-                    <th><span data-translate="smartTestUiApp.servicio.metodo">Metodo</span></th>
+                    <th><span data-translate="smartTestUiApp.servicio.modulo">Modulo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,8 +33,8 @@
                     <td>{{servicio.url}}</td>
                     <td>{{servicio.activo}}</td>
                     <td>
-                        <span ng-repeat="metodo in servicio.metodos">
-                            <a class="form-control-static" ui-sref="metodo-detail({id: metodo.id})">{{metodo.nombre}}</a>{{$last ? '' : ', '}}
+                        <span ng-repeat="modulo in servicio.modulos">
+                            <a class="form-control-static" ui-sref="modulo-detail({id: modulo.id})">{{modulo.nombre}}</a>{{$last ? '' : ', '}}
                         </span>
                     </td>
                     <td class="text-right">

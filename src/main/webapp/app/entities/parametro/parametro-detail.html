@@ -8,9 +8,19 @@
         <dd>
             <span>{{vm.parametro.nombre}}</span>
         </dd>
+        <dt><span data-translate="smartTestUiApp.parametro.activo">Activo</span></dt>
+        <dd>
+            <span>{{vm.parametro.activo}}</span>
+        </dd>
         <dt><span data-translate="smartTestUiApp.parametro.tipoParametro">Tipo Parametro</span></dt>
         <dd>
             <a ui-sref="tipo-parametro-detail({id:vm.parametro.tipoParametroId})">{{vm.parametro.tipoParametroId}}</a>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.parametro.metodo">Metodo</span></dt>
+        <dd>
+            <span ng-repeat="metodo in vm.parametro.metodos">
+                <a ui-sref="metodo-detail({id: metodo.id})">{{metodo.nombre}}</a>{{$last ? '' : ', '}}
+            </span>
         </dd>
     </dl>
 

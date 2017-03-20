@@ -20,7 +20,9 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.parametro.nombre">Nombre</span></th>
+                    <th><span data-translate="smartTestUiApp.parametro.activo">Activo</span></th>
                     <th><span data-translate="smartTestUiApp.parametro.tipoParametro">Tipo Parametro</span></th>
+                    <th><span data-translate="smartTestUiApp.parametro.metodo">Metodo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,8 +30,14 @@
                 <tr ng-repeat="parametro in vm.parametros track by parametro.id">
                     <td><a ui-sref="parametro-detail({id:parametro.id})">{{parametro.id}}</a></td>
                     <td>{{parametro.nombre}}</td>
+                    <td>{{parametro.activo}}</td>
                     <td>
                         <a ui-sref="tipo-parametro-detail({id:parametro.tipoParametroId})">{{parametro.tipoParametroId}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="metodo in parametro.metodos">
+                            <a class="form-control-static" ui-sref="metodo-detail({id: metodo.id})">{{metodo.nombre}}</a>{{$last ? '' : ', '}}
+                        </span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -68,7 +68,7 @@ class PlanPruebaGatlingTest extends Simulation {
             .exec(http("Create new planPrueba")
             .post("/api/plan-pruebas")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "activo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_planPrueba_url"))).exitHereIfFailed
             .pause(10)

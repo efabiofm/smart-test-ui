@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="smartTestUiApp.ejecucionPrueba.nombre">Nombre</span></dt>
-        <dd>
-            <span>{{vm.ejecucionPrueba.nombre}}</span>
-        </dd>
         <dt><span data-translate="smartTestUiApp.ejecucionPrueba.fecha">Fecha</span></dt>
         <dd>
             <span>{{vm.ejecucionPrueba.fecha | date:'mediumDate'}}</span>
@@ -24,13 +20,17 @@
         <dd>
             <span>{{vm.ejecucionPrueba.jhUserId}}</span>
         </dd>
+        <dt><span data-translate="smartTestUiApp.ejecucionPrueba.body">Body</span></dt>
+        <dd>
+            <span>{{vm.ejecucionPrueba.body}}</span>
+        </dd>
         <dt><span data-translate="smartTestUiApp.ejecucionPrueba.activo">Activo</span></dt>
         <dd>
             <span>{{vm.ejecucionPrueba.activo}}</span>
         </dd>
         <dt><span data-translate="smartTestUiApp.ejecucionPrueba.prueba">Prueba</span></dt>
         <dd>
-            <a ui-sref="prueba-detail({id:vm.ejecucionPrueba.pruebaId})">{{vm.ejecucionPrueba.pruebaNombre}}</a>
+            <a ui-sref="prueba-detail({id:vm.ejecucionPrueba.pruebaId})">{{vm.ejecucionPrueba.pruebaId}}</a>
         </dd>
     </dl>
 

@@ -14,12 +14,6 @@
                     ng-model="vm.ejecucionPrueba.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartTestUiApp.ejecucionPrueba.nombre" for="field_nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="field_nombre"
-                    ng-model="vm.ejecucionPrueba.nombre"
-                     />
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="smartTestUiApp.ejecucionPrueba.fecha" for="field_fecha">Fecha</label>
                 <div class="input-group">
                     <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.ejecucionPrueba.fecha" is-open="vm.datePickerOpenStatus.fecha"
@@ -48,6 +42,12 @@
                      />
         </div>
         <div class="form-group">
+            <label class="control-label" data-translate="smartTestUiApp.ejecucionPrueba.body" for="field_body">Body</label>
+            <input type="text" class="form-control" name="body" id="field_body"
+                    ng-model="vm.ejecucionPrueba.body"
+                     />
+        </div>
+        <div class="form-group">
             <label class="control-label" data-translate="smartTestUiApp.ejecucionPrueba.activo" for="field_activo">Activo</label>
             <input type="checkbox" class="form-control" name="activo" id="field_activo"
                     ng-model="vm.ejecucionPrueba.activo"
@@ -56,7 +56,7 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.ejecucionPrueba.prueba" for="field_prueba">Prueba</label>
-            <select class="form-control" id="field_prueba" name="prueba" ng-model="vm.ejecucionPrueba.pruebaId" ng-options="prueba.id as prueba.nombre for prueba in vm.pruebas"            >
+            <select class="form-control" id="field_prueba" name="prueba" ng-model="vm.ejecucionPrueba.pruebaId" ng-options="prueba.id as prueba.id for prueba in vm.pruebas"            >
                 <option value=""></option>
             </select>
         </div>

@@ -4,8 +4,8 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "servicio",
-            "relationshipName": "metodo",
-            "otherEntityName": "metodo",
+            "relationshipName": "modulo",
+            "otherEntityName": "modulo",
             "otherEntityField": "nombre",
             "ownerSide": true
         },
@@ -17,8 +17,8 @@
         },
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "modulo",
-            "otherEntityName": "modulo",
+            "relationshipName": "metodo",
+            "otherEntityName": "metodo",
             "ownerSide": false,
             "otherEntityRelationshipName": "servicio"
         }

@@ -14,5 +14,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_parametro"/>
 
+        <addForeignKeyConstraint baseColumnNames="parametros_id"
+                                 baseTableName="parametro_metodo"
+                                 constraintName="fk_parametro_metodo_parametros_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="parametro"/>
+        <addForeignKeyConstraint baseColumnNames="metodos_id"
+                                 baseTableName="parametro_metodo"
+                                 constraintName="fk_parametro_metodo_metodos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metodo"/>
+        
     </changeSet>
 </databaseChangeLog>

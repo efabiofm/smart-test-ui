@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity Servicio and its DTO ServicioDTO.
  */
-@Mapper(componentModel = "spring", uses = {MetodoMapper.class, })
+@Mapper(componentModel = "spring", uses = {ModuloMapper.class, })
 public interface ServicioMapper {
 
     ServicioDTO servicioToServicioDTO(Servicio servicio);
@@ -17,17 +17,17 @@ public interface ServicioMapper {
     List<ServicioDTO> serviciosToServicioDTOs(List<Servicio> servicios);
 
     @Mapping(target = "pruebas", ignore = true)
-    @Mapping(target = "modulos", ignore = true)
+    @Mapping(target = "metodos", ignore = true)
     Servicio servicioDTOToServicio(ServicioDTO servicioDTO);
 
     List<Servicio> servicioDTOsToServicios(List<ServicioDTO> servicioDTOs);
 
-    default Metodo metodoFromId(Long id) {
+    default Modulo moduloFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Metodo metodo = new Metodo();
-        metodo.setId(id);
-        return metodo;
+        Modulo modulo = new Modulo();
+        modulo.setId(id);
+        return modulo;
     }
 }

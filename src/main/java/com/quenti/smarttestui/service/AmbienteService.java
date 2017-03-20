@@ -51,7 +51,7 @@ public class AmbienteService {
     @Transactional(readOnly = true) 
     public List<AmbienteDTO> findAll() {
         log.debug("Request to get all Ambientes");
-        List<AmbienteDTO> result = ambienteRepository.findAllWithEagerRelationships().stream()
+        List<AmbienteDTO> result = ambienteRepository.findAll().stream()
             .map(ambienteMapper::ambienteToAmbienteDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -67,7 +67,7 @@ public class AmbienteService {
     @Transactional(readOnly = true) 
     public AmbienteDTO findOne(Long id) {
         log.debug("Request to get Ambiente : {}", id);
-        Ambiente ambiente = ambienteRepository.findOneWithEagerRelationships(id);
+        Ambiente ambiente = ambienteRepository.findOne(id);
         AmbienteDTO ambienteDTO = ambienteMapper.ambienteToAmbienteDTO(ambiente);
         return ambienteDTO;
     }

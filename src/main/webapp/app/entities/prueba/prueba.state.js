@@ -104,7 +104,6 @@
                     resolve: {
                         entity: function () {
                             return {
-                                nombre: null,
                                 body: null,
                                 activo: null,
                                 id: null

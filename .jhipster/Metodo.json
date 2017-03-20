@@ -4,8 +4,8 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "metodo",
-            "relationshipName": "parametro",
-            "otherEntityName": "parametro",
+            "relationshipName": "servicio",
+            "otherEntityName": "servicio",
             "otherEntityField": "nombre",
             "ownerSide": true
         },
@@ -17,8 +17,8 @@
         },
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "servicio",
-            "otherEntityName": "servicio",
+            "relationshipName": "parametro",
+            "otherEntityName": "parametro",
             "ownerSide": false,
             "otherEntityRelationshipName": "metodo"
         }
