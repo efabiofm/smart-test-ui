@@ -21,7 +21,7 @@ public class UserQuentiDTO {
     private String password;
     private String userIPAdress;
     private String userClientId;
-    private TokenDTO objTokenDTO;
+    private String objTokenDTO;
     private String firstName;
     private String lastName;
 
@@ -42,11 +42,11 @@ public class UserQuentiDTO {
         this.lastName = lastName;
     }
 
-    public TokenDTO getObjTokenDTO() {
+    public String getObjTokenDTO() {
         return objTokenDTO;
     }
 
-    public void setObjTokenDTO(TokenDTO objTokenDTO) {
+    public void setObjTokenDTO(String objTokenDTO) {
         this.objTokenDTO = objTokenDTO;
     }
 

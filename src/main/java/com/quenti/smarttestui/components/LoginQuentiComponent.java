@@ -5,14 +5,17 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.quenti.smarttestui.service.UserService;
 import com.quenti.smarttestui.service.dto.RequestDTO;
+import com.quenti.smarttestui.service.dto.UserDTO;
 import com.quenti.smarttestui.service.dto.UserQuentiDTO;
 import com.quenti.smarttestui.web.rest.vm.LoginVM;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -36,9 +39,10 @@ public class LoginQuentiComponent {
     ObjectMapperCustom objectMapperCustom = new ObjectMapperCustom();
 
 
-    public Boolean init(LoginVM loginVM) {
-        Boolean result = null;
-        String resultunirest = "";
+    public UserQuentiDTO init(LoginVM loginVM) {
+        String result = "";
+        UserQuentiDTO userMapeado = new UserQuentiDTO();
+//        Boolean isSuccessful = null;
 
                 userQuentiDTO.setUsername(loginVM.getUsername());
                 userQuentiDTO.setPassword(loginVM.getPassword());
@@ -60,12 +64,23 @@ public class LoginQuentiComponent {
 
 
                 log.debug("Making post call");
-                resultunirest = makePostCall(requestDTO);
-                JSONObject jsonResult = new JSONObject(resultunirest).getJSONObject("apiResult");
-                result = jsonResult.getBoolean("operationSuccessful");
+                result = makePostCall(requestDTO);
+                JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
+                Boolean operationSuccessful = jsonResult.getBoolean("operationSuccessful");
+                if (operationSuccessful) {
+                    try {
+                        userMapeado = objectMapperCustom.readValue(requestDTO.getBody().toString(), UserQuentiDTO.class);
+                        JSONObject data = (JSONObject) jsonResult.get("data");
+                        JSONObject profile = (JSONObject) data.get("profile");
+                        userMapeado.setObjTokenDTO(data.getString("sessionKey"));
+                        userMapeado.setFirstName(profile.getString("FirstName"));
+                        userMapeado.setFirstName(profile.getString("LastName"));
+                    } catch (IOException o) {
 
-                System.out.println(result);
-                return result;
+                    }
+                }
+
+                return userMapeado;
 
     }
 

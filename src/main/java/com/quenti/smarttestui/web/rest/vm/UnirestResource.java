@@ -40,7 +40,8 @@ public class UnirestResource {
         loginVM.setUserClienteID("Hopware");
         log.debug("Starting test request call");
         //DTO SHOULD BE HERE AS A PARAMETER
-        return loginQuentiComponent.init(loginVM);
+//        return loginQuentiComponent.init(loginVM);
+        return null;
     }
 
 
