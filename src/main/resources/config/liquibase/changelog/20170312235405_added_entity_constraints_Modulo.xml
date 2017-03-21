@@ -9,15 +9,15 @@
     <changeSet id="20170312235405-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="modulos_id"
-                                 baseTableName="modulo_servicio"
-                                 constraintName="fk_modulo_servicio_modulos_id"
+                                 baseTableName="modulo_ambiente"
+                                 constraintName="fk_modulo_ambiente_modulos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="modulo"/>
-        <addForeignKeyConstraint baseColumnNames="servicios_id"
-                                 baseTableName="modulo_servicio"
-                                 constraintName="fk_modulo_servicio_servicios_id"
+        <addForeignKeyConstraint baseColumnNames="ambientes_id"
+                                 baseTableName="modulo_ambiente"
+                                 constraintName="fk_modulo_ambiente_ambientes_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="servicio"/>
+                                 referencedTableName="ambiente"/>
         
     </changeSet>
 </databaseChangeLog>

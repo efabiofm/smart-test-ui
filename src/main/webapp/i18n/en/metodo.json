@@ -19,9 +19,9 @@
             "nombre": "Nombre",
             "url": "Url",
             "activo": "Activo",
-            "parametro": "Parametro",
+            "servicio": "Servicio",
             "prueba": "Prueba",
-            "servicio": "Servicio"
+            "parametro": "Parametro"
         }
     }
 }

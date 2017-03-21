@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Header.
+    -->
+    <changeSet id="20170320005139-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo_header_id"
+                                 baseTableName="header"
+                                 constraintName="fk_header_tipo_header_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_header"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_provider_id"
+                                 baseTableName="header"
+                                 constraintName="fk_header_service_provider_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_provider"/>
+
+    </changeSet>
+</databaseChangeLog>

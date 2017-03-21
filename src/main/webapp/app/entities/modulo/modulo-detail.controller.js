@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('ModuloDetailController', ModuloDetailController);
 
-    ModuloDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Modulo', 'Servicio', 'Prueba', 'Ambiente'];
+    ModuloDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Modulo', 'Ambiente', 'Prueba', 'Servicio'];
 
-    function ModuloDetailController($scope, $rootScope, $stateParams, previousState, entity, Modulo, Servicio, Prueba, Ambiente) {
+    function ModuloDetailController($scope, $rootScope, $stateParams, previousState, entity, Modulo, Ambiente, Prueba, Servicio) {
         var vm = this;
 
         vm.modulo = entity;

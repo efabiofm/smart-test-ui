@@ -19,8 +19,8 @@
             "nombre": "Nombre",
             "descripcion": "Descripcion",
             "activo": "Activo",
-            "modulo": "Modulo",
-            "prueba": "Prueba"
+            "prueba": "Prueba",
+            "modulo": "Modulo"
         }
     }
 }

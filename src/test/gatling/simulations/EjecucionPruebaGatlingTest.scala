@@ -68,7 +68,7 @@ class EjecucionPruebaGatlingTest extends Simulation {
             .exec(http("Create new ejecucionPrueba")
             .post("/api/ejecucion-pruebas")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "fecha":"2020-01-01T00:00:00.000Z", "tiempoRespuesta":"0", "resultado":"SAMPLE_TEXT", "jhUserId":"0", "activo":null}""")).asJSON
+            .body(StringBody("""{"id":null, "fecha":"2020-01-01T00:00:00.000Z", "tiempoRespuesta":"0", "resultado":"SAMPLE_TEXT", "jhUserId":"0", "body":"SAMPLE_TEXT", "activo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_ejecucionPrueba_url"))).exitHereIfFailed
             .pause(10)

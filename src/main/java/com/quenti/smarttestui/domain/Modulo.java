@@ -34,10 +34,10 @@ public class Modulo implements Serializable {
     private Boolean activo;
 
     @ManyToMany
-    @JoinTable(name = "modulo_servicio",
+    @JoinTable(name = "modulo_ambiente",
                joinColumns = @JoinColumn(name="modulos_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="servicios_id", referencedColumnName="ID"))
-    private Set<Servicio> servicios = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name="ambientes_id", referencedColumnName="ID"))
+    private Set<Ambiente> ambientes = new HashSet<>();
 
     @OneToMany(mappedBy = "modulo")
     @JsonIgnore
@@ -45,7 +45,7 @@ public class Modulo implements Serializable {
 
     @ManyToMany(mappedBy = "modulos")
     @JsonIgnore
-    private Set<Ambiente> ambientes = new HashSet<>();
+    private Set<Servicio> servicios = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -94,29 +94,29 @@ public class Modulo implements Serializable {
         this.activo = activo;
     }
 
-    public Set<Servicio> getServicios() {
-        return servicios;
+    public Set<Ambiente> getAmbientes() {
+        return ambientes;
     }
 
-    public Modulo servicios(Set<Servicio> servicios) {
-        this.servicios = servicios;
+    public Modulo ambientes(Set<Ambiente> ambientes) {
+        this.ambientes = ambientes;
         return this;
     }
 
-    public Modulo addServicio(Servicio servicio) {
-        servicios.add(servicio);
-        servicio.getModulos().add(this);
+    public Modulo addAmbiente(Ambiente ambiente) {
+        ambientes.add(ambiente);
+        ambiente.getModulos().add(this);
         return this;
     }
 
-    public Modulo removeServicio(Servicio servicio) {
-        servicios.remove(servicio);
-        servicio.getModulos().remove(this);
+    public Modulo removeAmbiente(Ambiente ambiente) {
+        ambientes.remove(ambiente);
+        ambiente.getModulos().remove(this);
         return this;
     }
 
-    public void setServicios(Set<Servicio> servicios) {
-        this.servicios = servicios;
+    public void setAmbientes(Set<Ambiente> ambientes) {
+        this.ambientes = ambientes;
     }
 
     public Set<Prueba> getPruebas() {
@@ -144,29 +144,29 @@ public class Modulo implements Serializable {
         this.pruebas = pruebas;
     }
 
-    public Set<Ambiente> getAmbientes() {
-        return ambientes;
+    public Set<Servicio> getServicios() {
+        return servicios;
     }
 
-    public Modulo ambientes(Set<Ambiente> ambientes) {
-        this.ambientes = ambientes;
+    public Modulo servicios(Set<Servicio> servicios) {
+        this.servicios = servicios;
         return this;
     }
 
-    public Modulo addAmbiente(Ambiente ambiente) {
-        ambientes.add(ambiente);
-        ambiente.getModulos().add(this);
+    public Modulo addServicio(Servicio servicio) {
+        servicios.add(servicio);
+        servicio.getModulos().add(this);
         return this;
     }
 
-    public Modulo removeAmbiente(Ambiente ambiente) {
-        ambientes.remove(ambiente);
-        ambiente.getModulos().remove(this);
+    public Modulo removeServicio(Servicio servicio) {
+        servicios.remove(servicio);
+        servicio.getModulos().remove(this);
         return this;
     }
 
-    public void setAmbientes(Set<Ambiente> ambientes) {
-        this.ambientes = ambientes;
+    public void setServicios(Set<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
     @Override

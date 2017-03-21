@@ -13,10 +13,10 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface ServicioRepository extends JpaRepository<Servicio,Long> {
 
-    @Query("select distinct servicio from Servicio servicio left join fetch servicio.metodos")
+    @Query("select distinct servicio from Servicio servicio left join fetch servicio.modulos")
     List<Servicio> findAllWithEagerRelationships();
 
-    @Query("select servicio from Servicio servicio left join fetch servicio.metodos where servicio.id =:id")
+    @Query("select servicio from Servicio servicio left join fetch servicio.modulos where servicio.id =:id")
     Servicio findOneWithEagerRelationships(@Param("id") Long id);
 
 }

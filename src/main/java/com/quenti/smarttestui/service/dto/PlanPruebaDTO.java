@@ -17,6 +17,8 @@ public class PlanPruebaDTO implements Serializable {
     @NotNull
     private String nombre;
 
+    private Boolean activo;
+
 
     private Set<PruebaDTO> pruebas = new HashSet<>();
 
@@ -33,6 +35,13 @@ public class PlanPruebaDTO implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public Set<PruebaDTO> getPruebas() {
@@ -69,6 +78,7 @@ public class PlanPruebaDTO implements Serializable {
         return "PlanPruebaDTO{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

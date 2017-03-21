@@ -20,6 +20,7 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.planPrueba.nombre">Nombre</span></th>
+                    <th><span data-translate="smartTestUiApp.planPrueba.activo">Activo</span></th>
                     <th><span data-translate="smartTestUiApp.planPrueba.prueba">Prueba</span></th>
                     <th></th>
                 </tr>
@@ -28,9 +29,10 @@
                 <tr ng-repeat="planPrueba in vm.planPruebas track by planPrueba.id">
                     <td><a ui-sref="plan-prueba-detail({id:planPrueba.id})">{{planPrueba.id}}</a></td>
                     <td>{{planPrueba.nombre}}</td>
+                    <td>{{planPrueba.activo}}</td>
                     <td>
                         <span ng-repeat="prueba in planPrueba.pruebas">
-                            <a class="form-control-static" ui-sref="prueba-detail({id: prueba.id})">{{prueba.nombre}}</a>{{$last ? '' : ', '}}
+                            <a class="form-control-static" ui-sref="prueba-detail({id: prueba.id})">{{prueba.id}}</a>{{$last ? '' : ', '}}
                         </span>
                     </td>
                     <td class="text-right">

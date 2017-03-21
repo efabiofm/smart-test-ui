@@ -1,0 +1,25 @@
+{
+    "smartTestUiApp": {
+        "bitacora" : {
+            "home": {
+                "title": "Bitacoras",
+                "createLabel": "Create a new Bitacora",
+                "createOrEditLabel": "Create or edit a Bitacora",
+                "search": "Search for Bitacora"
+            },
+            "created": "A new Bitacora is created with identifier {{ param }}",
+            "updated": "A Bitacora is updated with identifier {{ param }}",
+            "deleted": "A Bitacora is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Bitacora {{ id }}?"
+            },
+            "detail": {
+                "title": "Bitacora"
+            },
+            "fecha": "Fecha",
+            "jhUserId": "Jh User Id",
+            "descripcion": "Descripcion",
+            "tipoEvento": "Tipo Evento"
+        }
+    }
+}

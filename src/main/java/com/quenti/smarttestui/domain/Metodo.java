@@ -34,10 +34,10 @@ public class Metodo implements Serializable {
     private Boolean activo;
 
     @ManyToMany
-    @JoinTable(name = "metodo_parametro",
+    @JoinTable(name = "metodo_servicio",
                joinColumns = @JoinColumn(name="metodos_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="parametros_id", referencedColumnName="ID"))
-    private Set<Parametro> parametros = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name="servicios_id", referencedColumnName="ID"))
+    private Set<Servicio> servicios = new HashSet<>();
 
     @OneToMany(mappedBy = "metodo")
     @JsonIgnore
@@ -45,7 +45,7 @@ public class Metodo implements Serializable {
 
     @ManyToMany(mappedBy = "metodos")
     @JsonIgnore
-    private Set<Servicio> servicios = new HashSet<>();
+    private Set<Parametro> parametros = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -94,29 +94,29 @@ public class Metodo implements Serializable {
         this.activo = activo;
     }
 
-    public Set<Parametro> getParametros() {
-        return parametros;
+    public Set<Servicio> getServicios() {
+        return servicios;
     }
 
-    public Metodo parametros(Set<Parametro> parametros) {
-        this.parametros = parametros;
+    public Metodo servicios(Set<Servicio> servicios) {
+        this.servicios = servicios;
         return this;
     }
 
-    public Metodo addParametro(Parametro parametro) {
-        parametros.add(parametro);
-        parametro.getMetodos().add(this);
+    public Metodo addServicio(Servicio servicio) {
+        servicios.add(servicio);
+        servicio.getMetodos().add(this);
         return this;
     }
 
-    public Metodo removeParametro(Parametro parametro) {
-        parametros.remove(parametro);
-        parametro.getMetodos().remove(this);
+    public Metodo removeServicio(Servicio servicio) {
+        servicios.remove(servicio);
+        servicio.getMetodos().remove(this);
         return this;
     }
 
-    public void setParametros(Set<Parametro> parametros) {
-        this.parametros = parametros;
+    public void setServicios(Set<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
     public Set<Prueba> getPruebas() {
@@ -144,29 +144,29 @@ public class Metodo implements Serializable {
         this.pruebas = pruebas;
     }
 
-    public Set<Servicio> getServicios() {
-        return servicios;
+    public Set<Parametro> getParametros() {
+        return parametros;
     }
 
-    public Metodo servicios(Set<Servicio> servicios) {
-        this.servicios = servicios;
+    public Metodo parametros(Set<Parametro> parametros) {
+        this.parametros = parametros;
         return this;
     }
 
-    public Metodo addServicio(Servicio servicio) {
-        servicios.add(servicio);
-        servicio.getMetodos().add(this);
+    public Metodo addParametro(Parametro parametro) {
+        parametros.add(parametro);
+        parametro.getMetodos().add(this);
         return this;
     }
 
-    public Metodo removeServicio(Servicio servicio) {
-        servicios.remove(servicio);
-        servicio.getMetodos().remove(this);
+    public Metodo removeParametro(Parametro parametro) {
+        parametros.remove(parametro);
+        parametro.getMetodos().remove(this);
         return this;
     }
 
-    public void setServicios(Set<Servicio> servicios) {
-        this.servicios = servicios;
+    public void setParametros(Set<Parametro> parametros) {
+        this.parametros = parametros;
     }
 
     @Override

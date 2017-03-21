@@ -22,8 +22,6 @@ public class AmbienteDTO implements Serializable {
     private Boolean activo;
 
 
-    private Set<ModuloDTO> modulos = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -51,14 +49,6 @@ public class AmbienteDTO implements Serializable {
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
-    }
-
-    public Set<ModuloDTO> getModulos() {
-        return modulos;
-    }
-
-    public void setModulos(Set<ModuloDTO> modulos) {
-        this.modulos = modulos;
     }
 
     @Override

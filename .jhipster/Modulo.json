@@ -4,8 +4,8 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "modulo",
-            "relationshipName": "servicio",
-            "otherEntityName": "servicio",
+            "relationshipName": "ambiente",
+            "otherEntityName": "ambiente",
             "otherEntityField": "nombre",
             "ownerSide": true
         },
@@ -17,8 +17,8 @@
         },
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "ambiente",
-            "otherEntityName": "ambiente",
+            "relationshipName": "servicio",
+            "otherEntityName": "servicio",
             "ownerSide": false,
             "otherEntityRelationshipName": "modulo"
         }

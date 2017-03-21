@@ -13,10 +13,10 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface ModuloRepository extends JpaRepository<Modulo,Long> {
 
-    @Query("select distinct modulo from Modulo modulo left join fetch modulo.servicios")
+    @Query("select distinct modulo from Modulo modulo left join fetch modulo.ambientes")
     List<Modulo> findAllWithEagerRelationships();
 
-    @Query("select modulo from Modulo modulo left join fetch modulo.servicios where modulo.id =:id")
+    @Query("select modulo from Modulo modulo left join fetch modulo.ambientes where modulo.id =:id")
     Modulo findOneWithEagerRelationships(@Param("id") Long id);
 
 }

@@ -38,10 +38,6 @@
                      />
         </div>
 
-        <div class="form-group">
-            <label data-translate="smartTestUiApp.ambiente.modulo" for="field_modulo">Modulo</label>
-            <select class="form-control" id="field_modulo" multiple name="modulo" ng-model="vm.ambiente.modulos" ng-options="modulo as modulo.nombre for modulo in vm.modulos track by modulo.id"></select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

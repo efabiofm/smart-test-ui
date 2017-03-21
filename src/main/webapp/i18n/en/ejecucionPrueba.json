@@ -16,11 +16,11 @@
             "detail": {
                 "title": "Ejecucion Prueba"
             },
-            "nombre": "Nombre",
             "fecha": "Fecha",
             "tiempoRespuesta": "Tiempo Respuesta",
             "resultado": "Resultado",
             "jhUserId": "Jh User Id",
+            "body": "Body",
             "activo": "Activo",
             "prueba": "Prueba"
         }

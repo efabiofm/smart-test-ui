@@ -68,7 +68,7 @@ class ParametroGatlingTest extends Simulation {
             .exec(http("Create new parametro")
             .post("/api/parametros")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "activo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_parametro_url"))).exitHereIfFailed
             .pause(10)

@@ -1,6 +1,5 @@
 package com.quenti.smarttestui.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -26,11 +25,16 @@ public class Parametro implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
+    @Column(name = "activo")
+    private Boolean activo;
+
     @ManyToOne
     private TipoParametro tipoParametro;
 
-    @ManyToMany(mappedBy = "parametros")
-    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "parametro_metodo",
+               joinColumns = @JoinColumn(name="parametros_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="metodos_id", referencedColumnName="ID"))
     private Set<Metodo> metodos = new HashSet<>();
 
     public Long getId() {
@@ -52,6 +56,19 @@ public class Parametro implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean isActivo() {
+        return activo;
+    }
+
+    public Parametro activo(Boolean activo) {
+        this.activo = activo;
+        return this;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public TipoParametro getTipoParametro() {
@@ -117,6 +134,7 @@ public class Parametro implements Serializable {
         return "Parametro{" +
             "id=" + id +
             ", nombre='" + nombre + "'" +
+            ", activo='" + activo + "'" +
             '}';
     }
 }

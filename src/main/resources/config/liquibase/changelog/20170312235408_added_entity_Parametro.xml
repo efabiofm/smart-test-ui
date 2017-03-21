@@ -28,12 +28,27 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="activo" type="bit">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="tipo_parametro_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        
+        <createTable tableName="parametro_metodo">
+            <column name="metodos_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parametros_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="parametros_id, metodos_id" tableName="parametro_metodo"/>
         
     </changeSet>
 </databaseChangeLog>

@@ -39,16 +39,5 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
-        <createTable tableName="ambiente_modulo">
-            <column name="modulos_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ambientes_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="ambientes_id, modulos_id" tableName="ambiente_modulo"/>
-        
     </changeSet>
 </databaseChangeLog>

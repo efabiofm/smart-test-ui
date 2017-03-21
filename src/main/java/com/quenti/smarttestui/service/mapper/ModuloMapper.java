@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity Modulo and its DTO ModuloDTO.
  */
-@Mapper(componentModel = "spring", uses = {ServicioMapper.class, })
+@Mapper(componentModel = "spring", uses = {AmbienteMapper.class, })
 public interface ModuloMapper {
 
     ModuloDTO moduloToModuloDTO(Modulo modulo);
@@ -17,17 +17,17 @@ public interface ModuloMapper {
     List<ModuloDTO> modulosToModuloDTOs(List<Modulo> modulos);
 
     @Mapping(target = "pruebas", ignore = true)
-    @Mapping(target = "ambientes", ignore = true)
+    @Mapping(target = "servicios", ignore = true)
     Modulo moduloDTOToModulo(ModuloDTO moduloDTO);
 
     List<Modulo> moduloDTOsToModulos(List<ModuloDTO> moduloDTOs);
 
-    default Servicio servicioFromId(Long id) {
+    default Ambiente ambienteFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Servicio servicio = new Servicio();
-        servicio.setId(id);
-        return servicio;
+        Ambiente ambiente = new Ambiente();
+        ambiente.setId(id);
+        return ambiente;
     }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 public interface EjecucionPruebaMapper {
 
     @Mapping(source = "prueba.id", target = "pruebaId")
-    @Mapping(source = "prueba.nombre", target = "pruebaNombre")
     EjecucionPruebaDTO ejecucionPruebaToEjecucionPruebaDTO(EjecucionPrueba ejecucionPrueba);
 
     List<EjecucionPruebaDTO> ejecucionPruebasToEjecucionPruebaDTOs(List<EjecucionPrueba> ejecucionPruebas);

@@ -8,10 +8,14 @@
         <dd>
             <span>{{vm.planPrueba.nombre}}</span>
         </dd>
+        <dt><span data-translate="smartTestUiApp.planPrueba.activo">Activo</span></dt>
+        <dd>
+            <span>{{vm.planPrueba.activo}}</span>
+        </dd>
         <dt><span data-translate="smartTestUiApp.planPrueba.prueba">Prueba</span></dt>
         <dd>
             <span ng-repeat="prueba in vm.planPrueba.pruebas">
-                <a ui-sref="prueba-detail({id: prueba.id})">{{prueba.nombre}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="prueba-detail({id: prueba.id})">{{prueba.id}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

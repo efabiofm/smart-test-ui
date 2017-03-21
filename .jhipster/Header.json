@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tipoHeader",
+            "otherEntityName": "tipoHeader",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "serviceProvider",
+            "otherEntityName": "serviceProvider",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "serviceGroupId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170320005139",
+    "entityTableName": "header",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

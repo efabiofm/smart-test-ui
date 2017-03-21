@@ -14,8 +14,6 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Long id;
 
-    private String nombre;
-
     private LocalDate fecha;
 
     private Integer tiempoRespuesta;
@@ -24,27 +22,19 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Integer jhUserId;
 
+    private String body;
+
     private Boolean activo;
 
 
     private Long pruebaId;
     
-
-    private String pruebaNombre;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
     public LocalDate getFecha() {
         return fecha;
@@ -74,6 +64,13 @@ public class EjecucionPruebaDTO implements Serializable {
     public void setJhUserId(Integer jhUserId) {
         this.jhUserId = jhUserId;
     }
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
     public Boolean getActivo() {
         return activo;
     }
@@ -88,15 +85,6 @@ public class EjecucionPruebaDTO implements Serializable {
 
     public void setPruebaId(Long pruebaId) {
         this.pruebaId = pruebaId;
-    }
-
-
-    public String getPruebaNombre() {
-        return pruebaNombre;
-    }
-
-    public void setPruebaNombre(String pruebaNombre) {
-        this.pruebaNombre = pruebaNombre;
     }
 
     @Override
@@ -124,11 +112,11 @@ public class EjecucionPruebaDTO implements Serializable {
     public String toString() {
         return "EjecucionPruebaDTO{" +
             "id=" + id +
-            ", nombre='" + nombre + "'" +
             ", fecha='" + fecha + "'" +
             ", tiempoRespuesta='" + tiempoRespuesta + "'" +
             ", resultado='" + resultado + "'" +
             ", jhUserId='" + jhUserId + "'" +
+            ", body='" + body + "'" +
             ", activo='" + activo + "'" +
             '}';
     }

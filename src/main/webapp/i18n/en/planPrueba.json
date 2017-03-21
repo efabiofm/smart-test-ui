@@ -17,6 +17,7 @@
                 "title": "Plan Prueba"
             },
             "nombre": "Nombre",
+            "activo": "Activo",
             "prueba": "Prueba"
         }
     }

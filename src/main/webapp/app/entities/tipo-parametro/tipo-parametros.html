@@ -20,6 +20,7 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.tipoParametro.nombre">Nombre</span></th>
+                    <th><span data-translate="smartTestUiApp.tipoParametro.activo">Activo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <tr ng-repeat="tipoParametro in vm.tipoParametros track by tipoParametro.id">
                     <td><a ui-sref="tipo-parametro-detail({id:tipoParametro.id})">{{tipoParametro.id}}</a></td>
                     <td>{{tipoParametro.nombre}}</td>
+                    <td>{{tipoParametro.activo}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

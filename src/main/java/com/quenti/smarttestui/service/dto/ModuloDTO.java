@@ -23,7 +23,7 @@ public class ModuloDTO implements Serializable {
     private Boolean activo;
 
 
-    private Set<ServicioDTO> servicios = new HashSet<>();
+    private Set<AmbienteDTO> ambientes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -54,12 +54,12 @@ public class ModuloDTO implements Serializable {
         this.activo = activo;
     }
 
-    public Set<ServicioDTO> getServicios() {
-        return servicios;
+    public Set<AmbienteDTO> getAmbientes() {
+        return ambientes;
     }
 
-    public void setServicios(Set<ServicioDTO> servicios) {
-        this.servicios = servicios;
+    public void setAmbientes(Set<AmbienteDTO> ambientes) {
+        this.ambientes = ambientes;
     }
 
     @Override

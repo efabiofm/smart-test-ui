@@ -16,10 +16,10 @@
         <dd>
             <span>{{vm.metodo.activo}}</span>
         </dd>
-        <dt><span data-translate="smartTestUiApp.metodo.parametro">Parametro</span></dt>
+        <dt><span data-translate="smartTestUiApp.metodo.servicio">Servicio</span></dt>
         <dd>
-            <span ng-repeat="parametro in vm.metodo.parametros">
-                <a ui-sref="parametro-detail({id: parametro.id})">{{parametro.nombre}}</a>{{$last ? '' : ', '}}
+            <span ng-repeat="servicio in vm.metodo.servicios">
+                <a ui-sref="servicio-detail({id: servicio.id})">{{servicio.nombre}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

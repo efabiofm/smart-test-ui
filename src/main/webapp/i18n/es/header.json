@@ -1,0 +1,26 @@
+{
+    "smartTestUiApp": {
+        "header" : {
+            "home": {
+                "title": "Headers",
+                "createLabel": "Crear nuevo Header",
+                "createOrEditLabel": "Crear o editar Header",
+                "search": "Search for Header"
+            },
+            "created": "Un nuevo Header ha sido creado con el identificador {{ param }}",
+            "updated": "Un Header ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Header ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Header {{ id }}?"
+            },
+            "detail": {
+                "title": "Header"
+            },
+            "serviceGroupId": "Service Group Id",
+            "token": "Token",
+            "activo": "Activo",
+            "tipoHeader": "Tipo Header",
+            "serviceProvider": "Service Provider"
+        }
+    }
+}

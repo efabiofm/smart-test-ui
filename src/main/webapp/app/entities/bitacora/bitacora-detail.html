@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="smartTestUiApp.bitacora.detail.title">Bitacora</span> {{vm.bitacora.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartTestUiApp.bitacora.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{vm.bitacora.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.bitacora.jhUserId">Jh User Id</span></dt>
+        <dd>
+            <span>{{vm.bitacora.jhUserId}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.bitacora.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{vm.bitacora.descripcion}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.bitacora.tipoEvento">Tipo Evento</span></dt>
+        <dd>
+            <a ui-sref="tipo-evento-detail({id:vm.bitacora.tipoEventoId})">{{vm.bitacora.tipoEventoNombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="bitacora-detail.edit({id:vm.bitacora.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

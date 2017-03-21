@@ -5,14 +5,10 @@
             "relationshipType": "many-to-one",
             "relationshipName": "prueba",
             "otherEntityName": "prueba",
-            "otherEntityField": "nombre"
+            "otherEntityField": "id"
         }
     ],
     "fields": [
-        {
-            "fieldName": "nombre",
-            "fieldType": "String"
-        },
         {
             "fieldName": "fecha",
             "fieldType": "LocalDate"
@@ -28,6 +24,10 @@
         {
             "fieldName": "jhUserId",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "body",
+            "fieldType": "String"
         },
         {
             "fieldName": "activo",

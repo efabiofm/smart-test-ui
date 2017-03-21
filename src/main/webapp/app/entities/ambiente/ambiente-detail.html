@@ -16,12 +16,6 @@
         <dd>
             <span>{{vm.ambiente.activo}}</span>
         </dd>
-        <dt><span data-translate="smartTestUiApp.ambiente.modulo">Modulo</span></dt>
-        <dd>
-            <span ng-repeat="modulo in vm.ambiente.modulos">
-                <a ui-sref="modulo-detail({id: modulo.id})">{{modulo.nombre}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
     </dl>
 
     <button type="submit"

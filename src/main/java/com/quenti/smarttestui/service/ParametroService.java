@@ -51,7 +51,7 @@ public class ParametroService {
     @Transactional(readOnly = true) 
     public List<ParametroDTO> findAll() {
         log.debug("Request to get all Parametros");
-        List<ParametroDTO> result = parametroRepository.findAll().stream()
+        List<ParametroDTO> result = parametroRepository.findAllWithEagerRelationships().stream()
             .map(parametroMapper::parametroToParametroDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -67,7 +67,7 @@ public class ParametroService {
     @Transactional(readOnly = true) 
     public ParametroDTO findOne(Long id) {
         log.debug("Request to get Parametro : {}", id);
-        Parametro parametro = parametroRepository.findOne(id);
+        Parametro parametro = parametroRepository.findOneWithEagerRelationships(id);
         ParametroDTO parametroDTO = parametroMapper.parametroToParametroDTO(parametro);
         return parametroDTO;
     }
