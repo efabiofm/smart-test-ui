@@ -1,4 +1,4 @@
-package com.quenti.smarttestui.Components;
+package com.quenti.smarttestui.components;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;

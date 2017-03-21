@@ -53,16 +53,3 @@ public class ObjectMapperCustom extends org.codehaus.jackson.map.ObjectMapper{
     }
 
 }
-
-
-<dependency>
-<groupId>org.codehaus.jackson</groupId>
-<artifactId>jackson-mapper-asl</artifactId>
-<version>1.9.13</version>
-</dependency>
-
-<dependency>
-<groupId>com.mashape.unirest</groupId>
-<artifactId>unirest-java</artifactId>
-<version>1.4.9</version>
-</dependency>
