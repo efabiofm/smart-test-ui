@@ -46,8 +46,8 @@ public class LoginQuentiComponent {
 
                 userQuentiDTO.setUsername(loginVM.getUsername());
                 userQuentiDTO.setPassword(loginVM.getPassword());
-                userQuentiDTO.setUserIPAdress(loginVM.getIpAdress());
-                userQuentiDTO.setUserClientId(loginVM.getUserClienteID());
+                userQuentiDTO.setUseripAddress(loginVM.getipAddress());
+                userQuentiDTO.setUserClientId(loginVM.getuserClientId());
                 try {
 
                     requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/login");
@@ -74,7 +74,7 @@ public class LoginQuentiComponent {
                         JSONObject profile = (JSONObject) data.get("profile");
                         userMapeado.setObjTokenDTO(data.getString("sessionKey"));
                         userMapeado.setFirstName(profile.getString("FirstName"));
-                        userMapeado.setFirstName(profile.getString("LastName"));
+                        userMapeado.setLastName(profile.getString("LastName"));
                     } catch (IOException o) {
 
                     }

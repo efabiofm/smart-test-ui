@@ -19,7 +19,7 @@ public class UserQuentiDTO {
 
     private String username;
     private String password;
-    private String userIPAdress;
+    private String useripAddress;
     private String userClientId;
     private String objTokenDTO;
     private String firstName;
@@ -66,12 +66,12 @@ public class UserQuentiDTO {
         this.password = password;
     }
 
-    public String getUserIPAdress() {
-        return userIPAdress;
+    public String getUseripAddress() {
+        return useripAddress;
     }
 
-    public void setUserIPAdress(String userIPAdress) {
-        this.userIPAdress = userIPAdress;
+    public void setUseripAddress(String useripAddress) {
+        this.useripAddress = useripAddress;
     }
 
     public String getUserClientId() {
@@ -87,7 +87,7 @@ public class UserQuentiDTO {
         return "UserQuentiDTO{" +
             "username='" + username + '\'' +
             ", password='" + password + '\'' +
-            ", userIPAdress='" + userIPAdress + '\'' +
+            ", useripAddress='" + useripAddress + '\'' +
             ", userClientId='" + userClientId + '\'' +
             '}';
     }

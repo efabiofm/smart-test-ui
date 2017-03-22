@@ -36,8 +36,8 @@ public class UnirestResource {
         LoginVM loginVM = new LoginVM();
         loginVM.setUsername("Hopware");
         loginVM.setPassword("C3nf0t3c");
-        loginVM.setIpAdress("127.0.0.1");
-        loginVM.setUserClienteID("Hopware");
+        loginVM.setipAddress("127.0.0.1");
+        loginVM.setuserClientId("Hopware");
         log.debug("Starting test request call");
         //DTO SHOULD BE HERE AS A PARAMETER
 //        return loginQuentiComponent.init(loginVM);
