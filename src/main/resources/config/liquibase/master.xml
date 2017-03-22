@@ -22,8 +22,7 @@
     <include file="classpath:config/liquibase/changelog/20170320005139_added_entity_Header.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170320005140_added_entity_TipoHeader.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170320005141_added_entity_ServiceProvider.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="classpath:config/liquibase/changelog/20170312235404_added_entity_constraints_Ambiente.xml" relativeToChangelogFile="false"/>
+     <!--jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170312235405_added_entity_constraints_Modulo.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170312235406_added_entity_constraints_Servicio.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170312235407_added_entity_constraints_Metodo.xml" relativeToChangelogFile="false"/>
