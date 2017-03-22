@@ -43,7 +43,7 @@ public class RequestComponent {
             case "POST":
                 userQuentiDTO.setUsername("Hopware");
                 userQuentiDTO.setPassword("C3nf0t3c");
-                userQuentiDTO.setUserIPAdress("127.0.0.1");
+                userQuentiDTO.setUseripAddress("127.0.0.1");
                 userQuentiDTO.setUserClientId("Hopware");
                 try {
 
@@ -89,7 +89,7 @@ public class RequestComponent {
             case "PUT":   // same thing as the post
                 userQuentiDTO.setUsername("Hopware");
                 userQuentiDTO.setPassword("C3nf0t3c");
-//                userQuentiDTO.setUserIPAdress("127.0.0.1");
+//                userQuentiDTO.setUseripAddress("127.0.0.1");
 //                userQuentiDTO.setUserClientId("Hopware");
                 try {
 
