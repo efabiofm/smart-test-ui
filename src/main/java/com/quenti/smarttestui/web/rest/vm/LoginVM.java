@@ -23,25 +23,25 @@ public class LoginVM {
 
     private Boolean esQuenti;
 
-    private String ipAdress;
+    private String ipAddress;
 
-    private String userClienteID;
+    private String userClientId;
 
 
-    public String getIpAdress() {
-        return ipAdress;
+    public String getipAddress() {
+        return ipAddress;
     }
 
-    public void setIpAdress(String ipAdress) {
-        this.ipAdress = ipAdress;
+    public void setipAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
-    public String getUserClienteID() {
-        return userClienteID;
+    public String getuserClientId() {
+        return userClientId;
     }
 
-    public void setUserClienteID(String userClienteID) {
-        this.userClienteID = userClienteID;
+    public void setuserClientId(String userClientId) {
+        this.userClientId = userClientId;
     }
 
     public Boolean getEsQuenti() {
