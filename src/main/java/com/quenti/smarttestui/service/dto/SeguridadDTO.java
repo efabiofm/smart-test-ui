@@ -20,7 +20,7 @@ public class SeguridadDTO implements Serializable {
     private LocalDate fecha;
 
     @NotNull
-    private Integer jhUserId;
+    private Long jhUserId;
 
 
     public Long getId() {
@@ -44,11 +44,11 @@ public class SeguridadDTO implements Serializable {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-    public Integer getJhUserId() {
+    public Long getJhUserId() {
         return jhUserId;
     }
 
-    public void setJhUserId(Integer jhUserId) {
+    public void setJhUserId(Long jhUserId) {
         this.jhUserId = jhUserId;
     }
 
