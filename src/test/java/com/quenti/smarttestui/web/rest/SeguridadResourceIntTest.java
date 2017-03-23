@@ -48,8 +48,8 @@ public class SeguridadResourceIntTest {
     private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_JH_USER_ID = 1;
-    private static final Integer UPDATED_JH_USER_ID = 2;
+    private static final Long DEFAULT_JH_USER_ID = new Long(1);
+    private static final Long UPDATED_JH_USER_ID = new Long(2);
 
     @Inject
     private SeguridadRepository seguridadRepository;

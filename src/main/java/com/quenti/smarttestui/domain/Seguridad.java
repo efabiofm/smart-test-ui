@@ -30,7 +30,7 @@ public class Seguridad implements Serializable {
 
     @NotNull
     @Column(name = "jh_user_id", nullable = false)
-    private Integer jhUserId;
+    private Long jhUserId;
 
     public Long getId() {
         return id;
@@ -66,16 +66,16 @@ public class Seguridad implements Serializable {
         this.fecha = fecha;
     }
 
-    public Integer getJhUserId() {
+    public Long getJhUserId() {
         return jhUserId;
     }
 
-    public Seguridad jhUserId(Integer jhUserId) {
+    public Seguridad jhUserId(Long jhUserId) {
         this.jhUserId = jhUserId;
         return this;
     }
 
-    public void setJhUserId(Integer jhUserId) {
+    public void setJhUserId(Long jhUserId) {
         this.jhUserId = jhUserId;
     }
 

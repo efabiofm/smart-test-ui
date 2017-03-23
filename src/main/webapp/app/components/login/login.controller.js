@@ -37,6 +37,8 @@
             Auth.login({
                 username: vm.username,
                 password: vm.password,
+                ipAddress: vm.ipAddress,
+                userClientId: vm.userClientId,
                 rememberMe: vm.rememberMe
             }).then(function () {
                 vm.authenticationError = false;
