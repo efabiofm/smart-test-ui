@@ -27,7 +27,6 @@
             var data = {
                 username: credentials.username,
                 password: credentials.password,
-                ipAddress: credentials.ipAddress,
                 userClientId: credentials.userClientId,
                 rememberMe: credentials.rememberMe
             };

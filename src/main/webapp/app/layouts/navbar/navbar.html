@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default" role="navigation">
+<div class="text-center" style="margin-top: 72px" ng-if="!vm.isNotAnonymous"></div>
+<nav class="navbar navbar-default" role="navigation" ng-if="vm.isNotAnonymous">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">

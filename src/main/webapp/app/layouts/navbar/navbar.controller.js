@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService', '$scope'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService) {
+    function NavbarController ($state, Auth, Principal, ProfileService, LoginService, $scope) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
@@ -30,6 +30,7 @@
         }
 
         function logout() {
+            vm.isNotAnonymous = false;
             collapseNavbar();
             Auth.logout();
             $state.go('home');
@@ -42,5 +43,9 @@
         function collapseNavbar() {
             vm.isNavbarCollapsed = true;
         }
+
+        $scope.$on( "authenticationSuccess", function(){
+            vm.isNotAnonymous = true;
+        } );
     }
 })();
