@@ -1,5 +1,5 @@
-<div class="text-center" style="margin-top: 72px" ng-if="!vm.isNotAnonymous"></div>
-<nav class="navbar navbar-default" role="navigation" ng-if="vm.isNotAnonymous">
+<div class="text-center" style="margin-top: 72px" ng-show="vm.hideNavbar()"></div>
+<nav class="navbar navbar-default" role="navigation" ng-hide="vm.hideNavbar()">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">

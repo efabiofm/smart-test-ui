@@ -26,6 +26,7 @@
                 username: vm.username,
                 password: vm.password,
                 userClientId: vm.userClientId,
+                url: 'api/authenticate/quenti',
                 rememberMe: vm.rememberMe
             }).then(function () {
                 vm.authenticationError = false;

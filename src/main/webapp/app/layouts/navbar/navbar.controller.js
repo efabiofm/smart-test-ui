@@ -23,6 +23,7 @@
         vm.toggleNavbar = toggleNavbar;
         vm.collapseNavbar = collapseNavbar;
         vm.$state = $state;
+        vm.hideNavbar = hideNavbar;
 
         function login() {
             collapseNavbar();
@@ -30,7 +31,6 @@
         }
 
         function logout() {
-            vm.isNotAnonymous = false;
             collapseNavbar();
             Auth.logout();
             $state.go('home');
@@ -44,8 +44,8 @@
             vm.isNavbarCollapsed = true;
         }
 
-        $scope.$on( "authenticationSuccess", function(){
-            vm.isNotAnonymous = true;
-        } );
+        function hideNavbar() {
+            return $state.current.name === "home" || $state.current.name === "login-admin";
+        }
     }
 })();

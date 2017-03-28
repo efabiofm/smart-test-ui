@@ -32,14 +32,30 @@
             parent: 'app',
             url: '/index',
             data: {
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             views: {
                 'content@': {
                     templateUrl: 'app/home/home-quenti.html'
-                    //controller: 'HomeController',
-                    //controllerAs: 'vm'
                 }
+            }
+        })
+        .state('home-admin', {
+            parent: 'app',
+            url: '/admin',
+            data: {
+                authorities: ['ROLE_ADMIN']
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/home/home.html'
+                }
+            },
+            resolve: {
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
             }
         });
     }
