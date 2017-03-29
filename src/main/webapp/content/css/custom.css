@@ -1,0 +1,29 @@
+.aside-navbar {
+    height: 100%;
+    top: 0;
+    display: inherit;
+    box-shadow: 0 0 0 0;
+    margin-top: 0;
+    padding-top: 20px;
+    border-radius: 0;
+}
+
+.a {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}

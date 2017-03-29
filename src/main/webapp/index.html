@@ -16,6 +16,7 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/custom.css">
     <!-- endbuild -->
 </head>
 <body ng-app="smartTestUiApp" ng-strict-di>
@@ -24,6 +25,8 @@
     <![endif]-->
     <!--<page-ribbon></page-ribbon>-->
     <div ui-view="navbar" ng-cloak></div>
+
+    <div class="aside-nav-container" ng-include="'app/layouts/navbar/aside-navbar.html'"></div>
     <div class="container">
         <div class="well" ui-view="content">
             <!-- Angular views -->
