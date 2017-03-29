@@ -35,10 +35,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api")
 public class UserJWTController {
-
-
-    private LoginQuentiComponent requestComponent;
-    private UserDetailsService uds;
+    @Inject
+    private LoginQuentiComponent loginQuentiComponent;
 
     @Inject
     private TokenProvider tokenProvider;
@@ -75,9 +73,7 @@ public class UserJWTController {
     @Timed
     public ResponseEntity<?> authorizeQuenti(@Valid @RequestBody LoginVM loginVM, HttpServletResponse response) {
 
-        LoginQuentiComponent loginQuentiComponent = new LoginQuentiComponent();
         UserQuentiDTO uqDTO = loginQuentiComponent.init(loginVM);
-
         Long userId = null;
 
         if (!uqDTO.getObjTokenDTO().equals("null")) { //si quenti devuelve token:
