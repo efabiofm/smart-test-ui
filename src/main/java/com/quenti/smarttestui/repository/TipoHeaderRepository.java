@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TipoHeaderRepository extends JpaRepository<TipoHeader,Long> {
 
+    List<TipoHeader> findByActivoTrue();
+
 }

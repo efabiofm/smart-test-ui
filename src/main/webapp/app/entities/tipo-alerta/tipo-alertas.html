@@ -20,7 +20,6 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.tipoAlerta.metodo">Metodo</span></th>
-                    <th><span data-translate="smartTestUiApp.tipoAlerta.activo">Activo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,7 +27,6 @@
                 <tr ng-repeat="tipoAlerta in vm.tipoAlertas track by tipoAlerta.id">
                     <td><a ui-sref="tipo-alerta-detail({id:tipoAlerta.id})">{{tipoAlerta.id}}</a></td>
                     <td>{{tipoAlerta.metodo}}</td>
-                    <td>{{tipoAlerta.activo}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

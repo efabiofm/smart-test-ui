@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class TipoHeaderService {
 
     private final Logger log = LoggerFactory.getLogger(TipoHeaderService.class);
-    
+
     @Inject
     private TipoHeaderRepository tipoHeaderRepository;
 
@@ -37,6 +37,7 @@ public class TipoHeaderService {
      */
     public TipoHeaderDTO save(TipoHeaderDTO tipoHeaderDTO) {
         log.debug("Request to save TipoHeader : {}", tipoHeaderDTO);
+        tipoHeaderDTO.setActivo(true);
         TipoHeader tipoHeader = tipoHeaderMapper.tipoHeaderDTOToTipoHeader(tipoHeaderDTO);
         tipoHeader = tipoHeaderRepository.save(tipoHeader);
         TipoHeaderDTO result = tipoHeaderMapper.tipoHeaderToTipoHeaderDTO(tipoHeader);
@@ -45,13 +46,13 @@ public class TipoHeaderService {
 
     /**
      *  Get all the tipoHeaders.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TipoHeaderDTO> findAll() {
         log.debug("Request to get all TipoHeaders");
-        List<TipoHeaderDTO> result = tipoHeaderRepository.findAll().stream()
+        List<TipoHeaderDTO> result = tipoHeaderRepository.findByActivoTrue().stream()
             .map(tipoHeaderMapper::tipoHeaderToTipoHeaderDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class TipoHeaderService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public TipoHeaderDTO findOne(Long id) {
         log.debug("Request to get TipoHeader : {}", id);
         TipoHeader tipoHeader = tipoHeaderRepository.findOne(id);
@@ -79,6 +80,9 @@ public class TipoHeaderService {
      */
     public void delete(Long id) {
         log.debug("Request to delete TipoHeader : {}", id);
-        tipoHeaderRepository.delete(id);
+        TipoHeaderDTO tipoHeaderDTO = findOne(id);
+        tipoHeaderDTO.setActivo(false);
+        TipoHeader tipoHeader = tipoHeaderMapper.tipoHeaderDTOToTipoHeader(tipoHeaderDTO);
+        tipoHeaderRepository.save(tipoHeader);
     }
 }

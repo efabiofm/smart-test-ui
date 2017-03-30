@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ServiceProviderService {
 
     private final Logger log = LoggerFactory.getLogger(ServiceProviderService.class);
-    
+
     @Inject
     private ServiceProviderRepository serviceProviderRepository;
 
@@ -37,6 +37,7 @@ public class ServiceProviderService {
      */
     public ServiceProviderDTO save(ServiceProviderDTO serviceProviderDTO) {
         log.debug("Request to save ServiceProvider : {}", serviceProviderDTO);
+        serviceProviderDTO.setActivo(true);
         ServiceProvider serviceProvider = serviceProviderMapper.serviceProviderDTOToServiceProvider(serviceProviderDTO);
         serviceProvider = serviceProviderRepository.save(serviceProvider);
         ServiceProviderDTO result = serviceProviderMapper.serviceProviderToServiceProviderDTO(serviceProvider);
@@ -45,13 +46,13 @@ public class ServiceProviderService {
 
     /**
      *  Get all the serviceProviders.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<ServiceProviderDTO> findAll() {
         log.debug("Request to get all ServiceProviders");
-        List<ServiceProviderDTO> result = serviceProviderRepository.findAll().stream()
+        List<ServiceProviderDTO> result = serviceProviderRepository.findByActivoTrue().stream()
             .map(serviceProviderMapper::serviceProviderToServiceProviderDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class ServiceProviderService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ServiceProviderDTO findOne(Long id) {
         log.debug("Request to get ServiceProvider : {}", id);
         ServiceProvider serviceProvider = serviceProviderRepository.findOne(id);
@@ -79,6 +80,9 @@ public class ServiceProviderService {
      */
     public void delete(Long id) {
         log.debug("Request to delete ServiceProvider : {}", id);
-        serviceProviderRepository.delete(id);
+        ServiceProviderDTO serviceProviderDTO = findOne(id);
+        serviceProviderDTO.setActivo(false);
+        ServiceProvider serviceProvider = serviceProviderMapper.serviceProviderDTOToServiceProvider(serviceProviderDTO);
+        serviceProviderRepository.save(serviceProvider);
     }
 }

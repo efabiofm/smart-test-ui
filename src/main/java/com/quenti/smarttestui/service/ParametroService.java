@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ParametroService {
 
     private final Logger log = LoggerFactory.getLogger(ParametroService.class);
-    
+
     @Inject
     private ParametroRepository parametroRepository;
 
@@ -37,6 +37,7 @@ public class ParametroService {
      */
     public ParametroDTO save(ParametroDTO parametroDTO) {
         log.debug("Request to save Parametro : {}", parametroDTO);
+        parametroDTO.setActivo(true);
         Parametro parametro = parametroMapper.parametroDTOToParametro(parametroDTO);
         parametro = parametroRepository.save(parametro);
         ParametroDTO result = parametroMapper.parametroToParametroDTO(parametro);
@@ -45,13 +46,13 @@ public class ParametroService {
 
     /**
      *  Get all the parametros.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<ParametroDTO> findAll() {
         log.debug("Request to get all Parametros");
-        List<ParametroDTO> result = parametroRepository.findAllWithEagerRelationships().stream()
+        List<ParametroDTO> result = parametroRepository.findByActivoTrue().stream()
             .map(parametroMapper::parametroToParametroDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class ParametroService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ParametroDTO findOne(Long id) {
         log.debug("Request to get Parametro : {}", id);
         Parametro parametro = parametroRepository.findOneWithEagerRelationships(id);
@@ -79,6 +80,9 @@ public class ParametroService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Parametro : {}", id);
-        parametroRepository.delete(id);
+        ParametroDTO parametroDTO = findOne(id);
+        parametroDTO.setActivo(false);
+        Parametro parametro = parametroMapper.parametroDTOToParametro(parametroDTO);
+        parametroRepository.save(parametro);
     }
 }

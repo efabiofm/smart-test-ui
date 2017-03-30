@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TipoEventoRepository extends JpaRepository<TipoEvento,Long> {
 
+    List<TipoEvento> findByActivoTrue();
+
 }
