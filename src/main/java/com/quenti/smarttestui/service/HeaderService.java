@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class HeaderService {
 
     private final Logger log = LoggerFactory.getLogger(HeaderService.class);
-    
+
     @Inject
     private HeaderRepository headerRepository;
 
@@ -37,6 +37,7 @@ public class HeaderService {
      */
     public HeaderDTO save(HeaderDTO headerDTO) {
         log.debug("Request to save Header : {}", headerDTO);
+        headerDTO.setActivo(true);
         Header header = headerMapper.headerDTOToHeader(headerDTO);
         header = headerRepository.save(header);
         HeaderDTO result = headerMapper.headerToHeaderDTO(header);
@@ -45,13 +46,13 @@ public class HeaderService {
 
     /**
      *  Get all the headers.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<HeaderDTO> findAll() {
         log.debug("Request to get all Headers");
-        List<HeaderDTO> result = headerRepository.findAll().stream()
+        List<HeaderDTO> result = headerRepository.findByActivoTrue().stream()
             .map(headerMapper::headerToHeaderDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class HeaderService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public HeaderDTO findOne(Long id) {
         log.debug("Request to get Header : {}", id);
         Header header = headerRepository.findOne(id);
@@ -79,6 +80,9 @@ public class HeaderService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Header : {}", id);
-        headerRepository.delete(id);
+        HeaderDTO headerDTO = findOne(id);
+        headerDTO.setActivo(false);
+        Header header = headerMapper.headerDTOToHeader(headerDTO);
+        headerRepository.save(header);
     }
 }

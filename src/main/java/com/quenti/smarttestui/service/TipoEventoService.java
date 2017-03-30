@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class TipoEventoService {
 
     private final Logger log = LoggerFactory.getLogger(TipoEventoService.class);
-    
+
     @Inject
     private TipoEventoRepository tipoEventoRepository;
 
@@ -37,6 +37,7 @@ public class TipoEventoService {
      */
     public TipoEventoDTO save(TipoEventoDTO tipoEventoDTO) {
         log.debug("Request to save TipoEvento : {}", tipoEventoDTO);
+        tipoEventoDTO.setActivo(true);
         TipoEvento tipoEvento = tipoEventoMapper.tipoEventoDTOToTipoEvento(tipoEventoDTO);
         tipoEvento = tipoEventoRepository.save(tipoEvento);
         TipoEventoDTO result = tipoEventoMapper.tipoEventoToTipoEventoDTO(tipoEvento);
@@ -45,13 +46,13 @@ public class TipoEventoService {
 
     /**
      *  Get all the tipoEventos.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TipoEventoDTO> findAll() {
         log.debug("Request to get all TipoEventos");
-        List<TipoEventoDTO> result = tipoEventoRepository.findAll().stream()
+        List<TipoEventoDTO> result = tipoEventoRepository.findByActivoTrue().stream()
             .map(tipoEventoMapper::tipoEventoToTipoEventoDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class TipoEventoService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public TipoEventoDTO findOne(Long id) {
         log.debug("Request to get TipoEvento : {}", id);
         TipoEvento tipoEvento = tipoEventoRepository.findOne(id);
@@ -79,6 +80,9 @@ public class TipoEventoService {
      */
     public void delete(Long id) {
         log.debug("Request to delete TipoEvento : {}", id);
-        tipoEventoRepository.delete(id);
+        TipoEventoDTO tipoEventoDTO = findOne(id);
+        tipoEventoDTO.setActivo(false);
+        TipoEvento tipoEvento = tipoEventoMapper.tipoEventoDTOToTipoEvento(tipoEventoDTO);
+        tipoEventoRepository.save(tipoEvento);
     }
 }

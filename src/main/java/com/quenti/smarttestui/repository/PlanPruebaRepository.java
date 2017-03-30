@@ -19,4 +19,6 @@ public interface PlanPruebaRepository extends JpaRepository<PlanPrueba,Long> {
     @Query("select planPrueba from PlanPrueba planPrueba left join fetch planPrueba.pruebas where planPrueba.id =:id")
     PlanPrueba findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<PlanPrueba> findByActivoTrue();
+
 }

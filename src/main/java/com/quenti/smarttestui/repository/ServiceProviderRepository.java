@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface ServiceProviderRepository extends JpaRepository<ServiceProvider,Long> {
 
+    List<ServiceProvider> findByActivoTrue();
+
 }

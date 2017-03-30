@@ -19,8 +19,6 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="smartTestUiApp.prueba.body">Body</span></th>
-                    <th><span data-translate="smartTestUiApp.prueba.activo">Activo</span></th>
                     <th><span data-translate="smartTestUiApp.prueba.ambiente">Ambiente</span></th>
                     <th><span data-translate="smartTestUiApp.prueba.modulo">Modulo</span></th>
                     <th><span data-translate="smartTestUiApp.prueba.servicio">Servicio</span></th>
@@ -31,8 +29,6 @@
             <tbody>
                 <tr ng-repeat="prueba in vm.pruebas track by prueba.id">
                     <td><a ui-sref="prueba-detail({id:prueba.id})">{{prueba.id}}</a></td>
-                    <td>{{prueba.body}}</td>
-                    <td>{{prueba.activo}}</td>
                     <td>
                         <a ui-sref="ambiente-detail({id:prueba.ambienteId})">{{prueba.ambienteNombre}}</a>
                     </td>

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class EjecucionPruebaService {
 
     private final Logger log = LoggerFactory.getLogger(EjecucionPruebaService.class);
-    
+
     @Inject
     private EjecucionPruebaRepository ejecucionPruebaRepository;
 
@@ -37,6 +37,7 @@ public class EjecucionPruebaService {
      */
     public EjecucionPruebaDTO save(EjecucionPruebaDTO ejecucionPruebaDTO) {
         log.debug("Request to save EjecucionPrueba : {}", ejecucionPruebaDTO);
+        ejecucionPruebaDTO.setActivo(true);
         EjecucionPrueba ejecucionPrueba = ejecucionPruebaMapper.ejecucionPruebaDTOToEjecucionPrueba(ejecucionPruebaDTO);
         ejecucionPrueba = ejecucionPruebaRepository.save(ejecucionPrueba);
         EjecucionPruebaDTO result = ejecucionPruebaMapper.ejecucionPruebaToEjecucionPruebaDTO(ejecucionPrueba);
@@ -45,13 +46,13 @@ public class EjecucionPruebaService {
 
     /**
      *  Get all the ejecucionPruebas.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<EjecucionPruebaDTO> findAll() {
         log.debug("Request to get all EjecucionPruebas");
-        List<EjecucionPruebaDTO> result = ejecucionPruebaRepository.findAll().stream()
+        List<EjecucionPruebaDTO> result = ejecucionPruebaRepository.findByActivoTrue().stream()
             .map(ejecucionPruebaMapper::ejecucionPruebaToEjecucionPruebaDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class EjecucionPruebaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public EjecucionPruebaDTO findOne(Long id) {
         log.debug("Request to get EjecucionPrueba : {}", id);
         EjecucionPrueba ejecucionPrueba = ejecucionPruebaRepository.findOne(id);
@@ -79,6 +80,9 @@ public class EjecucionPruebaService {
      */
     public void delete(Long id) {
         log.debug("Request to delete EjecucionPrueba : {}", id);
-        ejecucionPruebaRepository.delete(id);
+        EjecucionPruebaDTO ejecucionPruebaDTO = findOne(id);
+        ejecucionPruebaDTO.setActivo(false);
+        EjecucionPrueba ejecucionPrueba = ejecucionPruebaMapper.ejecucionPruebaDTOToEjecucionPrueba(ejecucionPruebaDTO);
+        ejecucionPruebaRepository.save(ejecucionPrueba);
     }
 }

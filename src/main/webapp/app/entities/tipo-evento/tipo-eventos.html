@@ -20,7 +20,6 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.tipoEvento.nombre">Nombre</span></th>
-                    <th><span data-translate="smartTestUiApp.tipoEvento.activo">Activo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,7 +27,6 @@
                 <tr ng-repeat="tipoEvento in vm.tipoEventos track by tipoEvento.id">
                     <td><a ui-sref="tipo-evento-detail({id:tipoEvento.id})">{{tipoEvento.id}}</a></td>
                     <td>{{tipoEvento.nombre}}</td>
-                    <td>{{tipoEvento.activo}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

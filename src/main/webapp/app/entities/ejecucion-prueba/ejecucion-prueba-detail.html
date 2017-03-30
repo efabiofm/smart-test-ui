@@ -24,10 +24,6 @@
         <dd>
             <span>{{vm.ejecucionPrueba.body}}</span>
         </dd>
-        <dt><span data-translate="smartTestUiApp.ejecucionPrueba.activo">Activo</span></dt>
-        <dd>
-            <span>{{vm.ejecucionPrueba.activo}}</span>
-        </dd>
         <dt><span data-translate="smartTestUiApp.ejecucionPrueba.prueba">Prueba</span></dt>
         <dd>
             <a ui-sref="prueba-detail({id:vm.ejecucionPrueba.pruebaId})">{{vm.ejecucionPrueba.pruebaId}}</a>
@@ -40,8 +36,4 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button" ui-sref="ejecucion-prueba-detail.edit({id:vm.ejecucionPrueba.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
-    </button>
 </div>

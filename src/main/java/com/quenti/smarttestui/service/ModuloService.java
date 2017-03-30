@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ModuloService {
 
     private final Logger log = LoggerFactory.getLogger(ModuloService.class);
-    
+
     @Inject
     private ModuloRepository moduloRepository;
 
@@ -37,6 +37,7 @@ public class ModuloService {
      */
     public ModuloDTO save(ModuloDTO moduloDTO) {
         log.debug("Request to save Modulo : {}", moduloDTO);
+        moduloDTO.setActivo(true);
         Modulo modulo = moduloMapper.moduloDTOToModulo(moduloDTO);
         modulo = moduloRepository.save(modulo);
         ModuloDTO result = moduloMapper.moduloToModuloDTO(modulo);
@@ -45,13 +46,13 @@ public class ModuloService {
 
     /**
      *  Get all the modulos.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<ModuloDTO> findAll() {
         log.debug("Request to get all Modulos");
-        List<ModuloDTO> result = moduloRepository.findAllWithEagerRelationships().stream()
+        List<ModuloDTO> result = moduloRepository.findByActivoTrue().stream()
             .map(moduloMapper::moduloToModuloDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class ModuloService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ModuloDTO findOne(Long id) {
         log.debug("Request to get Modulo : {}", id);
         Modulo modulo = moduloRepository.findOneWithEagerRelationships(id);
@@ -79,6 +80,9 @@ public class ModuloService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Modulo : {}", id);
-        moduloRepository.delete(id);
+        ModuloDTO moduloDTO = findOne(id);
+        moduloDTO.setActivo(false);
+        Modulo modulo = moduloMapper.moduloDTOToModulo(moduloDTO);
+        moduloRepository.save(modulo);
     }
 }
