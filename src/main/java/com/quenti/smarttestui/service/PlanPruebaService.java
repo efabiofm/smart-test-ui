@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class PlanPruebaService {
 
     private final Logger log = LoggerFactory.getLogger(PlanPruebaService.class);
-    
+
     @Inject
     private PlanPruebaRepository planPruebaRepository;
 
@@ -37,6 +37,7 @@ public class PlanPruebaService {
      */
     public PlanPruebaDTO save(PlanPruebaDTO planPruebaDTO) {
         log.debug("Request to save PlanPrueba : {}", planPruebaDTO);
+        planPruebaDTO.setActivo(true);
         PlanPrueba planPrueba = planPruebaMapper.planPruebaDTOToPlanPrueba(planPruebaDTO);
         planPrueba = planPruebaRepository.save(planPrueba);
         PlanPruebaDTO result = planPruebaMapper.planPruebaToPlanPruebaDTO(planPrueba);
@@ -45,13 +46,13 @@ public class PlanPruebaService {
 
     /**
      *  Get all the planPruebas.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<PlanPruebaDTO> findAll() {
         log.debug("Request to get all PlanPruebas");
-        List<PlanPruebaDTO> result = planPruebaRepository.findAllWithEagerRelationships().stream()
+        List<PlanPruebaDTO> result = planPruebaRepository.findByActivoTrue().stream()
             .map(planPruebaMapper::planPruebaToPlanPruebaDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class PlanPruebaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public PlanPruebaDTO findOne(Long id) {
         log.debug("Request to get PlanPrueba : {}", id);
         PlanPrueba planPrueba = planPruebaRepository.findOneWithEagerRelationships(id);
@@ -79,6 +80,9 @@ public class PlanPruebaService {
      */
     public void delete(Long id) {
         log.debug("Request to delete PlanPrueba : {}", id);
-        planPruebaRepository.delete(id);
+        PlanPruebaDTO planPruebaDTO = findOne(id);
+        planPruebaDTO.setActivo(false);
+        PlanPrueba planPrueba = planPruebaMapper.planPruebaDTOToPlanPrueba(planPruebaDTO);
+        planPruebaRepository.save(planPrueba);
     }
 }

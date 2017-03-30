@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class TipoParametroService {
 
     private final Logger log = LoggerFactory.getLogger(TipoParametroService.class);
-    
+
     @Inject
     private TipoParametroRepository tipoParametroRepository;
 
@@ -37,6 +37,7 @@ public class TipoParametroService {
      */
     public TipoParametroDTO save(TipoParametroDTO tipoParametroDTO) {
         log.debug("Request to save TipoParametro : {}", tipoParametroDTO);
+        tipoParametroDTO.setActivo(true);
         TipoParametro tipoParametro = tipoParametroMapper.tipoParametroDTOToTipoParametro(tipoParametroDTO);
         tipoParametro = tipoParametroRepository.save(tipoParametro);
         TipoParametroDTO result = tipoParametroMapper.tipoParametroToTipoParametroDTO(tipoParametro);
@@ -45,13 +46,13 @@ public class TipoParametroService {
 
     /**
      *  Get all the tipoParametros.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TipoParametroDTO> findAll() {
         log.debug("Request to get all TipoParametros");
-        List<TipoParametroDTO> result = tipoParametroRepository.findAll().stream()
+        List<TipoParametroDTO> result = tipoParametroRepository.findByActivoTrue().stream()
             .map(tipoParametroMapper::tipoParametroToTipoParametroDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class TipoParametroService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public TipoParametroDTO findOne(Long id) {
         log.debug("Request to get TipoParametro : {}", id);
         TipoParametro tipoParametro = tipoParametroRepository.findOne(id);
@@ -79,6 +80,9 @@ public class TipoParametroService {
      */
     public void delete(Long id) {
         log.debug("Request to delete TipoParametro : {}", id);
-        tipoParametroRepository.delete(id);
+        TipoParametroDTO tipoParametroDTO = findOne(id);
+        tipoParametroDTO.setActivo(false);
+        TipoParametro tipoParametro = tipoParametroMapper.tipoParametroDTOToTipoParametro(tipoParametroDTO);
+        tipoParametroRepository.save(tipoParametro);
     }
 }

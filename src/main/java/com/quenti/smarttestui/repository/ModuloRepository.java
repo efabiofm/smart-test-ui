@@ -1,5 +1,6 @@
 package com.quenti.smarttestui.repository;
 
+import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.domain.Modulo;
 
 import org.springframework.data.jpa.repository.*;
@@ -18,5 +19,7 @@ public interface ModuloRepository extends JpaRepository<Modulo,Long> {
 
     @Query("select modulo from Modulo modulo left join fetch modulo.ambientes where modulo.id =:id")
     Modulo findOneWithEagerRelationships(@Param("id") Long id);
+
+    List<Modulo> findByActivoTrue();
 
 }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class TipoAlertaService {
 
     private final Logger log = LoggerFactory.getLogger(TipoAlertaService.class);
-    
+
     @Inject
     private TipoAlertaRepository tipoAlertaRepository;
 
@@ -37,6 +37,7 @@ public class TipoAlertaService {
      */
     public TipoAlertaDTO save(TipoAlertaDTO tipoAlertaDTO) {
         log.debug("Request to save TipoAlerta : {}", tipoAlertaDTO);
+        tipoAlertaDTO.setActivo(true);
         TipoAlerta tipoAlerta = tipoAlertaMapper.tipoAlertaDTOToTipoAlerta(tipoAlertaDTO);
         tipoAlerta = tipoAlertaRepository.save(tipoAlerta);
         TipoAlertaDTO result = tipoAlertaMapper.tipoAlertaToTipoAlertaDTO(tipoAlerta);
@@ -45,13 +46,13 @@ public class TipoAlertaService {
 
     /**
      *  Get all the tipoAlertas.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TipoAlertaDTO> findAll() {
         log.debug("Request to get all TipoAlertas");
-        List<TipoAlertaDTO> result = tipoAlertaRepository.findAll().stream()
+        List<TipoAlertaDTO> result = tipoAlertaRepository.findByActivoTrue().stream()
             .map(tipoAlertaMapper::tipoAlertaToTipoAlertaDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class TipoAlertaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public TipoAlertaDTO findOne(Long id) {
         log.debug("Request to get TipoAlerta : {}", id);
         TipoAlerta tipoAlerta = tipoAlertaRepository.findOne(id);
@@ -79,6 +80,9 @@ public class TipoAlertaService {
      */
     public void delete(Long id) {
         log.debug("Request to delete TipoAlerta : {}", id);
-        tipoAlertaRepository.delete(id);
+        TipoAlertaDTO tipoAlertaDTO = findOne(id);
+        tipoAlertaDTO.setActivo(false);
+        TipoAlerta tipoAlerta = tipoAlertaMapper.tipoAlertaDTOToTipoAlerta(tipoAlertaDTO);
+        tipoAlertaRepository.save(tipoAlerta);
     }
 }

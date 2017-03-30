@@ -4,6 +4,7 @@ import com.quenti.smarttestui.domain.Alerta;
 
 import org.springframework.data.jpa.repository.*;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.List;
 
 /**
@@ -11,5 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface AlertaRepository extends JpaRepository<Alerta,Long> {
+
+    List<Alerta> findByActivoTrue();
 
 }

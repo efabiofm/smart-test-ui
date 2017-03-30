@@ -19,4 +19,6 @@ public interface MetodoRepository extends JpaRepository<Metodo,Long> {
     @Query("select metodo from Metodo metodo left join fetch metodo.servicios where metodo.id =:id")
     Metodo findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<Metodo> findByActivoTrue();
+
 }

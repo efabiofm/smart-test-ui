@@ -21,7 +21,6 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.modulo.nombre">Nombre</span></th>
                     <th><span data-translate="smartTestUiApp.modulo.url">Url</span></th>
-                    <th><span data-translate="smartTestUiApp.modulo.activo">Activo</span></th>
                     <th><span data-translate="smartTestUiApp.modulo.ambiente">Ambiente</span></th>
                     <th></th>
                 </tr>
@@ -31,7 +30,6 @@
                     <td><a ui-sref="modulo-detail({id:modulo.id})">{{modulo.id}}</a></td>
                     <td>{{modulo.nombre}}</td>
                     <td>{{modulo.url}}</td>
-                    <td>{{modulo.activo}}</td>
                     <td>
                         <span ng-repeat="ambiente in modulo.ambientes">
                             <a class="form-control-static" ui-sref="ambiente-detail({id: ambiente.id})">{{ambiente.nombre}}</a>{{$last ? '' : ', '}}

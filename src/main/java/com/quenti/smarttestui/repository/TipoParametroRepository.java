@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TipoParametroRepository extends JpaRepository<TipoParametro,Long> {
 
+    List<TipoParametro> findByActivoTrue();
+
 }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class MetodoService {
 
     private final Logger log = LoggerFactory.getLogger(MetodoService.class);
-    
+
     @Inject
     private MetodoRepository metodoRepository;
 
@@ -37,6 +37,7 @@ public class MetodoService {
      */
     public MetodoDTO save(MetodoDTO metodoDTO) {
         log.debug("Request to save Metodo : {}", metodoDTO);
+        metodoDTO.setActivo(true);
         Metodo metodo = metodoMapper.metodoDTOToMetodo(metodoDTO);
         metodo = metodoRepository.save(metodo);
         MetodoDTO result = metodoMapper.metodoToMetodoDTO(metodo);
@@ -45,13 +46,13 @@ public class MetodoService {
 
     /**
      *  Get all the metodos.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<MetodoDTO> findAll() {
         log.debug("Request to get all Metodos");
-        List<MetodoDTO> result = metodoRepository.findAllWithEagerRelationships().stream()
+        List<MetodoDTO> result = metodoRepository.findByActivoTrue().stream()
             .map(metodoMapper::metodoToMetodoDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class MetodoService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public MetodoDTO findOne(Long id) {
         log.debug("Request to get Metodo : {}", id);
         Metodo metodo = metodoRepository.findOneWithEagerRelationships(id);
@@ -79,6 +80,9 @@ public class MetodoService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Metodo : {}", id);
-        metodoRepository.delete(id);
+        MetodoDTO metodoDTO = findOne(id);
+        metodoDTO.setActivo(false);
+        Metodo metodo = metodoMapper.metodoDTOToMetodo(metodoDTO);
+        metodoRepository.save(metodo);
     }
 }

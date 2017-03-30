@@ -19,4 +19,6 @@ public interface ParametroRepository extends JpaRepository<Parametro,Long> {
     @Query("select parametro from Parametro parametro left join fetch parametro.metodos where parametro.id =:id")
     Parametro findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<Parametro> findByActivoTrue();
+
 }

@@ -37,6 +37,7 @@ public class ServicioService {
      */
     public ServicioDTO save(ServicioDTO servicioDTO) {
         log.debug("Request to save Servicio : {}", servicioDTO);
+        servicioDTO.setActivo(true);
         Servicio servicio = servicioMapper.servicioDTOToServicio(servicioDTO);
         servicio = servicioRepository.save(servicio);
         ServicioDTO result = servicioMapper.servicioToServicioDTO(servicio);
@@ -79,6 +80,9 @@ public class ServicioService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Servicio : {}", id);
-        servicioRepository.delete(id);
+        ServicioDTO servicioDTO = findOne(id);
+        servicioDTO.setActivo(false);
+        Servicio servicio = servicioMapper.servicioDTOToServicio(servicioDTO);
+        servicioRepository.save(servicio);
     }
 }

@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TipoAlertaRepository extends JpaRepository<TipoAlerta,Long> {
 
+    List<TipoAlerta> findByActivoTrue();
+
 }

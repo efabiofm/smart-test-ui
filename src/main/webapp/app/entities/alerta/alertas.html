@@ -20,16 +20,16 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.alerta.mensaje">Mensaje</span></th>
-                    <th><span data-translate="smartTestUiApp.alerta.activo">Activo</span></th>
+                    <!--<th><span data-translate="smartTestUiApp.alerta.activo">Activo</span></th>-->
                     <th><span data-translate="smartTestUiApp.alerta.tipoAlerta">Tipo Alerta</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="alerta in vm.alertas track by alerta.id">
+                <tr ng-repeat="alerta in vm.alertas track by alerta.id  ">
                     <td><a ui-sref="alerta-detail({id:alerta.id})">{{alerta.id}}</a></td>
                     <td>{{alerta.mensaje}}</td>
-                    <td>{{alerta.activo}}</td>
+                    <!--<td>{{alerta.activo}}</td>-->
                     <td>
                         <a ui-sref="tipo-alerta-detail({id:alerta.tipoAlertaId})">{{alerta.tipoAlertaMetodo}}</a>
                     </td>

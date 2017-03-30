@@ -21,7 +21,6 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.metodo.nombre">Nombre</span></th>
                     <th><span data-translate="smartTestUiApp.metodo.url">Url</span></th>
-                    <th><span data-translate="smartTestUiApp.metodo.activo">Activo</span></th>
                     <th><span data-translate="smartTestUiApp.metodo.servicio">Servicio</span></th>
                     <th></th>
                 </tr>
@@ -31,7 +30,6 @@
                     <td><a ui-sref="metodo-detail({id:metodo.id})">{{metodo.id}}</a></td>
                     <td>{{metodo.nombre}}</td>
                     <td>{{metodo.url}}</td>
-                    <td>{{metodo.activo}}</td>
                     <td>
                         <span ng-repeat="servicio in metodo.servicios">
                             <a class="form-control-static" ui-sref="servicio-detail({id: servicio.id})">{{servicio.nombre}}</a>{{$last ? '' : ', '}}

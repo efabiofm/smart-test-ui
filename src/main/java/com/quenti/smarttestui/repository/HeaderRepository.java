@@ -1,5 +1,6 @@
 package com.quenti.smarttestui.repository;
 
+import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.domain.Header;
 
 import org.springframework.data.jpa.repository.*;
@@ -11,5 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface HeaderRepository extends JpaRepository<Header,Long> {
+
+    List<Header> findByActivoTrue();
 
 }
