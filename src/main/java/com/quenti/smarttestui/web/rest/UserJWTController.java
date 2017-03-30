@@ -13,6 +13,7 @@ import com.quenti.smarttestui.domain.User;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import com.codahale.metrics.annotation.Timed;
@@ -99,10 +100,24 @@ public class UserJWTController {
                 response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
                 SeguridadDTO seguridadDTO = new SeguridadDTO();
-                seguridadDTO.setToken(uqDTO.getObjTokenDTO());
-                seguridadDTO.setFecha(LocalDate.now());
-                seguridadDTO.setJhUserId(userId);
-                seguridadService.save(seguridadDTO);
+
+
+                SeguridadDTO seguridadDTO2 = seguridadService.findBySeguridadId(userId);
+
+                if (seguridadDTO2.equals(null)){
+                    seguridadDTO.setToken(uqDTO.getObjTokenDTO());
+                    seguridadDTO.setFecha(LocalDate.now());
+                    seguridadDTO.setJhUserId(userId);
+                    seguridadService.save(seguridadDTO);
+                }else {
+                    if(!seguridadDTO2.getToken().equals(uqDTO.getObjTokenDTO())){
+                        seguridadDTO2.setToken(uqDTO.getObjTokenDTO());
+                        seguridadService.save(seguridadDTO2);
+                    }
+                }
+
+
+
 
                 return ResponseEntity.ok(new JWTToken(jwt));
             } catch (AuthenticationException exception) {

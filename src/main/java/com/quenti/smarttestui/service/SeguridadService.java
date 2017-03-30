@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class SeguridadService {
 
     private final Logger log = LoggerFactory.getLogger(SeguridadService.class);
-    
+
     @Inject
     private SeguridadRepository seguridadRepository;
 
@@ -45,10 +45,10 @@ public class SeguridadService {
 
     /**
      *  Get all the seguridads.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<SeguridadDTO> findAll() {
         log.debug("Request to get all Seguridads");
         List<SeguridadDTO> result = seguridadRepository.findAll().stream()
@@ -64,7 +64,7 @@ public class SeguridadService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public SeguridadDTO findOne(Long id) {
         log.debug("Request to get Seguridad : {}", id);
         Seguridad seguridad = seguridadRepository.findOne(id);
@@ -80,5 +80,16 @@ public class SeguridadService {
     public void delete(Long id) {
         log.debug("Request to delete Seguridad : {}", id);
         seguridadRepository.delete(id);
+    }
+
+    @Transactional(readOnly = true)
+    public SeguridadDTO findBySeguridadId(Long id){
+        log.debug("Request to get Seguridad : {}", id);
+        Seguridad seguridad = seguridadRepository.findOneByjhUserId(id);
+        SeguridadDTO seguridadDTO = seguridadMapper.seguridadToSeguridadDTO(seguridad);
+//        List<SeguridadDTO> result = seguridadRepository.findByjhUserId(id).stream()
+//            .map(seguridadMapper::seguridadToSeguridadDTO)
+//            .collect(Collectors.toCollection(LinkedList::new));
+        return seguridadDTO;
     }
 }
