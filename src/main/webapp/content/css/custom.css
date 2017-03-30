@@ -1,29 +1,57 @@
 .aside-navbar {
     height: 100%;
-    top: 0;
+    top: 52px;
     display: inherit;
     box-shadow: 0 0 0 0;
     margin-top: 0;
-    padding-top: 20px;
     border-radius: 0;
+    border-top: 0;
+    background-color: #f8f8f8;
+    position: fixed;
 }
 
-.a {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
+.aside-navbar > li > a {
+    padding: 15px 20px;
+    /*border-bottom: 1px solid #d5d5d5;*/
+}
 
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+.stu-container {
+    margin-left: 180px;
+}
+
+.stu-nav-container {
+    margin-left: 0;
+}
+
+.nav-margin {
+    margin-top: 72px;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu:hover .submenu {
+    display: block;
+}
+
+.has-submenu > a > .fa-caret-right {
+    float: right;
+}
+
+.submenu {
+    position: absolute;
+    left: 158px;
+    top: 0;
+    display: none;
+    list-style: none;
+    background-color: #fff;
+    width: 160px;
+    box-shadow: 2px 0px 6px rgba(0, 0, 0, .175);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.submenu > li > a {
+    padding: 10px 20px;
 }

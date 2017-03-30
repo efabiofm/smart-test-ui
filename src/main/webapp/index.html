@@ -17,6 +17,7 @@
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <link rel="stylesheet" href="content/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- endbuild -->
 </head>
 <body ng-app="smartTestUiApp" ng-strict-di>
@@ -26,8 +27,9 @@
     <!--<page-ribbon></page-ribbon>-->
     <div ui-view="navbar" ng-cloak></div>
 
-    <div class="aside-nav-container" ng-include="'app/layouts/navbar/aside-navbar.html'"></div>
-    <div class="container">
+    <div class="container stu-container">
+        <div class="aside-nav-container" ng-include="'app/layouts/navbar/aside-navbar.html'"></div>
+
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
