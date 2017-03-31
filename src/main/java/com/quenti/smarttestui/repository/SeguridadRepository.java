@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface SeguridadRepository extends JpaRepository<Seguridad,Long> {
 
+    Seguridad findOneByjhUserId(Long id);
+
 }
