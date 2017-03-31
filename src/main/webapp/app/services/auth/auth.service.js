@@ -45,10 +45,15 @@
 
             function authThen () {
                 var isAuthenticated = Principal.isAuthenticated();
+                var isAdmin = Principal.identity().$$state.value.authorities.indexOf("ROLE_ADMIN");
 
                 // an authenticated user can't access to login and register pages
-                if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register' || $rootScope.toState.name === 'social-auth')) {
-                    $state.go('home');
+                if (isAuthenticated && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register' || $rootScope.toState.name === 'social-auth' || $rootScope.toState.name === 'home')) {
+                    if ( isAdmin !== -1 ) {
+                        $state.go('home-admin');
+                    } else {
+                        $state.go('home-quenti');
+                    }
                 }
 
                 // recover and clear previousState after external login redirect (e.g. oauth2)

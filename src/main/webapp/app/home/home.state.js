@@ -42,7 +42,7 @@
         })
         .state('home-admin', {
             parent: 'app',
-            url: '/admin',
+            url: '/home',
             data: {
                 authorities: ['ROLE_ADMIN']
             },
