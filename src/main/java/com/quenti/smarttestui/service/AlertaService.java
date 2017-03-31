@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class AlertaService {
 
     private final Logger log = LoggerFactory.getLogger(AlertaService.class);
-    
+
     @Inject
     private AlertaRepository alertaRepository;
 
@@ -37,6 +37,7 @@ public class AlertaService {
      */
     public AlertaDTO save(AlertaDTO alertaDTO) {
         log.debug("Request to save Alerta : {}", alertaDTO);
+        alertaDTO.setActivo(true);
         Alerta alerta = alertaMapper.alertaDTOToAlerta(alertaDTO);
         alerta = alertaRepository.save(alerta);
         AlertaDTO result = alertaMapper.alertaToAlertaDTO(alerta);
@@ -45,13 +46,13 @@ public class AlertaService {
 
     /**
      *  Get all the alertas.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<AlertaDTO> findAll() {
         log.debug("Request to get all Alertas");
-        List<AlertaDTO> result = alertaRepository.findAll().stream()
+        List<AlertaDTO> result = alertaRepository.findByActivoTrue().stream()
             .map(alertaMapper::alertaToAlertaDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class AlertaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public AlertaDTO findOne(Long id) {
         log.debug("Request to get Alerta : {}", id);
         Alerta alerta = alertaRepository.findOne(id);
@@ -79,6 +80,10 @@ public class AlertaService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Alerta : {}", id);
-        alertaRepository.delete(id);
+//        alertaRepository.delete(id);
+        AlertaDTO alertaDTO = findOne(id);
+        alertaDTO.setActivo(false);
+        Alerta alerta = alertaMapper.alertaDTOToAlerta(alertaDTO);
+        alertaRepository.save(alerta);
     }
 }

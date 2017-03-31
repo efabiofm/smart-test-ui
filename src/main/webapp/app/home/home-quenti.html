@@ -1,1 +1,33 @@
-<div>Ejecución de pruebas en contrucción</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <select class="form-control" ng-model="vm.ejecucion.metodo" ng-options="m for m in ['GET','POST','PUT','DELETE']"></select>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <input type="text" class="form-control" ng-model="vm.ejecucion.url">
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-primary">Probar</button>
+    </div>
+</div>
+<hr>
+<div class="form-group">
+    <label for="" class="control-label">Token</label>
+    <input type="text" class="form-control" ng-model="vm.ejecucion.header">
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="" class="control-label">JSON</label>
+            <textarea rows="15" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="" class="control-label">Respuesta</label>
+            <textarea rows="15" class="form-control"></textarea>
+        </div>
+    </div>
+</div>

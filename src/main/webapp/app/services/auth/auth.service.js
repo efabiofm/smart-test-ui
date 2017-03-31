@@ -45,11 +45,11 @@
 
             function authThen () {
                 var isAuthenticated = Principal.isAuthenticated();
-                var isAdmin = Principal.identity().$$state.value.authorities.indexOf("ROLE_ADMIN");
+                var identity = Principal.identity().$$state.value;
 
                 // an authenticated user can't access to login and register pages
-                if (isAuthenticated && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register' || $rootScope.toState.name === 'social-auth' || $rootScope.toState.name === 'home')) {
-                    if ( isAdmin !== -1 ) {
+                if (isAuthenticated && identity.login !== 'anonymoususer' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'home')) {
+                    if ( identity.authorities.indexOf("ROLE_ADMIN") !== -1 ) {
                         $state.go('home-admin');
                     } else {
                         $state.go('home-quenti');
@@ -62,7 +62,6 @@
                     resetPreviousState();
                     $state.go(previousState.name, previousState.params);
                 }
-
                 if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
                     if (isAuthenticated) {
                         // user is signed in but not authorized for desired state
@@ -75,7 +74,7 @@
 
                         // now, send them to the signin state so they can log in
                         $state.go('accessdenied').then(function() {
-                            LoginService.open();
+                            $state.go('home');
                         });
                     }
                 }

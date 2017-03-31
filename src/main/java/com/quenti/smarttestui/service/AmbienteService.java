@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class AmbienteService {
 
     private final Logger log = LoggerFactory.getLogger(AmbienteService.class);
-    
+
     @Inject
     private AmbienteRepository ambienteRepository;
 
@@ -37,6 +37,7 @@ public class AmbienteService {
      */
     public AmbienteDTO save(AmbienteDTO ambienteDTO) {
         log.debug("Request to save Ambiente : {}", ambienteDTO);
+        ambienteDTO.setActivo(true);
         Ambiente ambiente = ambienteMapper.ambienteDTOToAmbiente(ambienteDTO);
         ambiente = ambienteRepository.save(ambiente);
         AmbienteDTO result = ambienteMapper.ambienteToAmbienteDTO(ambiente);
@@ -45,13 +46,13 @@ public class AmbienteService {
 
     /**
      *  Get all the ambientes.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<AmbienteDTO> findAll() {
         log.debug("Request to get all Ambientes");
-        List<AmbienteDTO> result = ambienteRepository.findAll().stream()
+        List<AmbienteDTO> result = ambienteRepository.findByActivoTrue().stream()
             .map(ambienteMapper::ambienteToAmbienteDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class AmbienteService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public AmbienteDTO findOne(Long id) {
         log.debug("Request to get Ambiente : {}", id);
         Ambiente ambiente = ambienteRepository.findOne(id);
@@ -79,6 +80,10 @@ public class AmbienteService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Ambiente : {}", id);
-        ambienteRepository.delete(id);
+        AmbienteDTO ambienteDTO = findOne(id);
+        ambienteDTO.setActivo(false);
+        Ambiente ambiente = ambienteMapper.ambienteDTOToAmbiente(ambienteDTO);
+        ambienteRepository.save(ambiente);
+
     }
 }

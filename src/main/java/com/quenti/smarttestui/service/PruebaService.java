@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class PruebaService {
 
     private final Logger log = LoggerFactory.getLogger(PruebaService.class);
-    
+
     @Inject
     private PruebaRepository pruebaRepository;
 
@@ -37,6 +37,7 @@ public class PruebaService {
      */
     public PruebaDTO save(PruebaDTO pruebaDTO) {
         log.debug("Request to save Prueba : {}", pruebaDTO);
+        pruebaDTO.setActivo(true);
         Prueba prueba = pruebaMapper.pruebaDTOToPrueba(pruebaDTO);
         prueba = pruebaRepository.save(prueba);
         PruebaDTO result = pruebaMapper.pruebaToPruebaDTO(prueba);
@@ -45,13 +46,13 @@ public class PruebaService {
 
     /**
      *  Get all the pruebas.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<PruebaDTO> findAll() {
         log.debug("Request to get all Pruebas");
-        List<PruebaDTO> result = pruebaRepository.findAll().stream()
+        List<PruebaDTO> result = pruebaRepository.findByActivoTrue().stream()
             .map(pruebaMapper::pruebaToPruebaDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class PruebaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public PruebaDTO findOne(Long id) {
         log.debug("Request to get Prueba : {}", id);
         Prueba prueba = pruebaRepository.findOne(id);
@@ -79,6 +80,10 @@ public class PruebaService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Prueba : {}", id);
-        pruebaRepository.delete(id);
+        PruebaDTO pruebaDTO = findOne(id);
+        pruebaDTO.setActivo(false);
+        Prueba prueba = pruebaMapper.pruebaDTOToPrueba(pruebaDTO);
+        pruebaRepository.save(prueba);
+
     }
 }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ServicioService {
 
     private final Logger log = LoggerFactory.getLogger(ServicioService.class);
-    
+
     @Inject
     private ServicioRepository servicioRepository;
 
@@ -37,6 +37,7 @@ public class ServicioService {
      */
     public ServicioDTO save(ServicioDTO servicioDTO) {
         log.debug("Request to save Servicio : {}", servicioDTO);
+        servicioDTO.setActivo(true);
         Servicio servicio = servicioMapper.servicioDTOToServicio(servicioDTO);
         servicio = servicioRepository.save(servicio);
         ServicioDTO result = servicioMapper.servicioToServicioDTO(servicio);
@@ -45,13 +46,13 @@ public class ServicioService {
 
     /**
      *  Get all the servicios.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<ServicioDTO> findAll() {
         log.debug("Request to get all Servicios");
-        List<ServicioDTO> result = servicioRepository.findAllWithEagerRelationships().stream()
+        List<ServicioDTO> result = servicioRepository.findByActivoTrue().stream()
             .map(servicioMapper::servicioToServicioDTO)
             .collect(Collectors.toCollection(LinkedList::new));
 
@@ -64,7 +65,7 @@ public class ServicioService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ServicioDTO findOne(Long id) {
         log.debug("Request to get Servicio : {}", id);
         Servicio servicio = servicioRepository.findOneWithEagerRelationships(id);
@@ -79,6 +80,9 @@ public class ServicioService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Servicio : {}", id);
-        servicioRepository.delete(id);
+        ServicioDTO servicioDTO = findOne(id);
+        servicioDTO.setActivo(false);
+        Servicio servicio = servicioMapper.servicioDTOToServicio(servicioDTO);
+        servicioRepository.save(servicio);
     }
 }

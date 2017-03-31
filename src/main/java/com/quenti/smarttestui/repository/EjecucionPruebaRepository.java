@@ -12,4 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface EjecucionPruebaRepository extends JpaRepository<EjecucionPrueba,Long> {
 
+    List<EjecucionPrueba> findByActivoTrue();
 }

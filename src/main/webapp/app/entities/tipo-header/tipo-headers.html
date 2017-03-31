@@ -20,7 +20,6 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.tipoHeader.nombre">Nombre</span></th>
-                    <th><span data-translate="smartTestUiApp.tipoHeader.activo">Activo</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,7 +27,6 @@
                 <tr ng-repeat="tipoHeader in vm.tipoHeaders track by tipoHeader.id">
                     <td><a ui-sref="tipo-header-detail({id:tipoHeader.id})">{{tipoHeader.id}}</a></td>
                     <td>{{tipoHeader.nombre}}</td>
-                    <td>{{tipoHeader.activo}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

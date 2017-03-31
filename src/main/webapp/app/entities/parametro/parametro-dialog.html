@@ -25,16 +25,10 @@
                 </p>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="smartTestUiApp.parametro.activo" for="field_activo">Activo</label>
-            <input type="checkbox" class="form-control" name="activo" id="field_activo"
-                    ng-model="vm.parametro.activo"
-                     />
-        </div>
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.parametro.tipoParametro" for="field_tipoParametro">Tipo Parametro</label>
-            <select class="form-control" id="field_tipoParametro" name="tipoParametro" ng-model="vm.parametro.tipoParametroId" ng-options="tipoParametro.id as tipoParametro.id for tipoParametro in vm.tipoparametros"            >
+            <select class="form-control" id="field_tipoParametro" name="tipoParametro" ng-model="vm.parametro.tipoParametroId" ng-options="tipoParametro.id as tipoParametro.nombre for tipoParametro in vm.tipoparametros"            >
                 <option value=""></option>
             </select>
         </div>
