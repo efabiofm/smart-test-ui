@@ -1,33 +1,64 @@
+<!--Endpoint-->
 <div class="row">
     <div class="col-md-2">
-        <div class="form-group">
-            <select class="form-control" ng-model="vm.ejecucion.metodo" ng-options="m for m in ['GET','POST','PUT','DELETE']"></select>
-        </div>
+        <label for="" class="control-label">Método</label>
+        <select class="form-control" ng-model="vm.ejecucion.metodo" ng-options="m for m in ['GET','POST','PUT','DELETE']"></select>
     </div>
     <div class="col-md-9">
+        <label for="" class="control-label">Recurso</label>
         <input type="text" class="form-control" ng-model="vm.ejecucion.url">
+        <button class="btn btn-default btn-params" ng-click="mostrarParams = !mostrarParams">Params</button>
     </div>
     <div class="col-md-1">
-        <button class="btn btn-primary">Probar</button>
+        <label for="" class="control-label">&nbsp;</label>
+        <button type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-play"></span>
+            <span class="hidden-xs hidden-sm">Run</span>
+        </button>
     </div>
 </div>
 <hr>
-<div class="form-group">
-    <label for="" class="control-label">Token</label>
-    <input type="text" class="form-control" ng-model="vm.ejecucion.header">
+
+<!--Parámetros-->
+<div ng-show="mostrarParams">
+    <label for="" class="control-label">Parámetros</label>
+    <div class="row">
+        <div class="col-md-2 center-label">Param 1:</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" ng-model="vm.ejecucion.param1">
+        </div>
+        <div class="col-md-1">
+            <span class="glyphicon glyphicon-plus"></span>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!--Headers-->
+<label for="" class="control-label">Headers</label>
+<div class="row">
+    <div class="col-md-2 center-label">Token:</div>
+    <div class="col-md-9">
+        <input type="text" class="form-control" ng-model="vm.ejecucion.header">
+    </div>
+    <div class="col-md-1">
+        <span class="glyphicon glyphicon-plus"></span>
+    </div>
 </div>
 <hr>
+
+<!--Resultado-->
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label for="" class="control-label">JSON</label>
-            <textarea rows="15" class="form-control"></textarea>
+            <textarea rows="15" class="form-control text-scroll"></textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="" class="control-label">Respuesta</label>
-            <textarea rows="15" class="form-control"></textarea>
+            <textarea rows="15" class="form-control text-scroll" ng-disabled="true"></textarea>
         </div>
     </div>
 </div>

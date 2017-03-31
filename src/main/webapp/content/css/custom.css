@@ -55,3 +55,22 @@
 .submenu > li > a {
     padding: 10px 20px;
 }
+
+.text-scroll {
+    overflow-y: scroll;
+}
+
+.center-label {
+    text-align: right;
+    line-height: 2.3;
+}
+
+.btn-params {
+    top: 25px;
+    right: 15px;
+    position: absolute;
+}
+
+textarea {
+    resize: none;
+}

@@ -9,6 +9,9 @@
 
     function HomeController ($scope, Principal) {
         var vm = this;
+        vm.ejecucion = {
+          metodo: "POST"
+        };
 
         vm.account = null;
         vm.isAuthenticated = null;

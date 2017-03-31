@@ -36,8 +36,16 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/home/home-quenti.html'
+                    templateUrl: 'app/home/home-quenti.html',
+                    controller: "HomeController",
+                    controllerAs: "vm"
                 }
+            },
+            resolve: {
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('home-admin', {
