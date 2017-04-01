@@ -17,8 +17,8 @@
                 "title": "Service Provider"
             },
             "serviceProviderId": "Service Provider Id",
-            "nombre": "Nombre",
-            "activo": "Activo",
+            "nombre": "Name",
+            "activo": "Active",
             "header": "Header"
         }
     }

@@ -1,4 +1,3 @@
-<div class="text-center nav-margin" ng-show="vm.hideNavbar()"></div>
 <div ng-hide="vm.hideNavbar()">
     <div class="aside-nav-container" ng-include="'app/layouts/navbar/aside-navbar.html'"></div>
     <nav class="navbar navbar-default" role="navigation">
@@ -40,12 +39,12 @@
                                     <span data-translate="global.menu.account.settings">Settings</span>
                                 </a>
                             </li>
-                            <li ui-sref-active="active" ng-switch-when="true">
+                            <!--li ui-sref-active="active" ng-switch-when="true">
                                 <a ui-sref="password" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-lock"></span>&nbsp;
                                     <span data-translate="global.menu.account.password">Password</span>
                                 </a>
-                            </li>
+                            </li-->
                             <li ui-sref-active="active" ng-switch-when="true">
                                 <a href="" ng-click="vm.logout()" id="logout">
                                     <span class="glyphicon glyphicon-log-out"></span>&nbsp;

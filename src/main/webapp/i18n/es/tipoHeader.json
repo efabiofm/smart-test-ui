@@ -2,7 +2,7 @@
     "smartTestUiApp": {
         "tipoHeader" : {
             "home": {
-                "title": "Tipo Headers",
+                "title": "Tipos Header",
                 "createLabel": "Crear nuevo Tipo Header",
                 "createOrEditLabel": "Crear o editar Tipo Header",
                 "search": "Search for Tipo Header"

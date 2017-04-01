@@ -2,23 +2,23 @@
     "smartTestUiApp": {
         "alerta" : {
             "home": {
-                "title": "Alertas",
-                "createLabel": "Create a new Alerta",
-                "createOrEditLabel": "Create or edit a Alerta",
-                "search": "Search for Alerta"
+                "title": "Alerts",
+                "createLabel": "Create a new Alert",
+                "createOrEditLabel": "Create or edit a Alert",
+                "search": "Search for Alert"
             },
-            "created": "A new Alerta is created with identifier {{ param }}",
-            "updated": "A Alerta is updated with identifier {{ param }}",
-            "deleted": "A Alerta is deleted with identifier {{ param }}",
+            "created": "A new Alert is created with identifier {{ param }}",
+            "updated": "An Alert is updated with identifier {{ param }}",
+            "deleted": "An Alert is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Alerta {{ id }}?"
+                "question": "Are you sure you want to delete Alert {{ id }}?"
             },
             "detail": {
-                "title": "Alerta"
+                "title": "Alert"
             },
-            "mensaje": "Mensaje",
-            "activo": "Activo",
-            "tipoAlerta": "Tipo Alerta"
+            "mensaje": "Message",
+            "activo": "Active",
+            "tipoAlerta": "Alert Type"
         }
     }
 }

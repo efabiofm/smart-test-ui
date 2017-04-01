@@ -2,7 +2,7 @@
     "smartTestUiApp": {
         "seguridad" : {
             "home": {
-                "title": "Seguridads",
+                "title": "Security",
                 "createLabel": "Create a new Seguridad",
                 "createOrEditLabel": "Create or edit a Seguridad",
                 "search": "Search for Seguridad"
@@ -17,7 +17,7 @@
                 "title": "Seguridad"
             },
             "token": "Token",
-            "fecha": "Fecha",
+            "fecha": "Date",
             "jhUserId": "Jh User Id"
         }
     }

@@ -2,7 +2,7 @@
     "smartTestUiApp": {
         "tipoAlerta" : {
             "home": {
-                "title": "Tipo Alertas",
+                "title": "Tipos Alerta",
                 "createLabel": "Crear nuevo Tipo Alerta",
                 "createOrEditLabel": "Crear o editar Tipo Alerta",
                 "search": "Search for Tipo Alerta"
@@ -16,7 +16,7 @@
             "detail": {
                 "title": "Tipo Alerta"
             },
-            "metodo": "Metodo",
+            "metodo": "Método",
             "activo": "Activo",
             "alerta": "Alerta"
         }

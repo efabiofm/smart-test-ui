@@ -15,16 +15,13 @@
     /*border-bottom: 1px solid #d5d5d5;*/
 }
 
-.stu-container {
-    margin-left: 180px;
+.stu-container > .well {
+    margin-top: 70px;
 }
 
 .stu-nav-container {
     margin-left: 0;
-}
-
-.nav-margin {
-    margin-top: 72px;
+    width: 100%;
 }
 
 .has-submenu {
@@ -73,4 +70,10 @@
 
 textarea {
     resize: none;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
