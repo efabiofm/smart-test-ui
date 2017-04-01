@@ -14,7 +14,7 @@
         })
         .state('login-admin', {
             parent: 'app',
-            url: '/login-admin',
+            url: '/admin',
             data: {
                 authorities: []
             },

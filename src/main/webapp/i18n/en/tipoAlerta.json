@@ -2,23 +2,23 @@
     "smartTestUiApp": {
         "tipoAlerta" : {
             "home": {
-                "title": "Tipo Alertas",
-                "createLabel": "Create a new Tipo Alerta",
-                "createOrEditLabel": "Create or edit a Tipo Alerta",
-                "search": "Search for Tipo Alerta"
+                "title": "Alert Types",
+                "createLabel": "Create a new Alert Type",
+                "createOrEditLabel": "Create or edit an Alert Type",
+                "search": "Search for Alert Type"
             },
-            "created": "A new Tipo Alerta is created with identifier {{ param }}",
-            "updated": "A Tipo Alerta is updated with identifier {{ param }}",
-            "deleted": "A Tipo Alerta is deleted with identifier {{ param }}",
+            "created": "A new Alert Type is created with identifier {{ param }}",
+            "updated": "A Alert Type is updated with identifier {{ param }}",
+            "deleted": "A Alert Type is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Tipo Alerta {{ id }}?"
+                "question": "Are you sure you want to delete Alert Type {{ id }}?"
             },
             "detail": {
-                "title": "Tipo Alerta"
+                "title": "Alert Type"
             },
-            "metodo": "Metodo",
-            "activo": "Activo",
-            "alerta": "Alerta"
+            "metodo": "Method",
+            "activo": "Active",
+            "alerta": "Alert"
         }
     }
 }

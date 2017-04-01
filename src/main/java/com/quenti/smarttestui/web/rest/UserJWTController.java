@@ -104,7 +104,7 @@ public class UserJWTController {
 
                 SeguridadDTO seguridadDTO2 = seguridadService.findBySeguridadId(userId);
 
-                if (seguridadDTO2.equals(null)){
+                if (seguridadDTO2 == null){
                     seguridadDTO.setToken(uqDTO.getObjTokenDTO());
                     seguridadDTO.setFecha(LocalDate.now());
                     seguridadDTO.setJhUserId(userId);

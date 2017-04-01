@@ -3,13 +3,13 @@
         "alerta" : {
             "home": {
                 "title": "Alertas",
-                "createLabel": "Crear nuevo Alerta",
+                "createLabel": "Crear nueva Alerta",
                 "createOrEditLabel": "Crear o editar Alerta",
                 "search": "Search for Alerta"
             },
-            "created": "Un nuevo Alerta ha sido creado con el identificador {{ param }}",
-            "updated": "Un Alerta ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Alerta ha sido eliminado con el identificador {{ param }}",
+            "created": "Una nueva Alerta ha sido creada con el identificador {{ param }}",
+            "updated": "Una Alerta ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una Alerta ha sido eliminada con el identificador {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Alerta {{ id }}?"
             },

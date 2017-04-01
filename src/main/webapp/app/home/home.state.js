@@ -36,13 +36,33 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/home/home-quenti.html'
+                    templateUrl: 'app/home/home-quenti.html',
+                    controller: "HomeQuentiController",
+                    controllerAs: "vm"
                 }
+            },
+            resolve: {
+                pruebas: ['Prueba', function(Prueba){
+                    return Prueba.query();
+                }],
+                token: ['Principal', 'Seguridad', 'User', function(Principal, Seguridad, User){
+                   return Principal.identity().then(function(account){
+                      return User.get({login: account.login}).$promise.then(function(user){
+                          return Seguridad.getByUserId({id: user.id}).$promise.then(function(seguridad){
+                              return seguridad.token;
+                          });
+                      })
+                   });
+                }],
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
             }
         })
         .state('home-admin', {
             parent: 'app',
-            url: '/admin',
+            url: '/main',
             data: {
                 authorities: ['ROLE_ADMIN']
             },

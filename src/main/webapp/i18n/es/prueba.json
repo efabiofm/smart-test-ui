@@ -3,13 +3,13 @@
         "prueba" : {
             "home": {
                 "title": "Pruebas",
-                "createLabel": "Crear nuevo Prueba",
+                "createLabel": "Crear nueva Prueba",
                 "createOrEditLabel": "Crear o editar Prueba",
                 "search": "Search for Prueba"
             },
-            "created": "Un nuevo Prueba ha sido creado con el identificador {{ param }}",
-            "updated": "Un Prueba ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Prueba ha sido eliminado con el identificador {{ param }}",
+            "created": "Una nueva Prueba ha sido creada con el identificador {{ param }}",
+            "updated": "Una Prueba ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una Prueba ha sido eliminada con el identificador {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Prueba {{ id }}?"
             },
@@ -19,10 +19,10 @@
             "body": "Body",
             "activo": "Activo",
             "ambiente": "Ambiente",
-            "modulo": "Modulo",
+            "modulo": "Módulo",
             "servicio": "Servicio",
-            "metodo": "Metodo",
-            "ejecucionPrueba": "Ejecucion Prueba",
+            "metodo": "Método",
+            "ejecucionPrueba": "Ejecución Prueba",
             "planPrueba": "Plan Prueba"
         }
     }

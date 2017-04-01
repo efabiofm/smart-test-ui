@@ -2,26 +2,26 @@
     "smartTestUiApp": {
         "modulo" : {
             "home": {
-                "title": "Modulos",
-                "createLabel": "Create a new Modulo",
-                "createOrEditLabel": "Create or edit a Modulo",
-                "search": "Search for Modulo"
+                "title": "Module",
+                "createLabel": "Create a new Module",
+                "createOrEditLabel": "Create or edit a Module",
+                "search": "Search for Module"
             },
-            "created": "A new Modulo is created with identifier {{ param }}",
-            "updated": "A Modulo is updated with identifier {{ param }}",
-            "deleted": "A Modulo is deleted with identifier {{ param }}",
+            "created": "A new Module is created with identifier {{ param }}",
+            "updated": "A Module is updated with identifier {{ param }}",
+            "deleted": "A Module is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Modulo {{ id }}?"
+                "question": "Are you sure you want to delete Module {{ id }}?"
             },
             "detail": {
-                "title": "Modulo"
+                "title": "Module"
             },
-            "nombre": "Nombre",
+            "nombre": "Name",
             "url": "Url",
-            "activo": "Activo",
-            "ambiente": "Ambiente",
-            "prueba": "Prueba",
-            "servicio": "Servicio"
+            "activo": "Active",
+            "ambiente": "Environment",
+            "prueba": "Test",
+            "servicio": "Service"
         }
     }
 }
