@@ -17,10 +17,10 @@
                 "title": "Ambiente"
             },
             "nombre": "Nombre",
-            "descripcion": "Descripcion",
+            "descripcion": "Descripción",
             "activo": "Activo",
             "prueba": "Prueba",
-            "modulo": "Modulo"
+            "modulo": "Módulo"
         }
     }
 }

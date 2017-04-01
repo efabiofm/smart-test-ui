@@ -2,26 +2,26 @@
     "smartTestUiApp": {
         "servicio" : {
             "home": {
-                "title": "Servicios",
-                "createLabel": "Create a new Servicio",
-                "createOrEditLabel": "Create or edit a Servicio",
-                "search": "Search for Servicio"
+                "title": "Services",
+                "createLabel": "Create a new Service",
+                "createOrEditLabel": "Create or edit a Service",
+                "search": "Search for Service"
             },
-            "created": "A new Servicio is created with identifier {{ param }}",
-            "updated": "A Servicio is updated with identifier {{ param }}",
-            "deleted": "A Servicio is deleted with identifier {{ param }}",
+            "created": "A new Service is created with identifier {{ param }}",
+            "updated": "A Service is updated with identifier {{ param }}",
+            "deleted": "A Service is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Servicio {{ id }}?"
+                "question": "Are you sure you want to delete Service {{ id }}?"
             },
             "detail": {
-                "title": "Servicio"
+                "title": "Service"
             },
-            "nombre": "Nombre",
+            "nombre": "Name",
             "url": "Url",
-            "activo": "Activo",
-            "modulo": "Modulo",
-            "prueba": "Prueba",
-            "metodo": "Metodo"
+            "activo": "Active",
+            "modulo": "Module",
+            "prueba": "Test",
+            "metodo": "Method"
         }
     }
 }

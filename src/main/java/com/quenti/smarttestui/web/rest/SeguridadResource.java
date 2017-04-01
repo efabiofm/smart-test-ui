@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class SeguridadResource {
 
     private final Logger log = LoggerFactory.getLogger(SeguridadResource.class);
-        
+
     @Inject
     private SeguridadService seguridadService;
 
@@ -98,6 +98,18 @@ public class SeguridadResource {
     public ResponseEntity<SeguridadDTO> getSeguridad(@PathVariable Long id) {
         log.debug("REST request to get Seguridad : {}", id);
         SeguridadDTO seguridadDTO = seguridadService.findOne(id);
+        return Optional.ofNullable(seguridadDTO)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/seguridads/user/{id}")
+    @Timed
+    public ResponseEntity<SeguridadDTO> getSeguridadByUser(@PathVariable Long id) {
+        log.debug("REST request to get Seguridad : {}", id);
+        SeguridadDTO seguridadDTO = seguridadService.findBySeguridadId(id);
         return Optional.ofNullable(seguridadDTO)
             .map(result -> new ResponseEntity<>(
                 result,

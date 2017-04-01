@@ -16,6 +16,8 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- endbuild -->
 </head>
 <body ng-app="smartTestUiApp" ng-strict-di>
@@ -24,7 +26,8 @@
     <![endif]-->
     <!--<page-ribbon></page-ribbon>-->
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
+
+    <div class="container stu-container">
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
@@ -91,6 +94,7 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/home/home-quenti.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-dialog.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-detail.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-delete-dialog.controller.js"></script>

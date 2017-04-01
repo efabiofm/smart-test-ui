@@ -2,26 +2,26 @@
     "smartTestUiApp": {
         "metodo" : {
             "home": {
-                "title": "Metodos",
-                "createLabel": "Crear nuevo Metodo",
-                "createOrEditLabel": "Crear o editar Metodo",
-                "search": "Search for Metodo"
+                "title": "Métodos",
+                "createLabel": "Crear nuevo Método",
+                "createOrEditLabel": "Crear o editar Método",
+                "search": "Search for Método"
             },
-            "created": "Un nuevo Metodo ha sido creado con el identificador {{ param }}",
-            "updated": "Un Metodo ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Metodo ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Método ha sido creado con el identificador {{ param }}",
+            "updated": "Un Método ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Método ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Metodo {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Método {{ id }}?"
             },
             "detail": {
-                "title": "Metodo"
+                "title": "Método"
             },
             "nombre": "Nombre",
             "url": "Url",
             "activo": "Activo",
             "servicio": "Servicio",
             "prueba": "Prueba",
-            "parametro": "Parametro"
+            "parametro": "Parámetro"
         }
     }
 }

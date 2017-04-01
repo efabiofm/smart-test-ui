@@ -2,22 +2,22 @@
     "smartTestUiApp": {
         "tipoHeader" : {
             "home": {
-                "title": "Tipo Headers",
-                "createLabel": "Create a new Tipo Header",
-                "createOrEditLabel": "Create or edit a Tipo Header",
-                "search": "Search for Tipo Header"
+                "title": "Header Types",
+                "createLabel": "Create a new Header Type",
+                "createOrEditLabel": "Create or edit a Header Type",
+                "search": "Search for Header Type"
             },
-            "created": "A new Tipo Header is created with identifier {{ param }}",
-            "updated": "A Tipo Header is updated with identifier {{ param }}",
-            "deleted": "A Tipo Header is deleted with identifier {{ param }}",
+            "created": "A new Header Type is created with identifier {{ param }}",
+            "updated": "A Header Type is updated with identifier {{ param }}",
+            "deleted": "A Header Type is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Tipo Header {{ id }}?"
+                "question": "Are you sure you want to delete Header Type {{ id }}?"
             },
             "detail": {
-                "title": "Tipo Header"
+                "title": "Header Type"
             },
-            "nombre": "Nombre",
-            "activo": "Activo",
+            "nombre": "Name",
+            "activo": "Active",
             "header": "Header"
         }
     }

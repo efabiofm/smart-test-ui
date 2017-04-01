@@ -8,15 +8,15 @@
             "entities": {
                 "main": "Entidades",
                 "ambiente": "Ambiente",
-                "modulo": "Modulo",
+                "modulo": "Módulo",
                 "servicio": "Servicio",
-                "metodo": "Metodo",
-                "parametro": "Parametro",
-                "tipoParametro": "Tipo Parametro",
+                "metodo": "Método",
+                "parametro": "Parámetro",
+                "tipoParametro": "Tipo Parámetro",
                 "prueba": "Prueba",
                 "planPrueba": "Plan Prueba",
-                "ejecucionPrueba": "Ejecucion Prueba",
-                "bitacora": "Bitacora",
+                "ejecucionPrueba": "Ejecución Prueba",
+                "bitacora": "Bitácora",
                 "tipoEvento": "Tipo Evento",
                 "alerta": "Alerta",
                 "tipoAlerta": "Tipo Alerta",
@@ -136,5 +136,6 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "pie de página"
+    "footer": "pie de página",
+    "construction": "Página en construcción"
 }

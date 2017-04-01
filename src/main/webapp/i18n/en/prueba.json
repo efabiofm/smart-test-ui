@@ -2,28 +2,28 @@
     "smartTestUiApp": {
         "prueba" : {
             "home": {
-                "title": "Pruebas",
-                "createLabel": "Create a new Prueba",
-                "createOrEditLabel": "Create or edit a Prueba",
-                "search": "Search for Prueba"
+                "title": "Tests",
+                "createLabel": "Create a new Test",
+                "createOrEditLabel": "Create or edit a Test",
+                "search": "Search for Test"
             },
-            "created": "A new Prueba is created with identifier {{ param }}",
-            "updated": "A Prueba is updated with identifier {{ param }}",
-            "deleted": "A Prueba is deleted with identifier {{ param }}",
+            "created": "A new Test is created with identifier {{ param }}",
+            "updated": "A Test is updated with identifier {{ param }}",
+            "deleted": "A Test is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Prueba {{ id }}?"
+                "question": "Are you sure you want to delete Test {{ id }}?"
             },
             "detail": {
-                "title": "Prueba"
+                "title": "Test"
             },
             "body": "Body",
-            "activo": "Activo",
-            "ambiente": "Ambiente",
-            "modulo": "Modulo",
-            "servicio": "Servicio",
-            "metodo": "Metodo",
-            "ejecucionPrueba": "Ejecucion Prueba",
-            "planPrueba": "Plan Prueba"
+            "activo": "Active",
+            "ambiente": "Environment",
+            "modulo": "Module",
+            "servicio": "Service",
+            "metodo": "Method",
+            "ejecucionPrueba": "Test Execution",
+            "planPrueba": "Test Plan"
         }
     }
 }

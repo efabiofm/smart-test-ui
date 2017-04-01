@@ -2,7 +2,7 @@
     "smartTestUiApp": {
         "seguridad" : {
             "home": {
-                "title": "Seguridads",
+                "title": "Seguridad",
                 "createLabel": "Crear nuevo Seguridad",
                 "createOrEditLabel": "Crear o editar Seguridad",
                 "search": "Search for Seguridad"
