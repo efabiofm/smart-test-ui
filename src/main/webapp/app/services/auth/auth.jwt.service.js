@@ -27,9 +27,10 @@
             var data = {
                 username: credentials.username,
                 password: credentials.password,
+                userClientId: credentials.userClientId,
                 rememberMe: credentials.rememberMe
             };
-            return $http.post('api/authenticate', data).success(authenticateSuccess);
+            return $http.post(credentials.url, data).success(authenticateSuccess);
 
             function authenticateSuccess (data, status, headers) {
                 var bearerToken = headers('Authorization');

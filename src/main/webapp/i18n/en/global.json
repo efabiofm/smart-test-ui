@@ -7,6 +7,23 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "ambiente": "Environment",
+                "modulo": "Module",
+                "servicio": "Service",
+                "metodo": "Method",
+                "parametro": "Parameter",
+                "tipoParametro": "Parameter Type",
+                "prueba": "Test",
+                "planPrueba": "Test Plan",
+                "ejecucionPrueba": "Test Execution",
+                "bitacora": "Log",
+                "tipoEvento": "Event Type",
+                "alerta": "Alert",
+                "tipoAlerta": "Alert Type",
+                "seguridad": "Security",
+                "header": "Header",
+                "tipoHeader": "Header Type",
+                "serviceProvider": "Service Provider",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -119,5 +136,6 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "This is your footer",
+    "construction": "Page under construction"
 }

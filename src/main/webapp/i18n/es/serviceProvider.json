@@ -1,0 +1,25 @@
+{
+    "smartTestUiApp": {
+        "serviceProvider" : {
+            "home": {
+                "title": "Service Providers",
+                "createLabel": "Crear nuevo Service Provider",
+                "createOrEditLabel": "Crear o editar Service Provider",
+                "search": "Search for Service Provider"
+            },
+            "created": "Un nuevo Service Provider ha sido creado con el identificador {{ param }}",
+            "updated": "Un Service Provider ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Service Provider ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Service Provider {{ id }}?"
+            },
+            "detail": {
+                "title": "Service Provider"
+            },
+            "serviceProviderId": "Service Provider Id",
+            "nombre": "Nombre",
+            "activo": "Activo",
+            "header": "Header"
+        }
+    }
+}

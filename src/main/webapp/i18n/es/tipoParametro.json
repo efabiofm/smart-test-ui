@@ -1,0 +1,24 @@
+{
+    "smartTestUiApp": {
+        "tipoParametro" : {
+            "home": {
+                "title": "Tipos Parámetro",
+                "createLabel": "Crear nuevo Tipo Parámetro",
+                "createOrEditLabel": "Crear o editar Tipo Parámetro",
+                "search": "Search for Tipo Parámetro"
+            },
+            "created": "Un nuevo Tipo Parámetro ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tipo Parámetro ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tipo Parámetro ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tipo Parámetro {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Parámetro"
+            },
+            "nombre": "Nombre",
+            "activo": "Activo",
+            "parametro": "Parámetro"
+        }
+    }
+}

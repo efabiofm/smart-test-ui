@@ -1,0 +1,51 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "servicio",
+            "relationshipName": "modulo",
+            "otherEntityName": "modulo",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "prueba",
+            "otherEntityName": "prueba",
+            "otherEntityRelationshipName": "servicio"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "metodo",
+            "otherEntityName": "metodo",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "servicio"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170312235406",
+    "entityTableName": "servicio",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

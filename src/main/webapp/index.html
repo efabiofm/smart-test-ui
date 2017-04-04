@@ -10,27 +10,30 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap>-->
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- endbuild -->
 </head>
 <body ng-app="smartTestUiApp" ng-strict-di>
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <page-ribbon></page-ribbon>
+    <!--<page-ribbon></page-ribbon>-->
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
+
+    <div class="container stu-container">
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
-
         <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+            <!--<p data-translate="footer">This is your footer</p>-->
         </div>
     </div>
 
@@ -92,7 +95,110 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/home/home-quenti.controller.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro-dialog.controller.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro-detail.controller.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro-delete-dialog.controller.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro.state.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro.service.js"></script>
+    <script src="app/entities/tipo-parametro/tipo-parametro.controller.js"></script>
+    <script src="app/entities/tipo-header/tipo-header-dialog.controller.js"></script>
+    <script src="app/entities/tipo-header/tipo-header-detail.controller.js"></script>
+    <script src="app/entities/tipo-header/tipo-header-delete-dialog.controller.js"></script>
+    <script src="app/entities/tipo-header/tipo-header.state.js"></script>
+    <script src="app/entities/tipo-header/tipo-header.service.js"></script>
+    <script src="app/entities/tipo-header/tipo-header.controller.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento-dialog.controller.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento-detail.controller.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento-delete-dialog.controller.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento.state.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento.service.js"></script>
+    <script src="app/entities/tipo-evento/tipo-evento.controller.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta-dialog.controller.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta-detail.controller.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta-delete-dialog.controller.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta.state.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta.service.js"></script>
+    <script src="app/entities/tipo-alerta/tipo-alerta.controller.js"></script>
+    <script src="app/entities/servicio/servicio-dialog.controller.js"></script>
+    <script src="app/entities/servicio/servicio-detail.controller.js"></script>
+    <script src="app/entities/servicio/servicio-delete-dialog.controller.js"></script>
+    <script src="app/entities/servicio/servicio.state.js"></script>
+    <script src="app/entities/servicio/servicio.service.js"></script>
+    <script src="app/entities/servicio/servicio.controller.js"></script>
+    <script src="app/entities/service-provider/service-provider-dialog.controller.js"></script>
+    <script src="app/entities/service-provider/service-provider-detail.controller.js"></script>
+    <script src="app/entities/service-provider/service-provider-delete-dialog.controller.js"></script>
+    <script src="app/entities/service-provider/service-provider.state.js"></script>
+    <script src="app/entities/service-provider/service-provider.service.js"></script>
+    <script src="app/entities/service-provider/service-provider.controller.js"></script>
+    <script src="app/entities/seguridad/seguridad-dialog.controller.js"></script>
+    <script src="app/entities/seguridad/seguridad-detail.controller.js"></script>
+    <script src="app/entities/seguridad/seguridad-delete-dialog.controller.js"></script>
+    <script src="app/entities/seguridad/seguridad.state.js"></script>
+    <script src="app/entities/seguridad/seguridad.service.js"></script>
+    <script src="app/entities/seguridad/seguridad.controller.js"></script>
+    <script src="app/entities/prueba/prueba-dialog.controller.js"></script>
+    <script src="app/entities/prueba/prueba-detail.controller.js"></script>
+    <script src="app/entities/prueba/prueba-delete-dialog.controller.js"></script>
+    <script src="app/entities/prueba/prueba.state.js"></script>
+    <script src="app/entities/prueba/prueba.service.js"></script>
+    <script src="app/entities/prueba/prueba.controller.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba-dialog.controller.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba-detail.controller.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba-delete-dialog.controller.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba.state.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba.service.js"></script>
+    <script src="app/entities/plan-prueba/plan-prueba.controller.js"></script>
+    <script src="app/entities/parametro/parametro-dialog.controller.js"></script>
+    <script src="app/entities/parametro/parametro-detail.controller.js"></script>
+    <script src="app/entities/parametro/parametro-delete-dialog.controller.js"></script>
+    <script src="app/entities/parametro/parametro.state.js"></script>
+    <script src="app/entities/parametro/parametro.service.js"></script>
+    <script src="app/entities/parametro/parametro.controller.js"></script>
+    <script src="app/entities/modulo/modulo-dialog.controller.js"></script>
+    <script src="app/entities/modulo/modulo-detail.controller.js"></script>
+    <script src="app/entities/modulo/modulo-delete-dialog.controller.js"></script>
+    <script src="app/entities/modulo/modulo.state.js"></script>
+    <script src="app/entities/modulo/modulo.service.js"></script>
+    <script src="app/entities/modulo/modulo.controller.js"></script>
+    <script src="app/entities/metodo/metodo-dialog.controller.js"></script>
+    <script src="app/entities/metodo/metodo-detail.controller.js"></script>
+    <script src="app/entities/metodo/metodo-delete-dialog.controller.js"></script>
+    <script src="app/entities/metodo/metodo.state.js"></script>
+    <script src="app/entities/metodo/metodo.service.js"></script>
+    <script src="app/entities/metodo/metodo.controller.js"></script>
+    <script src="app/entities/header/header-dialog.controller.js"></script>
+    <script src="app/entities/header/header-detail.controller.js"></script>
+    <script src="app/entities/header/header-delete-dialog.controller.js"></script>
+    <script src="app/entities/header/header.state.js"></script>
+    <script src="app/entities/header/header.service.js"></script>
+    <script src="app/entities/header/header.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba-dialog.controller.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba-detail.controller.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba-delete-dialog.controller.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba.state.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba.service.js"></script>
+    <script src="app/entities/ejecucion-prueba/ejecucion-prueba.controller.js"></script>
+    <script src="app/entities/bitacora/bitacora-dialog.controller.js"></script>
+    <script src="app/entities/bitacora/bitacora-detail.controller.js"></script>
+    <script src="app/entities/bitacora/bitacora-delete-dialog.controller.js"></script>
+    <script src="app/entities/bitacora/bitacora.state.js"></script>
+    <script src="app/entities/bitacora/bitacora.service.js"></script>
+    <script src="app/entities/bitacora/bitacora.controller.js"></script>
+    <script src="app/entities/ambiente/ambiente-dialog.controller.js"></script>
+    <script src="app/entities/ambiente/ambiente-detail.controller.js"></script>
+    <script src="app/entities/ambiente/ambiente-delete-dialog.controller.js"></script>
+    <script src="app/entities/ambiente/ambiente.state.js"></script>
+    <script src="app/entities/ambiente/ambiente.service.js"></script>
+    <script src="app/entities/ambiente/ambiente.controller.js"></script>
+    <script src="app/entities/alerta/alerta-dialog.controller.js"></script>
+    <script src="app/entities/alerta/alerta-detail.controller.js"></script>
+    <script src="app/entities/alerta/alerta-delete-dialog.controller.js"></script>
+    <script src="app/entities/alerta/alerta.state.js"></script>
+    <script src="app/entities/alerta/alerta.service.js"></script>
+    <script src="app/entities/alerta/alerta.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
@@ -106,6 +212,7 @@
     <script src="app/components/util/base64.service.js"></script>
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/login/login.controller.js"></script>
+    <script src="app/components/login-quenti/login-quenti.controller.js"></script>
     <script src="app/components/language/language.service.js"></script>
     <script src="app/components/language/language.filter.js"></script>
     <script src="app/components/language/language.controller.js"></script>

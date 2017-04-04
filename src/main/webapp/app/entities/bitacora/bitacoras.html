@@ -1,0 +1,40 @@
+<div>
+    <h2 data-translate="smartTestUiApp.bitacora.home.title">Bitacoras</h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="smartTestUiApp.bitacora.fecha">Fecha</span></th>
+                    <th><span data-translate="smartTestUiApp.bitacora.jhUserId">Jh User Id</span></th>
+                    <th><span data-translate="smartTestUiApp.bitacora.descripcion">Descripcion</span></th>
+                    <th><span data-translate="smartTestUiApp.bitacora.tipoEvento">Tipo Evento</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bitacora in vm.bitacoras track by bitacora.id">
+                    <td><a ui-sref="bitacora-detail({id:bitacora.id})">{{bitacora.id}}</a></td>
+                        <td>{{bitacora.fecha | date:'mediumDate'}}</td>
+                    <td>{{bitacora.jhUserId}}</td>
+                    <td>{{bitacora.descripcion}}</td>
+                    <td>
+                        <a ui-sref="tipo-evento-detail({id:bitacora.tipoEventoId})">{{bitacora.tipoEventoNombre}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="bitacora-detail({id:bitacora.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

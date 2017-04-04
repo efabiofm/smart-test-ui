@@ -14,6 +14,15 @@
             "follow": "follow @java_hipster on Twitter"
         },
         "like": "If you like JHipster, don't forget to give us a star on",
-        "github": "GitHub"
+        "github": "GitHub",
+        "labels": {
+            "tests": "Tests",
+            "method": "Method",
+            "resource": "Resource",
+            "parameters": "Parameters",
+            "response": "Response",
+            "run": "Run"
+        },
+        "placeholder": "--Select a test--"
     }
 }

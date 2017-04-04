@@ -1,0 +1,24 @@
+{
+    "smartTestUiApp": {
+        "tipoHeader" : {
+            "home": {
+                "title": "Header Types",
+                "createLabel": "Create a new Header Type",
+                "createOrEditLabel": "Create or edit a Header Type",
+                "search": "Search for Header Type"
+            },
+            "created": "A new Header Type is created with identifier {{ param }}",
+            "updated": "A Header Type is updated with identifier {{ param }}",
+            "deleted": "A Header Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Header Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Header Type"
+            },
+            "nombre": "Name",
+            "activo": "Active",
+            "header": "Header"
+        }
+    }
+}

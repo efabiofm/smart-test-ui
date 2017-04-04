@@ -1,0 +1,120 @@
+entity Ambiente {
+	nombre String required,
+    descripcion String,
+    activo Boolean
+}
+
+entity Modulo {
+	nombre String required,
+    url String required,
+	activo Boolean
+}
+
+entity Servicio {
+	nombre String required,
+    url String required,
+	activo Boolean
+}
+
+entity Metodo {
+	nombre String required,
+    url String required,
+	activo Boolean
+}
+
+entity Parametro {
+	nombre String required,
+	activo Boolean
+}
+
+entity TipoParametro {
+	nombre String required,
+	activo Boolean
+}
+
+entity Prueba {
+    body String required,
+    activo Boolean
+}
+
+entity PlanPrueba {
+	nombre String required,
+	activo Boolean
+}
+
+entity EjecucionPrueba {
+	fecha LocalDate,
+    tiempoRespuesta Integer,
+    resultado String,
+    jhUserId Integer,
+    body String,
+    activo Boolean
+}
+
+entity Bitacora {
+    fecha LocalDate required,
+    jhUserId Integer required,
+    descripcion String required
+}
+
+entity TipoEvento {
+    nombre String required,
+    activo Boolean
+}
+
+entity Alerta {
+    mensaje String required,
+    activo Boolean
+}
+
+entity TipoAlerta {
+    metodo String required,
+    activo Boolean
+}
+
+entity Seguridad {
+    token String required,
+    fecha LocalDate required,
+    jhUserId Integer required
+}
+
+entity Header {
+    serviceGroupId Integer,
+    token String required,
+    activo Boolean
+}
+
+entity TipoHeader {
+    nombre String required,
+    activo Boolean
+}
+
+entity ServiceProvider {
+    serviceProviderId Integer required,
+    nombre String required,
+    activo Boolean
+}
+
+relationship ManyToMany {
+    Modulo{ambiente(nombre)} to Ambiente{modulo},
+    Servicio{modulo(nombre)} to Modulo{servicio},
+    Metodo{servicio(nombre)} to Servicio{metodo},
+    Parametro{metodo(nombre)} to Metodo{parametro},
+    PlanPrueba{prueba} to Prueba{planPrueba}
+}
+
+relationship ManyToOne {
+	Prueba{ambiente(nombre)} to Ambiente{prueba},
+    Prueba{modulo(nombre)} to Modulo{prueba},
+    Prueba{servicio(nombre)} to Servicio{prueba},
+    Prueba{metodo(nombre)} to Metodo{prueba},
+    EjecucionPrueba{prueba} to Prueba{ejecucionPrueba},
+    Parametro{tipoParametro} to TipoParametro{parametro},
+    Bitacora{tipoEvento(nombre)} to TipoEvento{bitacora},
+    Alerta{tipoAlerta(metodo)} to TipoAlerta{alerta},
+    Header{tipoHeader(nombre)} to TipoHeader{header},
+    Header{serviceProvider(nombre)} to ServiceProvider{header}
+}
+
+dto * with mapstruct
+service all with serviceClass

@@ -1,0 +1,25 @@
+{
+    "smartTestUiApp": {
+        "parametro" : {
+            "home": {
+                "title": "Parámetros",
+                "createLabel": "Crear nuevo Parámetro",
+                "createOrEditLabel": "Crear o editar Parámetro",
+                "search": "Search for Parámetro"
+            },
+            "created": "Un nuevo Parámetro ha sido creado con el identificador {{ param }}",
+            "updated": "Un Parámetro ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Parámetro ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Parámetro {{ id }}?"
+            },
+            "detail": {
+                "title": "Parámetro"
+            },
+            "nombre": "Nombre",
+            "activo": "Activo",
+            "tipoParametro": "Tipo Parametro",
+            "metodo": "Método"
+        }
+    }
+}

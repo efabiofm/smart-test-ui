@@ -1,0 +1,62 @@
+<div>
+    <h2 data-translate="smartTestUiApp.alerta.home.title">Alertas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="alerta.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="smartTestUiApp.alerta.home.createLabel">
+                        Create new Alerta
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="smartTestUiApp.alerta.mensaje">Mensaje</span></th>
+                    <!--<th><span data-translate="smartTestUiApp.alerta.activo">Activo</span></th>-->
+                    <th><span data-translate="smartTestUiApp.alerta.tipoAlerta">Tipo Alerta</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="alerta in vm.alertas track by alerta.id  ">
+                    <td><a ui-sref="alerta-detail({id:alerta.id})">{{alerta.id}}</a></td>
+                    <td>{{alerta.mensaje}}</td>
+                    <!--<td>{{alerta.activo}}</td>-->
+                    <td>
+                        <a ui-sref="tipo-alerta-detail({id:alerta.tipoAlertaId})">{{alerta.tipoAlertaMetodo}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="alerta-detail({id:alerta.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="alerta.edit({id:alerta.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="alerta.delete({id:alerta.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

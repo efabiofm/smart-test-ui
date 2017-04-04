@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Prueba.
+    -->
+    <changeSet id="20170312235410-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ambiente_id"
+                                 baseTableName="prueba"
+                                 constraintName="fk_prueba_ambiente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ambiente"/>
+
+        <addForeignKeyConstraint baseColumnNames="modulo_id"
+                                 baseTableName="prueba"
+                                 constraintName="fk_prueba_modulo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="modulo"/>
+
+        <addForeignKeyConstraint baseColumnNames="servicio_id"
+                                 baseTableName="prueba"
+                                 constraintName="fk_prueba_servicio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="servicio"/>
+
+        <addForeignKeyConstraint baseColumnNames="metodo_id"
+                                 baseTableName="prueba"
+                                 constraintName="fk_prueba_metodo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metodo"/>
+
+    </changeSet>
+</databaseChangeLog>

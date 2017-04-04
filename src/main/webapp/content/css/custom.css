@@ -1,0 +1,79 @@
+.aside-navbar {
+    height: 100%;
+    top: 60px;
+    display: inherit;
+    box-shadow: 0 0 0 0;
+    margin-top: 0;
+    border-radius: 0;
+    border-top: 0;
+    background-color: #f8f8f8;
+    position: fixed;
+}
+
+.aside-navbar > li > a {
+    padding: 15px 20px;
+    /*border-bottom: 1px solid #d5d5d5;*/
+}
+
+.stu-container > .well {
+    margin-top: 70px;
+}
+
+.stu-nav-container {
+    margin-left: 0;
+    width: 100%;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu:hover .submenu {
+    display: block;
+}
+
+.has-submenu > a > .fa-caret-right {
+    float: right;
+}
+
+.submenu {
+    position: absolute;
+    left: 158px;
+    top: 0;
+    display: none;
+    list-style: none;
+    background-color: #fff;
+    width: 160px;
+    box-shadow: 2px 0px 6px rgba(0, 0, 0, .175);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.submenu > li > a {
+    padding: 10px 20px;
+}
+
+.text-scroll {
+    overflow-y: scroll;
+}
+
+.center-label {
+    text-align: right;
+    line-height: 2.3;
+}
+
+.btn-params {
+    top: 25px;
+    right: 15px;
+    position: absolute;
+}
+
+textarea {
+    resize: none;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}

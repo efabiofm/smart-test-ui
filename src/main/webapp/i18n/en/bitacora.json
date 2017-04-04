@@ -1,0 +1,19 @@
+{
+    "smartTestUiApp": {
+        "bitacora" : {
+            "home": {
+                "title": "Logs",
+                "createLabel": "Create a new Bitacora",
+                "createOrEditLabel": "Create or edit a Bitacora",
+                "search": "Search for Bitacora"
+            },
+            "detail": {
+                "title": "Log"
+            },
+            "fecha": "Date",
+            "jhUserId": "Jh User Id",
+            "descripcion": "Description",
+            "tipoEvento": "Event Type"
+        }
+    }
+}

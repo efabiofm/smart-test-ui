@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-11">
+        <label class="control-label" data-translate="home.labels.tests">Pruebas</label>
+        <select class="form-control" ng-model="vm.ejecucionSelec" ng-options="p as p.id for p in vm.pruebas" ng-change="vm.cargarEjecucion(vm.ejecucionSelec)">
+            <option value="" data-translate="home.placeholder"></option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <label class="control-label">&nbsp;</label>
+        <button type="button" class="btn btn-sm btn-success">
+            <span class="glyphicon glyphicon-play"></span>
+            <span class="hidden-xs hidden-sm" data-translate="home.labels.run">Correr</span>
+        </button>
+    </div>
+</div>
+<hr>
+
+<!--Endpoint-->
+<div class="row">
+    <div class="col-md-2">
+        <label class="control-label" data-translate="home.labels.method">Método</label>
+        <select class="form-control" ng-model="vm.ejecucion.metodo" ng-options="m for m in vm.listaMetodos"></select>
+    </div>
+    <div class="col-md-10">
+        <label class="control-label" data-translate="home.labels.resource">Recurso</label>
+        <input type="text" class="form-control" ng-model="vm.ejecucion.url">
+        <button class="btn btn-default btn-params" ng-click="mostrarParams = !mostrarParams">Params</button>
+    </div>
+</div>
+<hr>
+
+<!--Parámetros-->
+<div ng-show="mostrarParams">
+    <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
+    <div class="row">
+        <div class="col-md-2 center-label">Param 1:</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" ng-model="vm.ejecucion.param1">
+        </div>
+        <div class="col-md-1">
+            <span class="glyphicon glyphicon-plus"></span>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!--Headers-->
+<label class="control-label">Headers</label>
+<div class="row">
+    <div class="col-md-2 center-label">Token:</div>
+    <div class="col-md-9">
+        <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token">
+    </div>
+    <div class="col-md-1">
+        <span class="glyphicon glyphicon-plus"></span>
+    </div>
+</div>
+<hr>
+
+<!--Resultado-->
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">JSON</label>
+            <textarea rows="15" class="form-control text-scroll" ng-model="vm.ejecucion.body"></textarea>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label" data-translate="home.labels.response">Respuesta</label>
+            <textarea rows="15" class="form-control text-scroll" ng-disabled="true"></textarea>
+        </div>
+    </div>
+</div>

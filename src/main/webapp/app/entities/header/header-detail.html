@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="smartTestUiApp.header.detail.title">Header</span> {{vm.header.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartTestUiApp.header.serviceGroupId">Service Group Id</span></dt>
+        <dd>
+            <span>{{vm.header.serviceGroupId}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.header.token">Token</span></dt>
+        <dd>
+            <span>{{vm.header.token}}</span>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.header.tipoHeader">Tipo Header</span></dt>
+        <dd>
+            <a ui-sref="tipo-header-detail({id:vm.header.tipoHeaderId})">{{vm.header.tipoHeaderNombre}}</a>
+        </dd>
+        <dt><span data-translate="smartTestUiApp.header.serviceProvider">Service Provider</span></dt>
+        <dd>
+            <a ui-sref="service-provider-detail({id:vm.header.serviceProviderId})">{{vm.header.serviceProviderNombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="header-detail.edit({id:vm.header.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

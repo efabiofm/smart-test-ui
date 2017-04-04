@@ -1,0 +1,29 @@
+{
+    "smartTestUiApp": {
+        "prueba" : {
+            "home": {
+                "title": "Pruebas",
+                "createLabel": "Crear nueva Prueba",
+                "createOrEditLabel": "Crear o editar Prueba",
+                "search": "Search for Prueba"
+            },
+            "created": "Una nueva Prueba ha sido creada con el identificador {{ param }}",
+            "updated": "Una Prueba ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una Prueba ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Prueba"
+            },
+            "body": "Body",
+            "activo": "Activo",
+            "ambiente": "Ambiente",
+            "modulo": "Módulo",
+            "servicio": "Servicio",
+            "metodo": "Método",
+            "ejecucionPrueba": "Ejecución Prueba",
+            "planPrueba": "Plan Prueba"
+        }
+    }
+}

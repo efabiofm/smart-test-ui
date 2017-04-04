@@ -17,7 +17,7 @@
 }
 !*/
 /* DOC
-Detects support for HTML import, a feature that is used for loading in Web Components.
+Detects support for HTML import, a feature that is used for loading in Web components.
  */
 
 define(['addTest', 'createElement'], function(addTest, createElement) {

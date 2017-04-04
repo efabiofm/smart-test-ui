@@ -1,0 +1,24 @@
+{
+    "smartTestUiApp": {
+        "tipoAlerta" : {
+            "home": {
+                "title": "Tipos Alerta",
+                "createLabel": "Crear nuevo Tipo Alerta",
+                "createOrEditLabel": "Crear o editar Tipo Alerta",
+                "search": "Search for Tipo Alerta"
+            },
+            "created": "Un nuevo Tipo Alerta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tipo Alerta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tipo Alerta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tipo Alerta {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Alerta"
+            },
+            "metodo": "Método",
+            "activo": "Activo",
+            "alerta": "Alerta"
+        }
+    }
+}

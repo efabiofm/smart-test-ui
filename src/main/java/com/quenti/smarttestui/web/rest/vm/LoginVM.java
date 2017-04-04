@@ -21,6 +21,37 @@ public class LoginVM {
 
     private Boolean rememberMe;
 
+    private Boolean esQuenti;
+
+    private String ipAddress;
+
+    private String userClientId;
+
+
+    public String getipAddress() {
+        return ipAddress;
+    }
+
+    public void setipAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getuserClientId() {
+        return userClientId;
+    }
+
+    public void setuserClientId(String userClientId) {
+        this.userClientId = userClientId;
+    }
+
+    public Boolean getEsQuenti() {
+        return esQuenti;
+    }
+
+    public void setEsQuenti(Boolean esQuenti) {
+        this.esQuenti = esQuenti;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -44,6 +75,7 @@ public class LoginVM {
     public void setRememberMe(Boolean rememberMe) {
         this.rememberMe = rememberMe;
     }
+
 
     @Override
     public String toString() {

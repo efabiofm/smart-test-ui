@@ -1,0 +1,22 @@
+{
+    "smartTestUiApp": {
+        "ejecucionPrueba" : {
+            "home": {
+                "title": "Test Executions",
+                "createLabel": "Create a new Test Execution",
+                "createOrEditLabel": "Create or edit a Test Execution",
+                "search": "Search for Test Execution"
+            },
+            "detail": {
+                "title": "Test Execution"
+            },
+            "fecha": "Date",
+            "tiempoRespuesta": "Response time",
+            "resultado": "Result",
+            "jhUserId": "Jh User Id",
+            "body": "Body",
+            "activo": "Active",
+            "prueba": "Test"
+        }
+    }
+}
