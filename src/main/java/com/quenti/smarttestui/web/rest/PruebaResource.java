@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class PruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(PruebaResource.class);
-        
+
     @Inject
     private PruebaService pruebaService;
 
@@ -117,6 +117,15 @@ public class PruebaResource {
         log.debug("REST request to delete Prueba : {}", id);
         pruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("prueba", id.toString())).build();
+    }
+
+    @GetMapping("/pruebas/obtUri")
+    @Timed
+    public String obtUri(){
+
+        Long id = 1l;
+        return         pruebaService.ObtenerURIPorIdPrueba(id);
+
     }
 
 }

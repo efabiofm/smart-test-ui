@@ -1,6 +1,6 @@
 package com.quenti.smarttestui.service;
 
-import com.quenti.smarttestui.domain.Prueba;
+import com.quenti.smarttestui.domain.*;
 import com.quenti.smarttestui.repository.PruebaRepository;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
 import com.quenti.smarttestui.service.mapper.PruebaMapper;
@@ -28,6 +28,9 @@ public class PruebaService {
 
     @Inject
     private PruebaMapper pruebaMapper;
+
+    @Inject
+    private ModuloService moduloService;
 
     /**
      * Save a prueba.
@@ -85,5 +88,19 @@ public class PruebaService {
         Prueba prueba = pruebaMapper.pruebaDTOToPrueba(pruebaDTO);
         pruebaRepository.save(prueba);
 
+    }
+
+    @Transactional(readOnly =  true)
+    public String ObtenerURIPorIdPrueba(Long idPrueba){
+
+        Prueba prueba = pruebaRepository.findOne(idPrueba);
+        Ambiente ambiente = prueba.getAmbiente();
+        Modulo modulo = prueba.getModulo();
+        Servicio servicio = prueba.getServicio();
+        Metodo metodo = prueba.getMetodo();
+
+        String uri = modulo.getUrl() +"/"+ servicio.getUrl() +"/"+ metodo.getUrl();
+
+        return uri;
     }
 }
