@@ -91,10 +91,9 @@ public class PruebaService {
     }
 
     @Transactional(readOnly =  true)
-    public String ObtenerURIPorIdPrueba(Long idPrueba){
+    public String ObtenerURIPorIdPrueba(Long id){
 
-        Prueba prueba = pruebaRepository.findOne(idPrueba);
-        Ambiente ambiente = prueba.getAmbiente();
+        Prueba prueba = pruebaRepository.findOne(id);
         Modulo modulo = prueba.getModulo();
         Servicio servicio = prueba.getServicio();
         Metodo metodo = prueba.getMetodo();

@@ -7,12 +7,12 @@
     Prueba.$inject = ['$resource'];
 
     function Prueba ($resource) {
-        var resourceUrl =  'api/pruebas/:id';
+        var resourceUGETrl =  'api/pruebas/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
-                method: 'GET',
+                method: '',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
@@ -20,7 +20,19 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+
+            'getURI': {
+                method: 'GET',
+                url : 'api/pruebas/obtUri/:id',
+                transformResponse:function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
+            }
+
         });
     }
 })();

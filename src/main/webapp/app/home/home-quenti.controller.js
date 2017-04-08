@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'token'];
+    HomeQuentiController.$inject = ['pruebas', 'token', 'Prueba'];
 
-    function HomeQuentiController (pruebas, token) {
+    function HomeQuentiController (pruebas, token, Prueba) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
@@ -22,8 +22,10 @@
         };
 
         function cargarEjecucion(ejecucion){
-            vm.ejecucion.body = ejecucion.body;
-            vm.ejecucion.url = ejecucion.moduloNombre + "/" + ejecucion.servicioNombre + "/" + ejecucion.metodoNombre;
+            Prueba.getURI({id : ejecucion.id}).$promise.then(function (uri) {
+                vm.ejecucion.url = uri;
+            });
+
         }
     }
 })();

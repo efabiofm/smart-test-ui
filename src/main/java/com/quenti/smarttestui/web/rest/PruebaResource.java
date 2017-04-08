@@ -119,12 +119,12 @@ public class PruebaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("prueba", id.toString())).build();
     }
 
-    @GetMapping("/pruebas/obtUri")
+    @GetMapping("/pruebas/obtUri/{id}")
     @Timed
-    public String obtUri(){
+    public String obtUri(@PathVariable Long id){
 
-        Long id = 1l;
-        return         pruebaService.ObtenerURIPorIdPrueba(id);
+        String uri = pruebaService.ObtenerURIPorIdPrueba(id);
+        return uri;
 
     }
 
