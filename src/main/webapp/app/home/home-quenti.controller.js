@@ -21,9 +21,11 @@
             }
         };
 
+        /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
+
         function cargarEjecucion(ejecucion){
             Prueba.getURI({id : ejecucion.id}).$promise.then(function (uri) {
-                vm.ejecucion.url = uri;
+                vm.ejecucion.url = uri.response;
             });
 
         }
