@@ -2,6 +2,7 @@ package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.quenti.smarttestui.service.ModuloService;
+import com.quenti.smarttestui.service.dto.ServicioDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.ModuloDTO;
 
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 public class ModuloResource {
 
     private final Logger log = LoggerFactory.getLogger(ModuloResource.class);
-        
+
     @Inject
     private ModuloService moduloService;
 
@@ -117,6 +118,12 @@ public class ModuloResource {
         log.debug("REST request to delete Modulo : {}", id);
         moduloService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("modulo", id.toString())).build();
+    }
+
+    @GetMapping("/modulos/getService/{id}")
+    @Timed
+    public List<ServicioDTO> getServiciosPorIdModulo(@PathVariable Long id){
+        return moduloService.obtenerServiciosPorModulo(id);
     }
 
 }

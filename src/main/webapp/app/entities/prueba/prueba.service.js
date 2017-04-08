@@ -7,7 +7,7 @@
     Prueba.$inject = ['$resource'];
 
     function Prueba ($resource) {
-        var resourceUGETrl =  'api/pruebas/:id';
+        var resourceUrl =  'api/pruebas/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -26,10 +26,10 @@
                 method: 'GET',
                 url : 'api/pruebas/obtUri/:id',
                 transformResponse:function (data) {
-                    if (data) {
-                        data = angular.fromJson(data);
-                    }
-                    return data;
+                    // if (data) {
+                    //     data = angular.fromJson(data);
+                    // }
+                    return { response : data};
                 }
             }
 
