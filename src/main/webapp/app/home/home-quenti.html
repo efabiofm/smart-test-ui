@@ -30,15 +30,16 @@
 <hr>
 
 <!--Parámetros-->
-<div ng-show="mostrarParams">
+<div ng-show="mostrarParams && vm.ejecucion.params">
     <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
-    <div class="row">
-        <div class="col-md-2 center-label">Param 1:</div>
-        <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="vm.ejecucion.param1">
+    <div class="form-group row" ng-repeat="(key, val) in vm.ejecucion.params track by $index">
+        <div class="col-md-2 center-label" data-translate="home.labels.key">Llave</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="key">
         </div>
-        <div class="col-md-1">
-            <span class="glyphicon glyphicon-plus"></span>
+        <div class="col-md-2 center-label" data-translate="home.labels.value">Valor</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="val">
         </div>
     </div>
     <hr>
@@ -48,11 +49,8 @@
 <label class="control-label">Headers</label>
 <div class="row">
     <div class="col-md-2 center-label">Token:</div>
-    <div class="col-md-9">
+    <div class="col-md-10">
         <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token">
-    </div>
-    <div class="col-md-1">
-        <span class="glyphicon glyphicon-plus"></span>
     </div>
 </div>
 <hr>

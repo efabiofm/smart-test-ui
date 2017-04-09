@@ -3,6 +3,7 @@ package com.quenti.smarttestui.service;
 import com.quenti.smarttestui.domain.*;
 import com.quenti.smarttestui.repository.PruebaRepository;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.service.mapper.PruebaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -91,15 +94,23 @@ public class PruebaService {
     }
 
     @Transactional(readOnly =  true)
-    public String ObtenerURIPorIdPrueba(Long id){
+    public PruebaUrlDTO ObtenerURIPorIdPrueba(Long id){
 
         Prueba prueba = pruebaRepository.findOne(id);
         Modulo modulo = prueba.getModulo();
         Servicio servicio = prueba.getServicio();
         Metodo metodo = prueba.getMetodo();
+        Set<Parametro> parametros = metodo.getParametros();
+
+        HashMap<String,String> paramsMap = new HashMap<String,String>();
+        for(Parametro param : parametros){
+            paramsMap.put(param.getNombre(), param.getValor());
+        }
 
         String uri = modulo.getUrl() +"/"+ servicio.getUrl() +"/"+ metodo.getUrl();
-
-        return uri;
+        PruebaUrlDTO pruebaUrlDTO = new PruebaUrlDTO();
+        pruebaUrlDTO.setUrl(uri);
+        pruebaUrlDTO.setParametros(paramsMap);
+        return pruebaUrlDTO;
     }
 }

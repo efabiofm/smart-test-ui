@@ -21,7 +21,9 @@
             "resource": "Recurso",
             "parameters": "Parámetros",
             "response": "Respuesta",
-            "run": "Correr"
+            "run": "Correr",
+            "key": "Llave",
+            "value": "Valor"
         },
         "placeholder": "--Seleccione una prueba--"
     }

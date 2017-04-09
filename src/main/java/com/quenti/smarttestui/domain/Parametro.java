@@ -25,6 +25,10 @@ public class Parametro implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
+    @NotNull
+    @Column(name = "valor", nullable = false)
+    private String valor;
+
     @Column(name = "activo")
     private Boolean activo;
 
@@ -56,6 +60,19 @@ public class Parametro implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public Parametro valor(String valor) {
+        this.valor = valor;
+        return this;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
     public Boolean isActivo() {
