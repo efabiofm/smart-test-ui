@@ -6,11 +6,7 @@
         </select>
     </div>
     <div class="col-md-1">
-        <label class="control-label">&nbsp;</label>
-        <button type="button" class="btn btn-sm btn-success">
-            <span class="glyphicon glyphicon-play"></span>
-            <span class="hidden-xs hidden-sm" data-translate="home.labels.run">Correr</span>
-        </button>
+        <span class="glyphicon glyphicon-play-circle btn-run"></span>
     </div>
 </div>
 <hr>
@@ -23,22 +19,37 @@
     </div>
     <div class="col-md-10">
         <label class="control-label" data-translate="home.labels.resource">Recurso</label>
-        <input type="text" class="form-control" ng-model="vm.ejecucion.url">
-        <button class="btn btn-default btn-params" ng-click="mostrarParams = !mostrarParams">Params</button>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="vm.ejecucion.url">
+            <span class="input-group-addon btn-params" ng-click="mostrarParams = !mostrarParams">Params</span>
+        </div>
     </div>
 </div>
 <hr>
 
 <!--Parámetros-->
-<div ng-show="mostrarParams">
+<div ng-show="mostrarParams && vm.ejecucion.params">
     <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
-    <div class="row">
-        <div class="col-md-2 center-label">Param 1:</div>
-        <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="vm.ejecucion.param1">
+    <div class="form-group row" ng-repeat="param in vm.ejecucion.params track by $index">
+        <div class="col-md-2 center-label" data-translate="home.labels.key">Llave</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="param.nombre">
+        </div>
+        <div class="col-md-1 center-label" data-translate="home.labels.value">Valor</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="param.valor">
         </div>
         <div class="col-md-1">
-            <span class="glyphicon glyphicon-plus"></span>
+            <span class="glyphicon glyphicon-minus-sign" ng-click="vm.removerParam($index)"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <a ng-click="vm.agregarParam()">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;
+                <span data-translate="home.labels.add.param">Agregar parámetro</span>
+            </a>
         </div>
     </div>
     <hr>
@@ -48,11 +59,8 @@
 <label class="control-label">Headers</label>
 <div class="row">
     <div class="col-md-2 center-label">Token:</div>
-    <div class="col-md-9">
+    <div class="col-md-10">
         <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token">
-    </div>
-    <div class="col-md-1">
-        <span class="glyphicon glyphicon-plus"></span>
     </div>
 </div>
 <hr>

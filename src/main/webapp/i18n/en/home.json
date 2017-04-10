@@ -21,7 +21,10 @@
             "resource": "Resource",
             "parameters": "Parameters",
             "response": "Response",
-            "run": "Run"
+            "run": "Run",
+            "key": "Key",
+            "value": "Value",
+            "add.param": "Add parameter"
         },
         "placeholder": "--Select a test--"
     }

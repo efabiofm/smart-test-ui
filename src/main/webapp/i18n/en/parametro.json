@@ -19,7 +19,8 @@
             "nombre": "Name",
             "activo": "Active",
             "tipoParametro": "Parameter Type",
-            "metodo": "Method"
+            "metodo": "Method",
+            "valor": "Value"
         }
     }
 }
