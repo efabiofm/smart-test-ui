@@ -11,10 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -102,15 +99,22 @@ public class PruebaService {
         Metodo metodo = prueba.getMetodo();
         Set<Parametro> parametros = metodo.getParametros();
 
-        HashMap<String,String> paramsMap = new HashMap<String,String>();
+        /*HashMap<String,String> paramsMap = new HashMap<String,String>();
         for(Parametro param : parametros){
             paramsMap.put(param.getNombre(), param.getValor());
+        }*/
+        Set<Parametro> paramsTemp = new HashSet<Parametro>();
+        for(Parametro param : parametros){
+            Parametro nvo = new Parametro();
+            nvo.setNombre(param.getNombre());
+            nvo.setValor(param.getValor());
+            paramsTemp.add(nvo);
         }
 
         String uri = modulo.getUrl() +"/"+ servicio.getUrl() +"/"+ metodo.getUrl();
         PruebaUrlDTO pruebaUrlDTO = new PruebaUrlDTO();
         pruebaUrlDTO.setUrl(uri);
-        pruebaUrlDTO.setParametros(paramsMap);
+        pruebaUrlDTO.setParametros(paramsTemp);
         return pruebaUrlDTO;
     }
 }

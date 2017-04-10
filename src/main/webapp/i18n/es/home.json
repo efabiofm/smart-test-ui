@@ -23,7 +23,8 @@
             "response": "Respuesta",
             "run": "Correr",
             "key": "Llave",
-            "value": "Valor"
+            "value": "Valor",
+            "add.param": "Agregar parámetro"
         },
         "placeholder": "--Seleccione una prueba--"
     }

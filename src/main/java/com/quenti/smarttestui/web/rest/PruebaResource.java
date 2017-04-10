@@ -122,9 +122,15 @@ public class PruebaResource {
 
     @GetMapping("/pruebas/obtUri/{id}")
     @Timed
-    public PruebaUrlDTO obtUri(@PathVariable Long id){
+    public ResponseEntity<PruebaUrlDTO> obtUri(@PathVariable Long id){
 
-        return pruebaService.ObtenerURIPorIdPrueba(id);
+        PruebaUrlDTO prueba = pruebaService.ObtenerURIPorIdPrueba(id);
+        return Optional.ofNullable(prueba)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        //return prueba;
 
     }
 

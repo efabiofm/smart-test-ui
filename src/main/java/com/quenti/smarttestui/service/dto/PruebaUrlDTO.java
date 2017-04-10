@@ -3,6 +3,7 @@ package com.quenti.smarttestui.service.dto;
 import com.quenti.smarttestui.domain.Parametro;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 public class PruebaUrlDTO implements Serializable {
     private String url;
-    private HashMap<String,String> parametros;
+    private Set<Parametro> parametros;
 
     public String getUrl() {
         return url;
@@ -21,11 +22,11 @@ public class PruebaUrlDTO implements Serializable {
         this.url = url;
     }
 
-    public HashMap<String,String> getParametros() {
+    public Set<Parametro> getParametros() {
         return parametros;
     }
 
-    public void setParametros(HashMap<String,String> parametros) {
+    public void setParametros(Set<Parametro> parametros) {
         this.parametros = parametros;
     }
 }

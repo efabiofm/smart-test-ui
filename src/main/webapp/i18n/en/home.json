@@ -23,7 +23,8 @@
             "response": "Response",
             "run": "Run",
             "key": "Key",
-            "value": "Value"
+            "value": "Value",
+            "add.param": "Add parameter"
         },
         "placeholder": "--Select a test--"
     }

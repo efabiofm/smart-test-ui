@@ -20,6 +20,8 @@
                 token: token
             }
         };
+        vm.agregarParam = agregarParam;
+        vm.removerParam = removerParam;
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
@@ -29,6 +31,17 @@
                 vm.ejecucion.params = response.parametros;
             });
 
+        }
+
+        function agregarParam(){
+            vm.ejecucion.params.push({
+                nombre: null,
+                valor: null
+            });
+        }
+
+        function removerParam(index){
+            vm.ejecucion.params.splice(index, 1);
         }
     }
 })();
