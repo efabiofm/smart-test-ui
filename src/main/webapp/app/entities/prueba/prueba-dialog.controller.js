@@ -9,14 +9,18 @@
 
     function PruebaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Prueba, Ambiente, Modulo, Servicio, Metodo, EjecucionPrueba, PlanPrueba) {
         var vm = this;
+        vm.obtenerModulos = obtenerModulos;
+        vm.obtenerServicios = obtenerServicios;
+        vm.obtenerMetodos = obtenerMetodos;
+
 
         vm.prueba = entity;
         vm.clear = clear;
         vm.save = save;
         vm.ambientes = Ambiente.query();
-        vm.modulos = Modulo.query();
-        vm.servicios = Servicio.query();
-        vm.metodos = Metodo.query();
+        // vm.modulos = Modulo.query();//Ambiente.getModules({id:prueba.id});
+        // vm.servicios = Servicio.query();
+        // vm.metodos = Metodo.query();
         vm.ejecucionpruebas = EjecucionPrueba.query();
         vm.planpruebas = PlanPrueba.query();
 
@@ -47,6 +51,23 @@
             vm.isSaving = false;
         }
 
+        function obtenerModulos(id) {
+            Ambiente.getModules({id:id}).$promise.then(function (modulos) {
+                vm.modulos = modulos;
+            });
+        }
+
+        function obtenerServicios(id) {
+            Modulo.getService({id:id}).$promise.then(function (servicios) {
+                vm.servicios = servicios;
+            });
+        }
+
+        function obtenerMetodos(id) {
+            Servicio.getMethod({id:id}).$promise.then(function (metodos) {
+                vm.metodos = metodos;
+            });
+        }
 
     }
 })();
