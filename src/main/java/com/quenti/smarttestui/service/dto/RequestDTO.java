@@ -1,5 +1,6 @@
 package com.quenti.smarttestui.service.dto;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,6 +12,16 @@ public class RequestDTO {
     private String type;
     private Map<String,String> headers;
     private String body;
+    private Map<String,String> params;
+
+
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.params = params;
+    }
 
     public RequestDTO() {
     }

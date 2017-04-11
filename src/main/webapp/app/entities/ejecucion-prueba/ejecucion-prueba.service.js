@@ -36,7 +36,17 @@
                     copy.fecha = DateUtils.convertLocalDateToServer(copy.fecha);
                     return angular.toJson(copy);
                 }
+            },
+
+            'ejecutarPrueba': {
+                method: 'GET',
+                url : 'api/ejecucion-prueba/execPrueba/:id',
+                transformRequest: function (data) {
+                    return {data : data};
+                }
             }
+
+
         });
     }
 })();

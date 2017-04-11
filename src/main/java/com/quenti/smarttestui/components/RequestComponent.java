@@ -3,9 +3,16 @@ package com.quenti.smarttestui.components;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.quenti.smarttestui.domain.Parametro;
+import com.quenti.smarttestui.domain.Prueba;
+import com.quenti.smarttestui.repository.PruebaRepository;
+import com.quenti.smarttestui.service.PruebaService;
 import com.quenti.smarttestui.service.UserService;
+import com.quenti.smarttestui.service.dto.PruebaDTO;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.service.dto.RequestDTO;
 import com.quenti.smarttestui.service.dto.UserQuentiDTO;
+import com.quenti.smarttestui.web.rest.PruebaResource;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +20,8 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by juarez on 13/03/17.
@@ -30,6 +39,12 @@ public class RequestComponent {
     @Inject
     private UserService userService;
 
+    @Inject
+    private PruebaRepository pruebaRepository;
+
+    @Inject
+    private PruebaService pruebaService;
+
     UserQuentiDTO userQuentiDTO = new UserQuentiDTO();
     RequestDTO requestDTO = new RequestDTO();
     ObjectMapperCustom objectMapperCustom = new ObjectMapperCustom();
@@ -37,33 +52,42 @@ public class RequestComponent {
 
     public String init(String type){
         String result = "";
+        Long id = 1l;
 
         switch (type){
 
             case "POST":
-                userQuentiDTO.setUsername("Hopware");
-                userQuentiDTO.setPassword("C3nf0t3c");
-                userQuentiDTO.setUseripAddress("127.0.0.1");
-                userQuentiDTO.setUserClientId("Hopware");
+//                userQuentiDTO.setUsername("Hopware");
+//                userQuentiDTO.setPassword("C3nf0t3c");
+//                userQuentiDTO.setUseripAddress("127.0.0.1");
+//                userQuentiDTO.setUserClientId("Hopware");
                 try {
-
-                    requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/login");
+                    PruebaUrlDTO prueba = pruebaService.ObtenerURIPorIdPrueba(id);
+                    requestDTO.setUrl(prueba.getUrl());
                     requestDTO.setHeaders( new HashMap<String, String>() {{  put("content-type","application/json"); put("accept","application/json"); }} );
-                    requestDTO.setBody(objectMapperCustom.writeValueAsString(userQuentiDTO));
-
+                    requestDTO.setBody(prueba.getBody());
+                    Set<Parametro> pruebaParams = prueba.getParametros();
+                    Map<String, String> parametros = new HashMap<String,String>();
+                    for (Parametro param : pruebaParams){
+                        parametros.put(param.getNombre(), param.getValor());
+                    }
+                    requestDTO.setParams(parametros);
+                    log.debug("aqui");
+                    log.debug("Making post call");
+                    result = makePostCall(requestDTO);
+                    JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
+//                String jsonData = jsonResult.get("data").toString();
+                    JSONObject jsonData = new JSONObject(jsonResult.toString()).getJSONObject("data");
+                    String jsonSession = jsonData.get("sessionKey").toString();
+                    System.out.println(jsonSession);
+//                    requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/login");
+//                    requestDTO.setHeaders( new HashMap<String, String>() {{  put("content-type","application/json"); put("accept","application/json"); }} );
+//                    requestDTO.setBody(objectMapperCustom.writeValueAsString(userQuentiDTO));
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-
-                log.debug("Making post call");
-                result = makePostCall(requestDTO);
-                JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
-//                String jsonData = jsonResult.get("data").toString();
-                JSONObject jsonData = new JSONObject(jsonResult.toString()).getJSONObject("data");
-                String jsonSession = jsonData.get("sessionKey").toString();
-                System.out.println(jsonSession);
 //                String json
 //                Boolean operationSuccessful = jsonResult.getBoolean("operationSuccessful");
 //                if (operationSuccessful){
@@ -122,7 +146,10 @@ public class RequestComponent {
         String result = "";
         try {
             log.debug("Doing unirest call");
-            HttpResponse<String> mainResponse = Unirest.post(testDTO.getUrl()).headers(testDTO.getHeaders()).body(testDTO.getBody()).asString();
+            HttpResponse<String> mainResponse = Unirest.post("http://localhost:8080/api/ambientes/getModules/1")
+                .headers(testDTO.getHeaders())
+                .body(testDTO.getBody()).asString();
+
             result = mainResponse.getBody();
             log.debug("unirest call done");
 
@@ -135,13 +162,14 @@ public class RequestComponent {
         return result;
     }
 
-
     private String makePutCall(RequestDTO requestDTO) {
 
         String result = "";
         try {
             log.debug("Doing unirest call");
-            HttpResponse<String> mainResponse = Unirest.put(requestDTO.getUrl()).headers(requestDTO.getHeaders()).body(requestDTO.getBody()).asString();
+            HttpResponse<String> mainResponse = Unirest.put(requestDTO.getUrl())
+                .headers(requestDTO.getHeaders())
+                .body(requestDTO.getBody()).asString();
             result = mainResponse.getBody();
             log.debug("unirest call done");
         } catch (UnirestException e) {
