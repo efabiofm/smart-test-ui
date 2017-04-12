@@ -2,6 +2,7 @@ package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.quenti.smarttestui.service.PruebaService;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
 
@@ -121,10 +122,15 @@ public class PruebaResource {
 
     @GetMapping("/pruebas/obtUri/{id}")
     @Timed
-    public String obtUri(@PathVariable Long id){
+    public ResponseEntity<PruebaUrlDTO> obtUri(@PathVariable Long id){
 
-        String uri = pruebaService.ObtenerURIPorIdPrueba(id);
-        return uri;
+        PruebaUrlDTO prueba = pruebaService.ObtenerURIPorIdPrueba(id);
+        return Optional.ofNullable(prueba)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        //return prueba;
 
     }
 

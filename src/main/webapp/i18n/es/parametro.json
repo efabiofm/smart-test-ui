@@ -19,7 +19,8 @@
             "nombre": "Nombre",
             "activo": "Activo",
             "tipoParametro": "Tipo Parametro",
-            "metodo": "Método"
+            "metodo": "Método",
+            "valor": "Valor"
         }
     }
 }

@@ -20,14 +20,28 @@
                 token: token
             }
         };
+        vm.agregarParam = agregarParam;
+        vm.removerParam = removerParam;
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
         function cargarEjecucion(ejecucion){
-            Prueba.getURI({id : ejecucion.id}).$promise.then(function (uri) {
-                vm.ejecucion.url = uri.response;
+            Prueba.getURI({id : ejecucion.id}).$promise.then(function (response) {
+                vm.ejecucion.url = response.url;
+                vm.ejecucion.params = response.parametros;
             });
 
+        }
+
+        function agregarParam(){
+            vm.ejecucion.params.push({
+                nombre: null,
+                valor: null
+            });
+        }
+
+        function removerParam(index){
+            vm.ejecucion.params.splice(index, 1);
         }
     }
 })();

@@ -21,7 +21,10 @@
             "resource": "Recurso",
             "parameters": "Parámetros",
             "response": "Respuesta",
-            "run": "Correr"
+            "run": "Correr",
+            "key": "Llave",
+            "value": "Valor",
+            "add.param": "Agregar parámetro"
         },
         "placeholder": "--Seleccione una prueba--"
     }

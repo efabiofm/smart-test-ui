@@ -26,10 +26,10 @@
                 method: 'GET',
                 url : 'api/pruebas/obtUri/:id',
                 transformResponse:function (data) {
-                    // if (data) {
-                    //     data = angular.fromJson(data);
-                    // }
-                    return { response : data};
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
                 }
             }
 

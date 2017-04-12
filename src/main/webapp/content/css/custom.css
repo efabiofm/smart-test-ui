@@ -63,9 +63,13 @@
 }
 
 .btn-params {
+    background: #fff;
+}
+
+.btn-run {
     top: 25px;
-    right: 15px;
-    position: absolute;
+    font-size: 3em;
+    cursor: pointer;
 }
 
 textarea {
