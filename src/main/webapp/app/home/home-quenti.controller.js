@@ -37,8 +37,6 @@
         }
 
         function ejecutarPrueba(ejecucion) {
-            //TODO: Enviar tambien los parametros que se vayan agregando
-
             vm.ejecutando = true; //muestra el icono dando vueltas
             var fullUrl = ejecucion.url;
             if(ejecucion.params.length > 0){ //pegar los parametros al URL
