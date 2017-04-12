@@ -90,9 +90,9 @@ public class EjecucionPruebaService {
         ejecucionPruebaRepository.save(ejecucionPrueba);
     }
     @Transactional
-    public String ejecutarPrueba(Long id){
+    public String ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO){
 
-        requestComponent.init("POST");
+        requestComponent.init(ejecucionPruebaDTO);
 
         return  "";
     }

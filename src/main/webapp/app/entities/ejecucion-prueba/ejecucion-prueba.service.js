@@ -39,11 +39,8 @@
             },
 
             'ejecutarPrueba': {
-                method: 'GET',
-                url : 'api/ejecucion-prueba/execPrueba/:id',
-                transformRequest: function (data) {
-                    return {data : data};
-                }
+                method: 'POST',
+                url : 'api/ejecucion-pruebas/execPrueba'
             }
 
 

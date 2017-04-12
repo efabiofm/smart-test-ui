@@ -23,6 +23,7 @@
         };
         vm.agregarParam = agregarParam;
         vm.removerParam = removerParam;
+        vm.mostrarParams = true;
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
@@ -34,8 +35,20 @@
 
         }
 
-        function ejecutarPrueba(id) {
-            EjecucionPrueba.ejecutarPrueba({id: id}).$promise.then(function (response) {
+        function ejecutarPrueba(ejecucion) {
+            var ejecucionCopy = angular.copy(ejecucion); //para no modificar el que se muestra en el html
+            var fullUrl = ejecucion.url;
+            if(ejecucion.params.length > 0){
+                fullUrl += "?";
+                for(var i=0; i < ejecucion.params.length; i++){
+                    fullUrl += ejecucion.params[i].nombre + "=" + ejecucion.params[i].valor;
+                    if(i < ejecucion.params.length-1){
+                        fullUrl += "&";
+                    }
+                }
+            }
+            ejecucionCopy.url = fullUrl;
+            EjecucionPrueba.ejecutarPrueba(ejecucionCopy).$promise.then(function (response) {
                 console.log(response);
             });
         }

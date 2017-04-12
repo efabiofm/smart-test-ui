@@ -6,7 +6,7 @@
         </select>
     </div>
     <div class="col-md-1">
-        <span ng-click="vm.ejecutarPrueba(vm.ejecucionSelec.id)" class="glyphicon glyphicon-play-circle btn-run"></span>
+        <span ng-click="vm.ejecutarPrueba(vm.ejecucion)" class="glyphicon glyphicon-play-circle btn-run"></span>
     </div>
 </div>
 <hr>
@@ -21,14 +21,14 @@
         <label class="control-label" data-translate="home.labels.resource">Recurso</label>
         <div class="input-group">
             <input type="text" class="form-control" ng-model="vm.ejecucion.url">
-            <span class="input-group-addon btn-params" ng-click="mostrarParams = !mostrarParams">Params</span>
+            <span class="input-group-addon btn-params" ng-click="vm.mostrarParams = !vm.mostrarParams">Params</span>
         </div>
     </div>
 </div>
 <hr>
 
 <!--Parámetros-->
-<div ng-show="mostrarParams && vm.ejecucion.params">
+<div ng-show="vm.mostrarParams && vm.ejecucion.params">
     <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
     <div class="form-group row" ng-repeat="param in vm.ejecucion.params track by $index">
         <div class="col-md-2 center-label" data-translate="home.labels.key">Llave</div>

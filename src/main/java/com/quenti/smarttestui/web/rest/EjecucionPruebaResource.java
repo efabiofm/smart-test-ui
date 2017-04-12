@@ -117,11 +117,12 @@ public class EjecucionPruebaResource {
         ejecucionPruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ejecucionPrueba", id.toString())).build();
     }
-    @GetMapping("/ejecucion-prueba/execPrueba/{id}")
+    @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
-    public String EjecutarPrueba(@PathVariable Long id){
+    public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO){
 
-        return ejecucionPruebaService.ejecutarPrueba(id);
+        ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
+        return null;
 
     }
 
