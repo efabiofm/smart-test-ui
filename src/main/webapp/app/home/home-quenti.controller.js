@@ -37,6 +37,8 @@
         }
 
         function ejecutarPrueba(ejecucion) {
+            //TODO: Enviar el service-provider-id y service-group-id en las ejecuciones que lo necesiten
+
             vm.ejecutando = true; //muestra el icono dando vueltas
             var fullUrl = ejecucion.url;
             if(ejecucion.params.length > 0){ //pegar los parametros al URL
