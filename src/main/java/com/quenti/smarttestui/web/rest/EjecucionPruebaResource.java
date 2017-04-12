@@ -121,8 +121,7 @@ public class EjecucionPruebaResource {
     @Timed
     public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO){
 
-        ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
-        return null;
+        return ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
 
     }
 

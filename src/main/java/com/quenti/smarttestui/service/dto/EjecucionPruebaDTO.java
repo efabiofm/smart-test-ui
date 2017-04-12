@@ -26,9 +26,10 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Boolean activo;
 
+    private String url;
 
     private Long pruebaId;
-    
+
     public Long getId() {
         return id;
     }
@@ -86,6 +87,10 @@ public class EjecucionPruebaDTO implements Serializable {
     public void setPruebaId(Long pruebaId) {
         this.pruebaId = pruebaId;
     }
+
+    public String getUrl() { return url; }
+
+    public void setUrl(String url) { this.url = url; }
 
     @Override
     public boolean equals(Object o) {

@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'token', 'Prueba',  'EjecucionPrueba'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba'];
 
-    function HomeQuentiController (pruebas, token, Prueba, EjecucionPrueba) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
@@ -17,8 +17,9 @@
         ];
         vm.ejecucion = {
             metodo: "POST",
+            body: "{}",
             headers: {
-                token: token
+                token: sesion.token
             }
         };
         vm.agregarParam = agregarParam;
@@ -36,7 +37,6 @@
         }
 
         function ejecutarPrueba(ejecucion) {
-            var ejecucionCopy = angular.copy(ejecucion); //para no modificar el que se muestra en el html
             var fullUrl = ejecucion.url;
             if(ejecucion.params.length > 0){
                 fullUrl += "?";
@@ -47,9 +47,16 @@
                     }
                 }
             }
-            ejecucionCopy.url = fullUrl;
-            EjecucionPrueba.ejecutarPrueba(ejecucionCopy).$promise.then(function (response) {
-                console.log(response);
+            var ejecParaEnviar = {
+                url: fullUrl,
+                pruebaId: vm.ejecucionSelec.id,
+                activo: true,
+                body: ejecucion.body,
+                fecha: new Date(),
+                jhUserId: sesion.userId //id del usuario que ejecuta
+            }
+            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
+                vm.ejecucion.respuesta = JSON.stringify(response);
             });
         }
 

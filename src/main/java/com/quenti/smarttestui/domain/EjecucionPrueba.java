@@ -37,6 +37,9 @@ public class EjecucionPrueba implements Serializable {
     @Column(name = "activo")
     private Boolean activo;
 
+    @Column(name = "url")
+    private String url;
+
     @ManyToOne
     private Prueba prueba;
 
@@ -85,6 +88,19 @@ public class EjecucionPrueba implements Serializable {
 
     public void setResultado(String resultado) {
         this.resultado = resultado;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public EjecucionPrueba url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Integer getJhUserId() {

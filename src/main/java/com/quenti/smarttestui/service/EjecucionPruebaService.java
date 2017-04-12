@@ -91,9 +91,6 @@ public class EjecucionPruebaService {
     }
     @Transactional
     public String ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO){
-
-        requestComponent.init(ejecucionPruebaDTO);
-
-        return  "";
+        return requestComponent.init(ejecucionPruebaDTO);
     }
 }
