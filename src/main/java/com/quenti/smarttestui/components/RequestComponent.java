@@ -3,27 +3,20 @@ package com.quenti.smarttestui.components;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.quenti.smarttestui.domain.Parametro;
-import com.quenti.smarttestui.domain.Prueba;
-import com.quenti.smarttestui.repository.PruebaRepository;
-import com.quenti.smarttestui.service.PruebaService;
+import com.quenti.smarttestui.domain.EjecucionPrueba;
+import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.service.SeguridadService;
 import com.quenti.smarttestui.service.UserService;
 import com.quenti.smarttestui.service.dto.*;
-import com.quenti.smarttestui.web.rest.PruebaResource;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
 import javax.inject.Inject;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by juarez on 13/03/17.
+ * Modified by efabiofm on 12/04/17.
  */
 @Component
 public class RequestComponent {
@@ -37,16 +30,15 @@ public class RequestComponent {
     private SeguridadService seguridadService;
 
     @Inject
-    private PruebaService pruebaService;
+    private EjecucionPruebaService ejecucionPruebaService;
 
-    //UserQuentiDTO userQuentiDTO = new UserQuentiDTO();
     RequestDTO requestDTO = new RequestDTO();
-    //ObjectMapperCustom objectMapperCustom = new ObjectMapperCustom();
-
 
     public String init(EjecucionPruebaDTO ejecucionPruebaDTO){
+        //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string
+
         Long jhUserId = new Long(ejecucionPruebaDTO.getJhUserId());
-        SeguridadDTO seguridadDTO = seguridadService.findBySeguridadId(jhUserId);
+        String token = seguridadService.findBySeguridadId(jhUserId).getToken(); //token del usuario actual
         String result = "";
         try {
             requestDTO.setUrl(ejecucionPruebaDTO.getUrl());
@@ -54,38 +46,41 @@ public class RequestComponent {
                 {
                     put("content-type","application/json");
                     put("accept","application/json");
-                    put("token",seguridadDTO.getToken());
+                    put("token",token);
                 }
             } );
             requestDTO.setBody(ejecucionPruebaDTO.getBody());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         result = makePostCall(requestDTO);
+
+        //crear una ejecucion de prueba pendiente con el resultado
+        ejecucionPruebaDTO.setResultado(result);
+        ejecucionPruebaDTO.setEstado("pendiente");
+        ejecucionPruebaService.save(ejecucionPruebaDTO);
+
         return result;
     }
 
 
 
     private String makePostCall(RequestDTO testDTO) {
+        //TODO: Hacer que no se caiga si el request no tiene cuerpo
 
         String result = "";
         try {
-            log.debug("Doing unirest call");
             HttpResponse<String> mainResponse = Unirest.post(testDTO.getUrl())
                 .headers(testDTO.getHeaders())
                 .body(testDTO.getBody())
                 .asString();
 
             result = mainResponse.getBody();
-            log.debug("unirest call done");
 
         } catch (UnirestException e) {
             e.printStackTrace();
-            log.debug("unable to make unirest call");
         }
-
-
         return result;
     }
 }

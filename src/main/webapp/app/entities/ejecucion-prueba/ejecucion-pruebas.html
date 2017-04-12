@@ -9,9 +9,8 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="smartTestUiApp.ejecucionPrueba.fecha">Fecha</span></th>
                     <th><span data-translate="smartTestUiApp.ejecucionPrueba.tiempoRespuesta">Tiempo Respuesta</span></th>
-                    <th><span data-translate="smartTestUiApp.ejecucionPrueba.resultado">Resultado</span></th>
+                    <th><span data-translate="smartTestUiApp.ejecucionPrueba.estado">Estado</span></th>
                     <th><span data-translate="smartTestUiApp.ejecucionPrueba.jhUserId">Jh User Id</span></th>
-                    <th><span data-translate="smartTestUiApp.ejecucionPrueba.body">Body</span></th>
                     <th><span data-translate="smartTestUiApp.ejecucionPrueba.prueba">Prueba</span></th>
                     <th></th>
                 </tr>
@@ -21,9 +20,8 @@
                     <td><a ui-sref="ejecucion-prueba-detail({id:ejecucionPrueba.id})">{{ejecucionPrueba.id}}</a></td>
                         <td>{{ejecucionPrueba.fecha | date:'mediumDate'}}</td>
                     <td>{{ejecucionPrueba.tiempoRespuesta}}</td>
-                    <td>{{ejecucionPrueba.resultado}}</td>
+                    <td>{{ejecucionPrueba.estado}}</td>
                     <td>{{ejecucionPrueba.jhUserId}}</td>
-                    <td>{{ejecucionPrueba.body}}</td>
                     <td>
                         <a ui-sref="prueba-detail({id:ejecucionPrueba.pruebaId})">{{ejecucionPrueba.pruebaId}}</a>
                     </td>

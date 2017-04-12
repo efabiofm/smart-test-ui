@@ -40,6 +40,9 @@ public class EjecucionPrueba implements Serializable {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "estado")
+    private String estado;
+
     @ManyToOne
     private Prueba prueba;
 
@@ -101,6 +104,19 @@ public class EjecucionPrueba implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public EjecucionPrueba estado(String estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Integer getJhUserId() {

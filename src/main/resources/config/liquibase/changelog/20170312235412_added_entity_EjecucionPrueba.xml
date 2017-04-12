@@ -36,7 +36,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="resultado" type="varchar(255)">
+            <column name="resultado" type="varchar(20000)">
                 <constraints nullable="true" />
             </column>
 
@@ -44,7 +44,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="body" type="varchar(255)">
+            <column name="body" type="varchar(20000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estado" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

@@ -37,8 +37,11 @@
         }
 
         function ejecutarPrueba(ejecucion) {
+            //TODO: Enviar tambien los parametros que se vayan agregando
+
+            vm.ejecutando = true; //muestra el icono dando vueltas
             var fullUrl = ejecucion.url;
-            if(ejecucion.params.length > 0){
+            if(ejecucion.params.length > 0){ //pegar los parametros al URL
                 fullUrl += "?";
                 for(var i=0; i < ejecucion.params.length; i++){
                     fullUrl += ejecucion.params[i].nombre + "=" + ejecucion.params[i].valor;
@@ -47,15 +50,19 @@
                     }
                 }
             }
+
+            //DTO de ejecucion-prueba que se va a generar
             var ejecParaEnviar = {
                 url: fullUrl,
                 pruebaId: vm.ejecucionSelec.id,
                 activo: true,
                 body: ejecucion.body,
                 fecha: new Date(),
-                jhUserId: sesion.userId //id del usuario que ejecuta
+                jhUserId: sesion.userId //id del usuario que ejecuta la prueba
             }
+
             EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
+                vm.ejecutando = false;
                 vm.ejecucion.respuesta = JSON.stringify(response);
             });
         }
