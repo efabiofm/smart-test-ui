@@ -3,11 +3,11 @@ package com.quenti.smarttestui.components;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.service.SeguridadService;
 import com.quenti.smarttestui.service.UserService;
 import com.quenti.smarttestui.service.dto.*;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -34,12 +34,13 @@ public class RequestComponent {
 
     RequestDTO requestDTO = new RequestDTO();
 
-    public String init(EjecucionPruebaDTO ejecucionPruebaDTO){
-        //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string
+    public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO){
+        //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string ---> Listo
+        //TODO: Determinar como mostrar Json en pantalla
 
         Long jhUserId = new Long(ejecucionPruebaDTO.getJhUserId());
         String token = seguridadService.findBySeguridadId(jhUserId).getToken(); //token del usuario actual
-        String result = "";
+        JSONObject result;
         try {
             requestDTO.setUrl(ejecucionPruebaDTO.getUrl());
             requestDTO.setHeaders( new HashMap<String, String>() {
@@ -57,19 +58,23 @@ public class RequestComponent {
         result = makePostCall(requestDTO);
 
         //crear una ejecucion de prueba pendiente con el resultado
-        ejecucionPruebaDTO.setResultado(result);
+        ejecucionPruebaDTO.setResultado(result.toString());
         ejecucionPruebaDTO.setEstado("pendiente");
         ejecucionPruebaService.save(ejecucionPruebaDTO);
 
         return result;
     }
 
+    private JSONObject makePostCall(RequestDTO testDTO) {
+        //TODO: Hacer que no se caiga si el request no tiene cuerpo --->Listo
 
-
-    private String makePostCall(RequestDTO testDTO) {
-        //TODO: Hacer que no se caiga si el request no tiene cuerpo
-
+        JSONObject jsonObj;
         String result = "";
+        if(testDTO.getBody().isEmpty()){
+            String error = "{\n" +"  \"message\": \"Faltan valores en el Request. El cuerpo no debe ser null\",\n" +"}";//;
+            return jsonObj = new JSONObject(error);
+        }
+
         try {
             HttpResponse<String> mainResponse = Unirest.post(testDTO.getUrl())
                 .headers(testDTO.getHeaders())
@@ -81,7 +86,8 @@ public class RequestComponent {
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-        return result;
+        jsonObj = new JSONObject(result.toString());
+        return jsonObj;
     }
 }
 

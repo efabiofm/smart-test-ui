@@ -5,8 +5,10 @@ import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.repository.EjecucionPruebaRepository;
 import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 import com.quenti.smarttestui.service.mapper.EjecucionPruebaMapper;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -90,7 +92,12 @@ public class EjecucionPruebaService {
         ejecucionPruebaRepository.save(ejecucionPrueba);
     }
     @Transactional
-    public String ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO){
+    @Async
+    public JSONObject ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+
+        System.out.println("imprima : 2");
         return requestComponent.init(ejecucionPruebaDTO);
+
+
     }
 }

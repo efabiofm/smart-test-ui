@@ -76,6 +76,10 @@ public class UserJWTController {
 
         UserQuentiDTO uqDTO = loginQuentiComponent.init(loginVM);
         Long userId = null;
+        String vergaaa =  uqDTO.getObjTokenDTO();
+        if(vergaaa == null){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
 
         if (!uqDTO.getObjTokenDTO().equals("null")) { //si quenti devuelve token:
             Optional<User> usuarioReal = userService.getUserWithAuthoritiesByLogin(loginVM.getUsername());
@@ -115,9 +119,6 @@ public class UserJWTController {
                         seguridadService.save(seguridadDTO2);
                     }
                 }
-
-
-
 
                 return ResponseEntity.ok(new JWTToken(jwt));
             } catch (AuthenticationException exception) {
