@@ -27,33 +27,41 @@
             <column name="fecha" type="date">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="url" type="varchar(1023)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="tiempo_respuesta" type="integer">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="resultado" type="varchar(255)">
+
+            <column name="resultado" type="varchar(20000)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="jh_user_id" type="integer">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="body" type="varchar(255)">
+
+            <column name="body" type="varchar(20000)">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="estado" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="activo" type="bit">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="prueba_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>
