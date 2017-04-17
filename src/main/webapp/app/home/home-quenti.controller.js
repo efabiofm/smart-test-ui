@@ -5,23 +5,29 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'token', 'Prueba'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba'];
 
-    function HomeQuentiController (pruebas, token, Prueba) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
+        vm.ejecutarPrueba = ejecutarPrueba;
         vm.listaMetodos = [
-            "GET", "POST", "PUT", "DELETE"
+            //"GET",
+            "POST"
+            //"PUT",
+            //"DELETE"
         ];
         vm.ejecucion = {
             metodo: "POST",
+            body: "{}",
             headers: {
-                token: token
+                token: sesion.token
             }
         };
         vm.agregarParam = agregarParam;
         vm.removerParam = removerParam;
+        vm.mostrarParams = true;
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
@@ -31,6 +37,37 @@
                 vm.ejecucion.params = response.parametros;
             });
 
+        }
+
+        function ejecutarPrueba(ejecucion) {
+            //TODO: Enviar el service-provider-id y service-group-id en las ejecuciones que lo necesiten
+
+            vm.ejecutando = true; //muestra el icono dando vueltas
+            var fullUrl = ejecucion.url;
+            if(ejecucion.params.length > 0){ //pegar los parametros al URL
+                fullUrl += "?";
+                for(var i=0; i < ejecucion.params.length; i++){
+                    fullUrl += ejecucion.params[i].nombre + "=" + ejecucion.params[i].valor;
+                    if(i < ejecucion.params.length-1){
+                        fullUrl += "&";
+                    }
+                }
+            }
+
+            //DTO de ejecucion-prueba que se va a generar
+            var ejecParaEnviar = {
+                url: fullUrl,
+                pruebaId: vm.ejecucionSelec.id,
+                activo: true,
+                body: ejecucion.body,
+                fecha: new Date(),
+                jhUserId: sesion.userId //id del usuario que ejecuta la prueba
+            }
+
+            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
+                vm.ejecutando = false;
+                vm.ejecucion.respuesta = JSON.stringify(response);
+            });
         }
 
         function agregarParam(){

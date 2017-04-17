@@ -13,6 +13,15 @@ import java.util.Set;
 public class PruebaUrlDTO implements Serializable {
     private String url;
     private Set<Parametro> parametros;
+    private String body;
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 
     public String getUrl() {
         return url;

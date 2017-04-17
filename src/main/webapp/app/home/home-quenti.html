@@ -5,9 +5,13 @@
             <option value="" data-translate="home.placeholder"></option>
         </select>
     </div>
-    <div class="col-md-1">
-        <span class="glyphicon glyphicon-play-circle btn-run"></span>
+    <div class="col-md-1" ng-if="!vm.ejecutando" ng-class="{'btn-disabled':!vm.ejecucionSelec}">
+        <span ng-click="vm.ejecutarPrueba(vm.ejecucion)" class="glyphicon glyphicon-play-circle btn-not-running"></span>
     </div>
+    <div class="col-md-1" ng-if="vm.ejecutando">
+        <i class="fa fa-spinner fa-spin fa-3x btn-running"></i>
+    </div>
+
 </div>
 <hr>
 
@@ -21,14 +25,14 @@
         <label class="control-label" data-translate="home.labels.resource">Recurso</label>
         <div class="input-group">
             <input type="text" class="form-control" ng-model="vm.ejecucion.url">
-            <span class="input-group-addon btn-params" ng-click="mostrarParams = !mostrarParams">Params</span>
+            <span class="input-group-addon btn-params" ng-click="vm.mostrarParams = !vm.mostrarParams">Params</span>
         </div>
     </div>
 </div>
 <hr>
 
 <!--Parámetros-->
-<div ng-show="mostrarParams && vm.ejecucion.params">
+<div ng-show="vm.mostrarParams && vm.ejecucion.params">
     <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
     <div class="form-group row" ng-repeat="param in vm.ejecucion.params track by $index">
         <div class="col-md-2 center-label" data-translate="home.labels.key">Llave</div>
@@ -57,10 +61,16 @@
 
 <!--Headers-->
 <label class="control-label">Headers</label>
-<div class="row">
+<div class="row form-group">
     <div class="col-md-2 center-label">Token:</div>
     <div class="col-md-10">
-        <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token">
+        <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token" ng-disabled="true">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-2 center-label">service-group-id</div>
+    <div class="col-md-10">
+        <input type="number" class="form-control" ng-model="vm.ejecucion.headers.serviceGroupId">
     </div>
 </div>
 <hr>
@@ -76,7 +86,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="control-label" data-translate="home.labels.response">Respuesta</label>
-            <textarea rows="15" class="form-control text-scroll" ng-disabled="true"></textarea>
+            <textarea rows="15" class="form-control text-scroll" ng-disabled="true" ng-model="vm.ejecucion.respuesta"></textarea>
         </div>
     </div>
 </div>

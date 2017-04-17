@@ -1,5 +1,6 @@
 package com.quenti.smarttestui.service;
 
+import com.quenti.smarttestui.components.RequestComponent;
 import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.repository.EjecucionPruebaRepository;
 import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
@@ -28,6 +29,9 @@ public class EjecucionPruebaService {
 
     @Inject
     private EjecucionPruebaMapper ejecucionPruebaMapper;
+
+    @Inject
+    private RequestComponent requestComponent;
 
     /**
      * Save a ejecucionPrueba.
@@ -84,5 +88,9 @@ public class EjecucionPruebaService {
         ejecucionPruebaDTO.setActivo(false);
         EjecucionPrueba ejecucionPrueba = ejecucionPruebaMapper.ejecucionPruebaDTOToEjecucionPrueba(ejecucionPruebaDTO);
         ejecucionPruebaRepository.save(ejecucionPrueba);
+    }
+    @Transactional
+    public String ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO){
+        return requestComponent.init(ejecucionPruebaDTO);
     }
 }

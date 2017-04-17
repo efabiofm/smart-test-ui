@@ -115,6 +115,7 @@ public class PruebaService {
         PruebaUrlDTO pruebaUrlDTO = new PruebaUrlDTO();
         pruebaUrlDTO.setUrl(uri);
         pruebaUrlDTO.setParametros(paramsTemp);
+        pruebaUrlDTO.setBody(prueba.getBody());
         return pruebaUrlDTO;
     }
 }
