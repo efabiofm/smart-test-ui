@@ -13,7 +13,10 @@
         vm.cargarEjecucion = cargarEjecucion;
         vm.ejecutarPrueba = ejecutarPrueba;
         vm.listaMetodos = [
-            "GET", "POST", "PUT", "DELETE"
+            //"GET",
+            "POST"
+            //"PUT",
+            //"DELETE"
         ];
         vm.ejecucion = {
             metodo: "POST",
