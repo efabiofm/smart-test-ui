@@ -63,9 +63,18 @@
 }
 
 .btn-params {
+    background: #fff;
+}
+
+.btn-not-running {
     top: 25px;
-    right: 15px;
-    position: absolute;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.btn-running {
+    position: relative;
+    top: 25px;
 }
 
 textarea {
@@ -76,4 +85,13 @@ textarea {
     position: fixed;
     width: 100%;
     z-index: 1;
+}
+
+.btn-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.btn-disabled span {
+    pointer-events: none;
 }

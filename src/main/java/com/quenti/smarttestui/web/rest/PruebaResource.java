@@ -2,6 +2,7 @@ package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.quenti.smarttestui.service.PruebaService;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
 
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 public class PruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(PruebaResource.class);
-        
+
     @Inject
     private PruebaService pruebaService;
 
@@ -117,6 +118,20 @@ public class PruebaResource {
         log.debug("REST request to delete Prueba : {}", id);
         pruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("prueba", id.toString())).build();
+    }
+
+    @GetMapping("/pruebas/obtUri/{id}")
+    @Timed
+    public ResponseEntity<PruebaUrlDTO> obtUri(@PathVariable Long id){
+
+        PruebaUrlDTO prueba = pruebaService.ObtenerURIPorIdPrueba(id);
+        return Optional.ofNullable(prueba)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        //return prueba;
+
     }
 
 }

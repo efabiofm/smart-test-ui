@@ -27,6 +27,19 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label" data-translate="smartTestUiApp.parametro.valor" for="field_valor">Valor</label>
+            <input type="text" class="form-control" name="valor" id="field_valor"
+                   ng-model="vm.parametro.valor"
+                   required />
+            <div ng-show="editForm.valor.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.valor.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label data-translate="smartTestUiApp.parametro.tipoParametro" for="field_tipoParametro">Tipo Parametro</label>
             <select class="form-control" id="field_tipoParametro" name="tipoParametro" ng-model="vm.parametro.tipoParametroId" ng-options="tipoParametro.id as tipoParametro.nombre for tipoParametro in vm.tipoparametros"            >
                 <option value=""></option>

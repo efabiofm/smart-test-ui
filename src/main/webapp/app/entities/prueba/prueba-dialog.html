@@ -28,19 +28,19 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.ambiente" for="field_ambiente">Ambiente</label>
-            <select class="form-control" id="field_ambiente" name="ambiente" ng-model="vm.prueba.ambienteId" ng-options="ambiente.id as ambiente.nombre for ambiente in vm.ambientes"            >
+            <select class="form-control" id="field_ambiente" name="ambiente" ng-model="vm.prueba.ambienteId" ng-change="vm.obtenerModulos(vm.prueba.ambienteId)" ng-options="ambiente.id as ambiente.nombre for ambiente in vm.ambientes"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.modulo" for="field_modulo">Modulo</label>
-            <select class="form-control" id="field_modulo" name="modulo" ng-model="vm.prueba.moduloId" ng-options="modulo.id as modulo.nombre for modulo in vm.modulos"            >
+            <select class="form-control" id="field_modulo" name="modulo" ng-model="vm.prueba.moduloId" ng-change="vm.obtenerServicios(vm.prueba.moduloId)" ng-options="modulo.id as modulo.nombre for modulo in vm.modulos"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.servicio" for="field_servicio">Servicio</label>
-            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.prueba.servicioId" ng-options="servicio.id as servicio.nombre for servicio in vm.servicios"            >
+            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.prueba.servicioId" ng-change="vm.obtenerMetodos(vm.prueba.servicioId)" ng-options="servicio.id as servicio.nombre for servicio in vm.servicios"            >
                 <option value=""></option>
             </select>
         </div>

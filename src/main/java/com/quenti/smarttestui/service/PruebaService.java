@@ -1,8 +1,9 @@
 package com.quenti.smarttestui.service;
 
-import com.quenti.smarttestui.domain.Prueba;
+import com.quenti.smarttestui.domain.*;
 import com.quenti.smarttestui.repository.PruebaRepository;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.service.mapper.PruebaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +28,9 @@ public class PruebaService {
 
     @Inject
     private PruebaMapper pruebaMapper;
+
+    @Inject
+    private ModuloService moduloService;
 
     /**
      * Save a prueba.
@@ -85,5 +88,34 @@ public class PruebaService {
         Prueba prueba = pruebaMapper.pruebaDTOToPrueba(pruebaDTO);
         pruebaRepository.save(prueba);
 
+    }
+
+    @Transactional(readOnly =  true)
+    public PruebaUrlDTO ObtenerURIPorIdPrueba(Long id){
+
+        Prueba prueba = pruebaRepository.findOne(id);
+        Modulo modulo = prueba.getModulo();
+        Servicio servicio = prueba.getServicio();
+        Metodo metodo = prueba.getMetodo();
+        Set<Parametro> parametros = metodo.getParametros();
+
+        /*HashMap<String,String> paramsMap = new HashMap<String,String>();
+        for(Parametro param : parametros){
+            paramsMap.put(param.getNombre(), param.getValor());
+        }*/
+        Set<Parametro> paramsTemp = new HashSet<Parametro>();
+        for(Parametro param : parametros){
+            Parametro nvo = new Parametro();
+            nvo.setNombre(param.getNombre());
+            nvo.setValor(param.getValor());
+            paramsTemp.add(nvo);
+        }
+
+        String uri = modulo.getUrl() +"/"+ servicio.getUrl() +"/"+ metodo.getUrl();
+        PruebaUrlDTO pruebaUrlDTO = new PruebaUrlDTO();
+        pruebaUrlDTO.setUrl(uri);
+        pruebaUrlDTO.setParametros(paramsTemp);
+        pruebaUrlDTO.setBody(prueba.getBody());
+        return pruebaUrlDTO;
     }
 }

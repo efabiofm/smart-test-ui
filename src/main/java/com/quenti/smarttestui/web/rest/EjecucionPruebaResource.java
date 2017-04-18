@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class EjecucionPruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(EjecucionPruebaResource.class);
-        
+
     @Inject
     private EjecucionPruebaService ejecucionPruebaService;
 
@@ -116,6 +116,13 @@ public class EjecucionPruebaResource {
         log.debug("REST request to delete EjecucionPrueba : {}", id);
         ejecucionPruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ejecucionPrueba", id.toString())).build();
+    }
+    @PostMapping("/ejecucion-pruebas/execPrueba")
+    @Timed
+    public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO){
+
+        return ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
+
     }
 
 }

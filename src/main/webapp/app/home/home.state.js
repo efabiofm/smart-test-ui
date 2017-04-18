@@ -45,11 +45,14 @@
                 pruebas: ['Prueba', function(Prueba){
                     return Prueba.query();
                 }],
-                token: ['Principal', 'Seguridad', 'User', function(Principal, Seguridad, User){
+                sesion: ['Principal', 'Seguridad', 'User', function(Principal, Seguridad, User){
                    return Principal.identity().then(function(account){
                       return User.get({login: account.login}).$promise.then(function(user){
                           return Seguridad.getByUserId({id: user.id}).$promise.then(function(seguridad){
-                              return seguridad.token;
+                              return {
+                                  token: seguridad.token,
+                                  userId: user.id
+                              };
                           });
                       })
                    });
