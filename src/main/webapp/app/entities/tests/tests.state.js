@@ -12,8 +12,8 @@
             parent: 'admin',
             url: '/tests',
             data: {
-                authorities: ['ROLE_ADMIN', 'ROLE_USER'],
-                pageTitle: 'tracker.title'
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'tests.title'
             },
             views: {
                 'content@': {
@@ -24,12 +24,12 @@
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('tracker');
+                    $translatePartialLoader.addPart('tests');
                     return $translate.refresh();
                 }]
             },
             onEnter: ['JhiTestsService', function(JhiTestsService) {
-                //JhiTestsService.subscribe();
+                // JhiTestsService.subscribe();
             }],
             onExit: ['JhiTestsService', function(JhiTestsService) {
                 //JhiTestsService.unsubscribe();
