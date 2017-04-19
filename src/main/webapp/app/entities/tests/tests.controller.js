@@ -26,14 +26,16 @@
 
 
         function cambiarEstado() {
-            console.log("entra");
             for (var x in vm.pruebas) {
-               console.log(x);
+                console.log(x);
+                if(vm.pruebas[x].estado==null){
+
+                }
             }
         }
 
         function refreshEjecuciones() {
-            setInterval(loadEjecuciones, 3000);
+            setInterval(loadEjecuciones, 2000);
         }
 
         vm.tests = [];

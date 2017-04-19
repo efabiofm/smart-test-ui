@@ -2,9 +2,9 @@
     "smartTestUiApp": {
         "tests" : {
             "home": {
-                "title": "Ejecuciones en proceso",
-                "title2": "Ejecuciones completadas",
-                "search": "Search for Plan Prueba"
+                "title": "Tests executions in process",
+                "title2": "Tests execution completed",
+                "search": "Search for test execution"
             },
             "created": "A new Plan Prueba is created with identifier {{ param }}",
             "updated": "A Plan Prueba is updated with identifier {{ param }}",
@@ -13,14 +13,13 @@
                 "question": "Are you sure you want to delete Plan Prueba {{ id }}?"
             },
             "detail": {
-                "title": "Ejecuciones"
+                "title": "Tests executions"
             },
-            "fecha": "Fecha",
-            "resultado": "Resultado",
-            "jhUserId": "JhUserId",
-            "body": "Body",
-            "estado": "Estado",
-            "prueba": "Prueba"
+            "fecha": "Date",
+            "resultado": "Result",
+            "jhUserId": "User",
+            "estado": "State",
+            "prueba": "Test"
         }
     }
 }
