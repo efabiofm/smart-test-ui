@@ -115,9 +115,18 @@
     </div>
 </div>
 <div>
-    <h2 data-translate="smartTestUiApp.tests.home.title2">Ejecucion Pruebas</h2>
-    <jhi-alert></jhi-alert>
-    <br/>
+    <div class="row">
+        <div class="col-md-8">
+            <h2 data-translate="smartTestUiApp.tests.home.title2">Ejecucion Pruebas </h2>
+        </div>
+        <jhi-alert></jhi-alert>
+        <div class="col-md-4">
+            <span class="glyphicon glyphicon-filter"></span>
+            Filtrar:
+            <input type="text" ng-model="filtrar" class="form-control">
+        </div>
+    </div>
+</br>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -131,7 +140,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="ejecucionPrueba in vm.pruebas | filter: {estado: 'Completado'} track by ejecucionPrueba.id">
+            <tr ng-repeat="ejecucionPrueba in vm.pruebas | filter: {estado: 'Completado'} | filter: filtrar track by ejecucionPrueba.id">
+
                 <td><a ui-sref="ejecucion-prueba-detail({id:ejecucionPrueba.id})">{{ejecucionPrueba.id}}</a></td>
                 <td>{{ejecucionPrueba.fecha | date:'mediumDate'}}</td>
                 <td>{{ejecucionPrueba.estado}}</td>

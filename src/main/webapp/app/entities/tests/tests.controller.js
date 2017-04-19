@@ -10,6 +10,7 @@
     function JhiTestsController ($cookies, $http, JhiTestsService, EjecucionPrueba) {
         // This controller uses a Websocket connection to receive user activities in real-time.
         var vm = this;
+        vm.filtrar = '';
 
         vm.pruebas = [];
 
