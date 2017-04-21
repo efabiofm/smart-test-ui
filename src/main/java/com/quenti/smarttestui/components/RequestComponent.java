@@ -34,7 +34,7 @@ public class RequestComponent {
 
     RequestDTO requestDTO = new RequestDTO();
 
-    public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO){
+    public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
         //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string ---> Listo
         //TODO: Determinar como mostrar Json en pantalla
 
@@ -54,12 +54,12 @@ public class RequestComponent {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        Thread.sleep(15000);
         result = makePostCall(requestDTO);
 
         //crear una ejecucion de prueba pendiente con el resultado
         ejecucionPruebaDTO.setResultado(result.toString());
-        ejecucionPruebaDTO.setEstado("pendiente");
+        ejecucionPruebaDTO.setEstado("Completado");
         ejecucionPruebaService.save(ejecucionPruebaDTO);
 
         return result;

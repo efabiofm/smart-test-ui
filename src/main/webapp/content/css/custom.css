@@ -72,6 +72,10 @@
     cursor: pointer;
 }
 
+.btn-not-running:hover {
+    color: #ff6600;
+}
+
 .btn-running {
     position: relative;
     top: 25px;

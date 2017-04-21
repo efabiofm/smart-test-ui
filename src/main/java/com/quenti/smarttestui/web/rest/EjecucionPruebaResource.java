@@ -120,16 +120,10 @@ public class EjecucionPruebaResource {
     }
     @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
-    public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
-
-        System.out.println("imprima : 1");
-        JSONObject json = new JSONObject("{\n" +"  \"message\": \"La prueba esta en ejecucion\",\n" +"}");
-        ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
-        System.out.println("imprima : 3");
-        return  json.toString();
-
-
-
+    public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+        ejecucionPruebaDTO.setEstado("Pendiente");
+        EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(ejecucionPruebaDTO);
+        return ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
     }
 
 }

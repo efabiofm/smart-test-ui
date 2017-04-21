@@ -42,7 +42,7 @@
         function ejecutarPrueba(ejecucion) {
             //TODO: Enviar el service-provider-id y service-group-id en las ejecuciones que lo necesiten
 
-            vm.ejecutando = true; //muestra el icono dando vueltas
+            //vm.ejecutando = true; //muestra el icono dando vueltas
             var fullUrl = ejecucion.url;
             if(ejecucion.params.length > 0){ //pegar los parametros al URL
                 fullUrl += "?";
@@ -64,10 +64,11 @@
                 jhUserId: sesion.userId //id del usuario que ejecuta la prueba
             }
 
-            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
+            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar);
+            /*EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
                 vm.ejecutando = false;
                 vm.ejecucion.respuesta = JSON.stringify(response);
-            });
+            });*/
         }
 
         function agregarParam(){

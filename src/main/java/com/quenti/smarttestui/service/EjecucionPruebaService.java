@@ -94,10 +94,6 @@ public class EjecucionPruebaService {
     @Transactional
     @Async
     public JSONObject ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
-
-        System.out.println("imprima : 2");
         return requestComponent.init(ejecucionPruebaDTO);
-
-
     }
 }
