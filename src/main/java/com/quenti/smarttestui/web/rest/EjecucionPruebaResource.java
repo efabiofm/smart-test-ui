@@ -111,13 +111,13 @@ public class EjecucionPruebaResource {
      * @param id the id of the ejecucionPruebaDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/ejecucion-pruebas/{id}")
+    /*@DeleteMapping("/ejecucion-pruebas/{id}")
     @Timed
     public ResponseEntity<Void> deleteEjecucionPrueba(@PathVariable Long id) {
         log.debug("REST request to delete EjecucionPrueba : {}", id);
         ejecucionPruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ejecucionPrueba", id.toString())).build();
-    }
+    }*/
     @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
     public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {

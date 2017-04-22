@@ -3,6 +3,7 @@ package com.quenti.smarttestui.components;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.quenti.smarttestui.service.SeguridadService;
 import com.quenti.smarttestui.service.UserService;
 import com.quenti.smarttestui.service.dto.RequestDTO;
 import com.quenti.smarttestui.service.dto.UserDTO;
@@ -33,6 +34,9 @@ public class LoginQuentiComponent {
 
     @Inject
     private UserService userService;
+
+    @Inject
+    private SeguridadService seguridadService;
 
     UserQuentiDTO userQuentiDTO = new UserQuentiDTO();
     RequestDTO requestDTO = new RequestDTO();
@@ -83,6 +87,36 @@ public class LoginQuentiComponent {
         return userMapeado;
     }
 
+    public Boolean setOrganizationsCode(String ptoken){
+
+        Boolean band = false;
+        String result = "";
+        try {
+
+            requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/setOrganizationCodes?tenantId=1&organizationCode=00001&organizationalUnitCode=001");
+            requestDTO.setHeaders(new HashMap<String, String>() {{
+                put("content-type", "application/json");
+                put("accept", "application/json");
+                put("token", ptoken);
+            }});
+            requestDTO.setBody("");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        result = makePostCall(requestDTO);
+        JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
+        Boolean operationSuccessful = jsonResult.getBoolean("operationSuccessful");
+
+        if (operationSuccessful) {
+            band = true;
+        }
+
+
+        return band;
+    }
+
     private String makePostCall(RequestDTO testDTO) {
 
         String result = "";
@@ -96,7 +130,6 @@ public class LoginQuentiComponent {
             e.printStackTrace();
             log.debug("unable to make unirest call");
         }
-
 
         return result;
     }
