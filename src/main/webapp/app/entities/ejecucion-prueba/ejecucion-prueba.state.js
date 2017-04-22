@@ -18,14 +18,14 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/ejecucion-prueba/ejecucion-pruebas.html',
-                    controller: 'EjecucionPruebaController',
+                    templateUrl: 'app/entities/tests/tests.html',
+                    controller: 'JhiTestsController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('ejecucionPrueba');
+                    $translatePartialLoader.addPart('tests');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
