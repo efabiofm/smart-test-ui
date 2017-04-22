@@ -5,6 +5,7 @@ import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -119,10 +120,10 @@ public class EjecucionPruebaResource {
     }
     @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
-    public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO){
-
-        return ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
-
+    public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+        ejecucionPruebaDTO.setEstado("Pendiente");
+        EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(ejecucionPruebaDTO);
+        return ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
     }
 
 }

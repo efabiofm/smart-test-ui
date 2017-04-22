@@ -42,46 +42,45 @@ public class LoginQuentiComponent {
     public UserQuentiDTO init(LoginVM loginVM) {
         String result = "";
         UserQuentiDTO userMapeado = new UserQuentiDTO();
+
 //        Boolean isSuccessful = null;
 
-                userQuentiDTO.setUsername(loginVM.getUsername());
-                userQuentiDTO.setPassword(loginVM.getPassword());
-                userQuentiDTO.setUseripAddress(loginVM.getipAddress());
-                userQuentiDTO.setUserClientId(loginVM.getuserClientId());
-                try {
+        userQuentiDTO.setUsername(loginVM.getUsername());
+        userQuentiDTO.setPassword(loginVM.getPassword());
+        userQuentiDTO.setUseripAddress(loginVM.getipAddress());
+        userQuentiDTO.setUserClientId(loginVM.getuserClientId());
+        try {
 
-                    requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/login");
-                    requestDTO.setHeaders(new HashMap<String, String>() {{
-                        put("content-type", "application/json");
-                        put("accept", "application/json");
-                    }});
-                    requestDTO.setBody(objectMapperCustom.writeValueAsString(userQuentiDTO));
+            requestDTO.setUrl("http://quenti-usrmgmti.cloudapp.net/users/login");
+            requestDTO.setHeaders(new HashMap<String, String>() {{
+                put("content-type", "application/json");
+                put("accept", "application/json");
+            }});
+            requestDTO.setBody(objectMapperCustom.writeValueAsString(userQuentiDTO));
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        log.debug("Making post call");
+        result = makePostCall(requestDTO);
+        JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
+        Boolean operationSuccessful = jsonResult.getBoolean("operationSuccessful");
 
+        if (operationSuccessful) {
+            try {
+                userMapeado = objectMapperCustom.readValue(requestDTO.getBody().toString(), UserQuentiDTO.class);
+                JSONObject data = (JSONObject) jsonResult.get("data");
+                JSONObject profile = (JSONObject) data.get("profile");
+                userMapeado.setObjTokenDTO(data.getString("sessionKey"));
+                userMapeado.setFirstName(profile.getString("FirstName"));
+                userMapeado.setLastName(profile.getString("LastName"));
+            } catch (IOException o) {
 
-                log.debug("Making post call");
-                result = makePostCall(requestDTO);
-                JSONObject jsonResult = new JSONObject(result).getJSONObject("apiResult");
-                Boolean operationSuccessful = jsonResult.getBoolean("operationSuccessful");
-                if (operationSuccessful) {
-                    try {
-                        userMapeado = objectMapperCustom.readValue(requestDTO.getBody().toString(), UserQuentiDTO.class);
-                        JSONObject data = (JSONObject) jsonResult.get("data");
-                        JSONObject profile = (JSONObject) data.get("profile");
-                        userMapeado.setObjTokenDTO(data.getString("sessionKey"));
-                        userMapeado.setFirstName(profile.getString("FirstName"));
-                        userMapeado.setLastName(profile.getString("LastName"));
-                    } catch (IOException o) {
+            }
+        }
 
-                    }
-                }
-
-                return userMapeado;
-
+        return userMapeado;
     }
 
     private String makePostCall(RequestDTO testDTO) {
