@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-11">
         <label class="control-label" data-translate="home.labels.tests">Pruebas</label>
-        <select class="form-control" ng-model="vm.ejecucionSelec" ng-options="p as p.id for p in vm.pruebas" ng-change="vm.cargarEjecucion(vm.ejecucionSelec)">
+        <select class="form-control" ng-model="vm.ejecucionSelec" ng-options="p as p.pruebaNombre for p in vm.pruebas" ng-change="vm.cargarEjecucion(vm.ejecucionSelec)">
             <option value="" data-translate="home.placeholder"></option>
         </select>
     </div>

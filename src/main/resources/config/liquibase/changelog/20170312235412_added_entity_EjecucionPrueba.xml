@@ -32,7 +32,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="tiempo_respuesta" type="integer">
+            <column name="tiempo_respuesta" type="bigint">
                 <constraints nullable="true" />
             </column>
 

@@ -42,7 +42,7 @@ public class RequestComponent {
         String token = seguridadService.findBySeguridadId(jhUserId).getToken(); //token del usuario actual
         Long serviceGroupId = ejecucionPruebaDTO.getServiceGroupId();
         Long serviceProviderId = ejecucionPruebaDTO.getServiceProviderId();
-        JSONObject result;
+        JSONObject result = null;
         try {
             requestDTO.setUrl(ejecucionPruebaDTO.getUrl());
             requestDTO.setHeaders( new HashMap<String, String>() {
@@ -58,13 +58,18 @@ public class RequestComponent {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Thread.sleep(10000);
-        result = makePostCall(requestDTO);
-
-        //crear una ejecucion de prueba pendiente con el resultado
-        ejecucionPruebaDTO.setResultado(result.toString());
-        Boolean success = result.getJSONObject("apiResult").getBoolean("operationSuccessful");
-        ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+        Long start = System.currentTimeMillis();
+        try{
+            result = makePostCall(requestDTO);
+            ejecucionPruebaDTO.setResultado(result.toString());
+            Boolean success = result.getJSONObject("apiResult").getBoolean("operationSuccessful");
+            ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+        } catch(Exception e){
+            ejecucionPruebaDTO.setEstado("Fail");
+            ejecucionPruebaDTO.setResultado(e.getMessage());
+        }
+        Long elapsed = System.currentTimeMillis() - start;
+        ejecucionPruebaDTO.setTiempoRespuesta(elapsed);
         ejecucionPruebaService.save(ejecucionPruebaDTO);
 
         return result;

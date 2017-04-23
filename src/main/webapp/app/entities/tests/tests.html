@@ -134,6 +134,7 @@
                 <th><span data-translate="global.field.id">ID</span></th>
                 <th><span data-translate="smartTestUiApp.tests.fecha">Fecha</span></th>
                 <th><span data-translate="smartTestUiApp.tests.estado">Estado</span></th>
+                <th><span data-translate="smartTestUiApp.tests.tiempo">Tiempo de respuesta</span></th>
                 <th><span data-translate="smartTestUiApp.tests.usuario">User</span></th>
                 <th><span data-translate="smartTestUiApp.tests.prueba">Prueba</span></th>
                 <th></th>
@@ -150,6 +151,7 @@
                 <td ng-show="ejecucionPrueba.estado === 'Fail'">
                     <span class="glyphicon glyphicon-remove text-danger"></span>&nbsp;Fail
                 </td>
+                <td>{{ejecucionPrueba.tiempoRespuesta + ' ms'}}</td>
                 <td>{{ejecucionPrueba.jhUserName}}</td>
                 <td>
                     <a ui-sref="prueba-detail({id:ejecucionPrueba.pruebaId})">{{ejecucionPrueba.pruebaId}}</a>

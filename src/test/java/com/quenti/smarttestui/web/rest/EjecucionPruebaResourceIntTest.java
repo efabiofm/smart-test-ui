@@ -45,8 +45,8 @@ public class EjecucionPruebaResourceIntTest {
     private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_TIEMPO_RESPUESTA = 1;
-    private static final Integer UPDATED_TIEMPO_RESPUESTA = 2;
+    private static final Long DEFAULT_TIEMPO_RESPUESTA = new Long(1);
+    private static final Long UPDATED_TIEMPO_RESPUESTA = new Long(2);
 
     private static final String DEFAULT_RESULTADO = "AAAAAAAAAA";
     private static final String UPDATED_RESULTADO = "BBBBBBBBBB";

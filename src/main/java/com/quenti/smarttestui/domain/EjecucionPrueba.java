@@ -23,7 +23,7 @@ public class EjecucionPrueba implements Serializable {
     private LocalDate fecha;
 
     @Column(name = "tiempo_respuesta")
-    private Integer tiempoRespuesta;
+    private Long tiempoRespuesta;
 
     @Column(name = "resultado")
     private String resultado;
@@ -76,16 +76,16 @@ public class EjecucionPrueba implements Serializable {
         this.fecha = fecha;
     }
 
-    public Integer getTiempoRespuesta() {
+    public Long getTiempoRespuesta() {
         return tiempoRespuesta;
     }
 
-    public EjecucionPrueba tiempoRespuesta(Integer tiempoRespuesta) {
+    public EjecucionPrueba tiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
         return this;
     }
 
-    public void setTiempoRespuesta(Integer tiempoRespuesta) {
+    public void setTiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
 

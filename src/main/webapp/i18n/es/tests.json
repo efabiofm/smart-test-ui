@@ -19,7 +19,8 @@
             "resultado": "Resultado",
             "usuario": "Usuario",
             "estado": "Estado",
-            "prueba": "Prueba"
+            "prueba": "Prueba",
+            "tiempo": "Tiempo respuesta"
         }
     }
 }

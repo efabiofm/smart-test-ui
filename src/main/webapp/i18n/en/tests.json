@@ -19,7 +19,8 @@
             "resultado": "Result",
             "usuario": "User",
             "estado": "State",
-            "prueba": "Test"
+            "prueba": "Test",
+            "tiempo": "Response Time"
         }
     }
 }

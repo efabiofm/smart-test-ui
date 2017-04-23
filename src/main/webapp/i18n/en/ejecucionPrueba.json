@@ -17,7 +17,8 @@
             "body": "Body",
             "activo": "Active",
             "prueba": "Test",
-            "estado": "State"
+            "estado": "State",
+            "usuario": "User"
         }
     }
 }
