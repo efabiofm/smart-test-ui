@@ -19,8 +19,18 @@
 
         function loadEjecuciones(){
             EjecucionPrueba.query().$promise.then(function (resultado){
-                vm.pruebas = resultado;
-                cambiarEstado();
+                //vm.pruebas = resultado;
+                vm.pruebasPendientes = [];
+                vm.pruebasCompletadas = [];
+                for(var index in resultado){
+                    var prueba = resultado[index];
+                    if(prueba.estado === "Pendiente"){
+                        vm.pruebasPendientes.push(prueba);
+                    }else if(prueba.estado === "Pass" || prueba.estado === "Fail"){
+                        vm.pruebasCompletadas.push(prueba);
+                    }
+                }
+                //cambiarEstado();
 
             });
         }
@@ -28,7 +38,6 @@
 
         function cambiarEstado() {
             for (var x in vm.pruebas) {
-                console.log(x);
                 if(vm.pruebas[x].estado==null){
 
                 }

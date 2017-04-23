@@ -51,7 +51,8 @@
                           return Seguridad.getByUserId({id: user.id}).$promise.then(function(seguridad){
                               return {
                                   token: seguridad.token,
-                                  userId: user.id
+                                  userId: user.id,
+                                  userName: user.firstName
                               };
                           });
                       })
