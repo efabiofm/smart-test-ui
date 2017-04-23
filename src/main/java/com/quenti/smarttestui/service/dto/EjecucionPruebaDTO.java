@@ -16,7 +16,7 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private LocalDate fecha;
 
-    private Integer tiempoRespuesta;
+    private Long tiempoRespuesta;
 
     private String resultado;
 
@@ -52,11 +52,11 @@ public class EjecucionPruebaDTO implements Serializable {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-    public Integer getTiempoRespuesta() {
+    public Long getTiempoRespuesta() {
         return tiempoRespuesta;
     }
 
-    public void setTiempoRespuesta(Integer tiempoRespuesta) {
+    public void setTiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
     public String getResultado() {

@@ -58,11 +58,13 @@ public class RequestComponent {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Thread.sleep(10000);
+        Long start = System.currentTimeMillis();
         result = makePostCall(requestDTO);
+        Long elapsed = System.currentTimeMillis() - start;
 
         //crear una ejecucion de prueba pendiente con el resultado
         ejecucionPruebaDTO.setResultado(result.toString());
+        ejecucionPruebaDTO.setTiempoRespuesta(elapsed);
         Boolean success = result.getJSONObject("apiResult").getBoolean("operationSuccessful");
         ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
         ejecucionPruebaService.save(ejecucionPruebaDTO);
