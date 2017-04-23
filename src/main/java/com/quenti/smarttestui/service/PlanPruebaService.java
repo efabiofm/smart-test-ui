@@ -1,8 +1,12 @@
 package com.quenti.smarttestui.service;
 
 import com.quenti.smarttestui.domain.PlanPrueba;
+import com.quenti.smarttestui.domain.User;
 import com.quenti.smarttestui.repository.PlanPruebaRepository;
+import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 import com.quenti.smarttestui.service.dto.PlanPruebaDTO;
+import com.quenti.smarttestui.service.dto.PruebaDTO;
+import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.service.mapper.PlanPruebaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +35,14 @@ public class PlanPruebaService {
 
     @Inject
     private PlanPruebaMapper planPruebaMapper;
+
+    @Inject
+    private PruebaService pruebaService;
+
+    @Inject
+    private UserService userService;
+
+    @Inject EjecucionPruebaService ejecucionPruebaService;
 
     /**
      * Save a planPrueba.
@@ -84,5 +99,28 @@ public class PlanPruebaService {
         planPruebaDTO.setActivo(false);
         PlanPrueba planPrueba = planPruebaMapper.planPruebaDTOToPlanPrueba(planPruebaDTO);
         planPruebaRepository.save(planPrueba);
+    }
+
+    @Transactional
+    public void ejecutarPlanPruebas(Set<PruebaDTO> lstPruebas) throws InterruptedException {
+        User user = userService.getUserWithAuthorities();
+        for (PruebaDTO prueba: lstPruebas) {
+
+            EjecucionPruebaDTO newEjecucion = new EjecucionPruebaDTO();
+
+            newEjecucion.setPruebaId(prueba.getId());
+            PruebaUrlDTO pruebaUrlDTO = pruebaService.ObtenerURIPorIdPrueba(prueba.getId());
+
+            newEjecucion.setUrl(pruebaUrlDTO.getUrl());
+            newEjecucion.setBody(pruebaUrlDTO.getBody());
+            newEjecucion.setEstado("Pendiente");
+            newEjecucion.setJhUserId(user.getId().intValue());
+            newEjecucion.setJhUserName(user.getFirstName());
+            newEjecucion.setFecha(LocalDate.now());
+            newEjecucion.setServiceGroupId(pruebaUrlDTO.getServiceGroupId());
+            newEjecucion.setServiceProviderId(pruebaUrlDTO.getServiceProviderId());
+            EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(newEjecucion);
+            ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
+        }
     }
 }

@@ -9,6 +9,7 @@
 
     function PlanPruebaController ($scope, $state, PlanPrueba) {
         var vm = this;
+        vm.ejecutarPrueba = ejecutarPrueba;
 
         vm.planPruebas = [];
 
@@ -20,5 +21,10 @@
                 vm.searchQuery = null;
             });
         }
+
+        function ejecutarPrueba(id) {
+            PlanPrueba.ejecutarPrueba({id:id});
+        }
+
     }
 })();
