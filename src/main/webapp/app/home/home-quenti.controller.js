@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$timeout'];
 
-    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $timeout) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
@@ -35,6 +35,9 @@
             Prueba.getURI({id : ejecucion.id}).$promise.then(function (response) {
                 vm.ejecucion.url = response.url;
                 vm.ejecucion.params = response.parametros;
+                vm.ejecucion.body = response.body;
+                vm.ejecucion.headers.serviceGroupId = response.serviceGroupId;
+                vm.ejecucion.headers.serviceProviderId = response.serviceProviderId;
             });
 
         }
@@ -42,7 +45,7 @@
         function ejecutarPrueba(ejecucion) {
             //TODO: Enviar el service-provider-id y service-group-id en las ejecuciones que lo necesiten
 
-            //vm.ejecutando = true; //muestra el icono dando vueltas
+            vm.ejecutando = true; //muestra el icono dando vueltas
             var fullUrl = ejecucion.url;
             if(ejecucion.params.length > 0){ //pegar los parametros al URL
                 fullUrl += "?";
@@ -61,14 +64,18 @@
                 activo: true,
                 body: ejecucion.body,
                 fecha: new Date(),
-                jhUserId: sesion.userId //id del usuario que ejecuta la prueba
+                jhUserId: sesion.userId, //id del usuario que ejecuta la prueba,
+                jhUserName: sesion.userName,
+                serviceProviderId: ejecucion.headers.serviceProviderId,
+                serviceGroupId: ejecucion.headers.serviceGroupId
             }
 
-            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar);
-            /*EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
-                vm.ejecutando = false;
-                vm.ejecucion.respuesta = JSON.stringify(response);
-            });*/
+            EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
+                $timeout(function(){
+                    vm.ejecutando = false;
+                },1000);
+                //vm.ejecucion.respuesta = JSON.stringify(response);
+            });
         }
 
         function agregarParam(){

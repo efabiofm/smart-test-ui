@@ -17,7 +17,7 @@
             },
             "fecha": "Fecha",
             "resultado": "Resultado",
-            "jhUserId": "Usuario",
+            "usuario": "Usuario",
             "estado": "Estado",
             "prueba": "Prueba"
         }

@@ -43,6 +43,15 @@ public class EjecucionPrueba implements Serializable {
     @Column(name = "estado")
     private String estado;
 
+    @Column(name = "serviceProviderId")
+    private Long serviceProviderId;
+
+    @Column(name = "serviceGroupId")
+    private Long serviceGroupId;
+
+    @Column(name = "jhUserName")
+    private String jhUserName;
+
     @ManyToOne
     private Prueba prueba;
 
@@ -132,6 +141,19 @@ public class EjecucionPrueba implements Serializable {
         this.jhUserId = jhUserId;
     }
 
+    public String getJhUserName() {
+        return jhUserName;
+    }
+
+    public EjecucionPrueba jhUserName(String jhUserName) {
+        this.jhUserName = jhUserName;
+        return this;
+    }
+
+    public void setJhUserName(String jhUserName) {
+        this.jhUserName = jhUserName;
+    }
+
     public String getBody() {
         return body;
     }
@@ -169,6 +191,32 @@ public class EjecucionPrueba implements Serializable {
 
     public void setPrueba(Prueba prueba) {
         this.prueba = prueba;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public EjecucionPrueba serviceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+        return this;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public EjecucionPrueba serviceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
+        return this;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
     }
 
     @Override

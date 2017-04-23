@@ -17,7 +17,7 @@
             },
             "fecha": "Date",
             "resultado": "Result",
-            "jhUserId": "User",
+            "usuario": "User",
             "estado": "State",
             "prueba": "Test"
         }
