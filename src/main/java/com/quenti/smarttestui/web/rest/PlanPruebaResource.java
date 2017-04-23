@@ -1,7 +1,10 @@
 package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.quenti.smarttestui.domain.EjecucionPrueba;
+import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.service.PlanPruebaService;
+import com.quenti.smarttestui.service.dto.PruebaDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.PlanPruebaDTO;
 
@@ -19,6 +22,7 @@ import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -29,9 +33,10 @@ import java.util.stream.Collectors;
 public class PlanPruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(PlanPruebaResource.class);
-        
+
     @Inject
     private PlanPruebaService planPruebaService;
+
 
     /**
      * POST  /plan-pruebas : Create a new planPrueba.
@@ -117,6 +122,19 @@ public class PlanPruebaResource {
         log.debug("REST request to delete PlanPrueba : {}", id);
         planPruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("planPrueba", id.toString())).build();
+    }
+
+    @GetMapping("/plan-pruebas/execPlanPrueba/{id}")
+    @Timed
+    public String ejecutarPlanPrueba (@PathVariable Long id){
+        PlanPruebaDTO planPruebaDTO = planPruebaService.findOne(id);
+        try {
+            planPruebaService.ejecutarPlanPruebas(planPruebaDTO.getPruebas());
+        }catch (Exception e){
+
+        }
+
+        return "Todo bn";
     }
 
 }
