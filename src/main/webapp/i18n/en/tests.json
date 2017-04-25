@@ -3,7 +3,7 @@
         "tests" : {
             "home": {
                 "title": "Tests executions in process",
-                "title2": "Tests execution completed",
+                "title2": "Tests executions completed",
                 "search": "Search for test execution"
             },
             "created": "A new Plan Prueba is created with identifier {{ param }}",

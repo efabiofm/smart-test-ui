@@ -132,7 +132,7 @@ public class PlanPruebaService {
             newEjecucion.setEstado("Pendiente");
             newEjecucion.setJhUserId(user.getId().intValue());
             newEjecucion.setJhUserName(user.getFirstName());
-            newEjecucion.setFecha(LocalDate.now());
+            newEjecucion.setFecha(LocalDateTime.now());
             newEjecucion.setServiceGroupId(pruebaUrlDTO.getServiceGroupId());
             newEjecucion.setServiceProviderId(pruebaUrlDTO.getServiceProviderId());
             EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(newEjecucion);
