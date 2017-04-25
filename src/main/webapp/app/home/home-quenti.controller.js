@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$timeout'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$state'];
 
-    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $timeout) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $state) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
@@ -71,10 +71,7 @@
             }
 
             EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
-                $timeout(function(){
-                    vm.ejecutando = false;
-                },1000);
-                //vm.ejecucion.respuesta = JSON.stringify(response);
+                $state.go("ejecucion-prueba");
             });
         }
 

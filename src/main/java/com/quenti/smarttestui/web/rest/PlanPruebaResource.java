@@ -126,15 +126,13 @@ public class PlanPruebaResource {
 
     @GetMapping("/plan-pruebas/execPlanPrueba/{id}")
     @Timed
-    public String ejecutarPlanPrueba (@PathVariable Long id){
+    public void ejecutarPlanPrueba (@PathVariable Long id){
         PlanPruebaDTO planPruebaDTO = planPruebaService.findOne(id);
         try {
             planPruebaService.ejecutarPlanPruebas(planPruebaDTO.getPruebas());
         }catch (Exception e){
 
         }
-
-        return "Todo bn";
     }
 
 }
