@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.service.PlanPruebaService;
+import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.PlanPruebaDTO;
@@ -37,6 +38,8 @@ public class PlanPruebaResource {
     @Inject
     private PlanPruebaService planPruebaService;
 
+    @Inject
+    private EjecucionPruebaService ejecucionPruebaService;
 
     /**
      * POST  /plan-pruebas : Create a new planPrueba.
@@ -129,7 +132,10 @@ public class PlanPruebaResource {
     public void ejecutarPlanPrueba (@PathVariable Long id){
         PlanPruebaDTO planPruebaDTO = planPruebaService.findOne(id);
         try {
-            planPruebaService.ejecutarPlanPruebas(planPruebaDTO.getPruebas());
+            List<EjecucionPruebaDTO> listaEjecuciones = planPruebaService.ejecutarPlanPruebas(planPruebaDTO.getPruebas());
+            for(EjecucionPruebaDTO ejecucion : listaEjecuciones){
+                ejecucionPruebaService.ejecutarPrueba(ejecucion);
+            }
         }catch (Exception e){
 
         }

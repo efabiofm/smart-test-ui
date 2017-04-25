@@ -62,8 +62,13 @@ public class RequestComponent {
         try{
             result = makePostCall(requestDTO);
             ejecucionPruebaDTO.setResultado(result.toString());
-            Boolean success = result.getJSONObject("apiResult").getBoolean("operationSuccessful");
-            ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+            JSONObject apiResult = result.getJSONObject("apiResult");
+            if(apiResult != null){
+                Boolean success = apiResult.getBoolean("operationSuccessful");
+                ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+            }else{
+                ejecucionPruebaDTO.setEstado("Fail");
+            }
         } catch(Exception e){
             ejecucionPruebaDTO.setEstado("Fail");
             ejecucionPruebaDTO.setResultado(e.getMessage());

@@ -22,11 +22,11 @@
                 $rootScope.toStateParams = toStateParams;
                 $rootScope.fromState = fromState;
 
-                if(toState.name === 'home' || toState.name === 'login-admin'){
+                /*if(toState.name === 'home' || toState.name === 'login-admin'){
                     $('.stu-container').css('margin', '0 auto');
                 }else {
                     $('.stu-container').css('margin-left', '180px');
-                }
+                }*/
 
                 // Redirect to a state with an external URL (http://stackoverflow.com/a/30221248/1098564)
                 if (toState.external) {
