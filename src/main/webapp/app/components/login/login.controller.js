@@ -44,7 +44,7 @@
                 if ($state.current.name === 'register' || $state.current.name === 'activate' ||
                     $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
                 }
-                $state.go('home-admin');
+                $state.go('ejecucion-prueba');
                 $rootScope.$broadcast('authenticationSuccess');
 
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.

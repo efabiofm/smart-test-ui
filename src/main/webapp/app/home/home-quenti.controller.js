@@ -23,11 +23,13 @@
             body: "{}",
             headers: {
                 token: sesion.token
-            }
+            },
+            params: []
         };
         vm.agregarParam = agregarParam;
         vm.removerParam = removerParam;
         vm.mostrarParams = true;
+        vm.ejecucionSelec = {};
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
