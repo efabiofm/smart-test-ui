@@ -24,7 +24,10 @@
 
             'ejecutarPrueba': {
                 method: 'GET',
-                url : 'api/plan-pruebas/execPlanPrueba/:id'
+                url : 'api/plan-pruebas/execPlanPrueba/:id',
+                transformResponse: function (data) {
+                    return data;
+                }
             }
 
         });

@@ -1,5 +1,7 @@
 package com.quenti.smarttestui.service;
 
+import antlr.StringUtils;
+import com.quenti.smarttestui.domain.Parametro;
 import com.quenti.smarttestui.domain.PlanPrueba;
 import com.quenti.smarttestui.domain.User;
 import com.quenti.smarttestui.repository.PlanPruebaRepository;
@@ -8,6 +10,7 @@ import com.quenti.smarttestui.service.dto.PlanPruebaDTO;
 import com.quenti.smarttestui.service.dto.PruebaDTO;
 import com.quenti.smarttestui.service.dto.PruebaUrlDTO;
 import com.quenti.smarttestui.service.mapper.PlanPruebaMapper;
+import org.codehaus.groovy.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -102,8 +106,9 @@ public class PlanPruebaService {
     }
 
     @Transactional
-    public void ejecutarPlanPruebas(Set<PruebaDTO> lstPruebas) throws InterruptedException {
+    public List<EjecucionPruebaDTO> ejecutarPlanPruebas(Set<PruebaDTO> lstPruebas) throws InterruptedException {
         User user = userService.getUserWithAuthorities();
+        List<EjecucionPruebaDTO> listaEjecuciones = new ArrayList<>();
         for (PruebaDTO prueba: lstPruebas) {
 
             EjecucionPruebaDTO newEjecucion = new EjecucionPruebaDTO();
@@ -111,16 +116,28 @@ public class PlanPruebaService {
             newEjecucion.setPruebaId(prueba.getId());
             PruebaUrlDTO pruebaUrlDTO = pruebaService.ObtenerURIPorIdPrueba(prueba.getId());
 
-            newEjecucion.setUrl(pruebaUrlDTO.getUrl());
+            Set<Parametro> params = pruebaUrlDTO.getParametros();
+            String urlCompleta = pruebaUrlDTO.getUrl();
+
+            if(params != null){
+                urlCompleta += "?";
+                for(Parametro param : params){
+                    urlCompleta += param.getNombre() + "=" + param.getValor() + "&";
+                }
+                urlCompleta = urlCompleta.substring(0, urlCompleta.length()-1);
+            }
+
+            newEjecucion.setUrl(urlCompleta);
             newEjecucion.setBody(pruebaUrlDTO.getBody());
             newEjecucion.setEstado("Pendiente");
             newEjecucion.setJhUserId(user.getId().intValue());
             newEjecucion.setJhUserName(user.getFirstName());
-            newEjecucion.setFecha(LocalDate.now());
+            newEjecucion.setFecha(LocalDateTime.now());
             newEjecucion.setServiceGroupId(pruebaUrlDTO.getServiceGroupId());
             newEjecucion.setServiceProviderId(pruebaUrlDTO.getServiceProviderId());
             EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(newEjecucion);
-            ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
+            listaEjecuciones.add(nvaEjecucion);
         }
+        return listaEjecuciones;
     }
 }

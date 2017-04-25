@@ -93,7 +93,7 @@
             <tbody>
             <tr ng-repeat="ejecucionPrueba in vm.pruebasPendientes track by $index">
                 <td><a ui-sref="ejecucion-prueba-detail({id:ejecucionPrueba.id})">{{ejecucionPrueba.id}}</a></td>
-                <td>{{ejecucionPrueba.fecha | date:'mediumDate'}}</td>
+                <td>{{ejecucionPrueba.fecha | date:'medium'}}</td>
                 <td>{{ejecucionPrueba.estado}}</td>
                 <td>{{ejecucionPrueba.jhUserName}}</td>
                 <td>
@@ -144,7 +144,7 @@
             <tr ng-repeat="ejecucionPrueba in vm.pruebasCompletadas | filter: filtrar track by $index">
 
                 <td><a ui-sref="ejecucion-prueba-detail({id:ejecucionPrueba.id})">{{ejecucionPrueba.id}}</a></td>
-                <td>{{ejecucionPrueba.fecha | date:'mediumDate'}}</td>
+                <td>{{ejecucionPrueba.fecha | date:'medium'}}</td>
                 <td ng-show="ejecucionPrueba.estado === 'Pass'">
                     <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;Pass
                 </td>

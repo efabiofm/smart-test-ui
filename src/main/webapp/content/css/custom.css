@@ -15,8 +15,13 @@
     /*border-bottom: 1px solid #d5d5d5;*/
 }
 
+.stu-container {
+    width: 100%;
+}
+
 .stu-container > .well {
     margin-top: 70px;
+    margin-left: 160px;
 }
 
 .stu-nav-container {

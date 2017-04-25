@@ -2,6 +2,7 @@ package com.quenti.smarttestui.service.dto;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -14,7 +15,7 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Long id;
 
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     private Long tiempoRespuesta;
 
@@ -45,11 +46,11 @@ public class EjecucionPruebaDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
     public Long getTiempoRespuesta() {

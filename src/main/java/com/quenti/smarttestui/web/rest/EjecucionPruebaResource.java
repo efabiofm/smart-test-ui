@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -122,6 +124,7 @@ public class EjecucionPruebaResource {
     @Timed
     public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
         ejecucionPruebaDTO.setEstado("Pendiente");
+        ejecucionPruebaDTO.setFecha(LocalDateTime.now());
         EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(ejecucionPruebaDTO);
         return ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
     }

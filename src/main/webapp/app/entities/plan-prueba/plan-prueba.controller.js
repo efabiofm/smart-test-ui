@@ -23,7 +23,9 @@
         }
 
         function ejecutarPrueba(id) {
-            PlanPrueba.ejecutarPrueba({id:id});
+            PlanPrueba.ejecutarPrueba({id:id}).$promise.then(function(){
+                $state.go("ejecucion-prueba");
+            });
         }
 
     }

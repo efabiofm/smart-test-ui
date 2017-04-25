@@ -17,6 +17,7 @@
         vm.rememberMe = true;
         vm.username = null;
         vm.userClientId = "Hopware";
+        $(".well").css("margin-right","160px");
 
         $timeout(function (){angular.element('#username').focus();});
 
