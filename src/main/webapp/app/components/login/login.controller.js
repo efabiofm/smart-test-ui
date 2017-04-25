@@ -19,6 +19,7 @@
         vm.rememberMe = true;
         vm.requestResetPassword = requestResetPassword;
         vm.username = null;
+        $(".well").css("margin-right","160px");
 
         $timeout(function (){angular.element('#username').focus();});
 

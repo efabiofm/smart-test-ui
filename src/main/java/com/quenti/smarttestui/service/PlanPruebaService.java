@@ -137,7 +137,6 @@ public class PlanPruebaService {
             newEjecucion.setServiceProviderId(pruebaUrlDTO.getServiceProviderId());
             EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(newEjecucion);
             listaEjecuciones.add(nvaEjecucion);
-            //ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
         }
         return listaEjecuciones;
     }
