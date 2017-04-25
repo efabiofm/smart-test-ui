@@ -4,6 +4,7 @@ package com.quenti.smarttestui.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -20,7 +21,7 @@ public class EjecucionPrueba implements Serializable {
     private Long id;
 
     @Column(name = "fecha")
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @Column(name = "tiempo_respuesta")
     private Long tiempoRespuesta;
@@ -63,16 +64,16 @@ public class EjecucionPrueba implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public EjecucionPrueba fecha(LocalDate fecha) {
+    public EjecucionPrueba fecha(LocalDateTime fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

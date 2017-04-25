@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/api")
-public class PlanPruebaResource {
+public class    PlanPruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(PlanPruebaResource.class);
 
