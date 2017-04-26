@@ -24,7 +24,8 @@
                 "header": "Header",
                 "tipoHeader": "Tipo Header",
                 "serviceProvider": "Service Provider",
-                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+                "ejecutar": "Ejecutar"
             },
             "account": {
                 "main": "Cuenta",

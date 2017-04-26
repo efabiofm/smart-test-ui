@@ -34,13 +34,15 @@ public class RequestComponent {
 
     RequestDTO requestDTO = new RequestDTO();
 
-    public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO){
+    public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
         //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string ---> Listo
         //TODO: Determinar como mostrar Json en pantalla
 
         Long jhUserId = new Long(ejecucionPruebaDTO.getJhUserId());
         String token = seguridadService.findBySeguridadId(jhUserId).getToken(); //token del usuario actual
-        JSONObject result;
+        Long serviceGroupId = ejecucionPruebaDTO.getServiceGroupId();
+        Long serviceProviderId = ejecucionPruebaDTO.getServiceProviderId();
+        JSONObject result = null;
         try {
             requestDTO.setUrl(ejecucionPruebaDTO.getUrl());
             requestDTO.setHeaders( new HashMap<String, String>() {
@@ -48,18 +50,31 @@ public class RequestComponent {
                     put("content-type","application/json");
                     put("accept","application/json");
                     put("token",token);
+                    put("service-group-id", serviceGroupId != null ? serviceGroupId.toString() : "");
+                    put("service-provider-id", serviceProviderId != null ? serviceProviderId.toString() : "");
                 }
             } );
             requestDTO.setBody(ejecucionPruebaDTO.getBody());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        result = makePostCall(requestDTO);
-
-        //crear una ejecucion de prueba pendiente con el resultado
-        ejecucionPruebaDTO.setResultado(result.toString());
-        ejecucionPruebaDTO.setEstado("pendiente");
+        Long start = System.currentTimeMillis();
+        try{
+            result = makePostCall(requestDTO);
+            ejecucionPruebaDTO.setResultado(result.toString());
+            JSONObject apiResult = result.getJSONObject("apiResult");
+            if(apiResult != null){
+                Boolean success = apiResult.getBoolean("operationSuccessful");
+                ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+            }else{
+                ejecucionPruebaDTO.setEstado("Fail");
+            }
+        } catch(Exception e){
+            ejecucionPruebaDTO.setEstado("Fail");
+            ejecucionPruebaDTO.setResultado(e.getMessage());
+        }
+        Long elapsed = System.currentTimeMillis() - start;
+        ejecucionPruebaDTO.setTiempoRespuesta(elapsed);
         ejecucionPruebaService.save(ejecucionPruebaDTO);
 
         return result;

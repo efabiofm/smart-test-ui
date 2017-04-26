@@ -10,7 +10,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
-    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap>-->
     <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <!-- endinject -->
@@ -52,6 +51,8 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
+    <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -93,9 +94,9 @@
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
+    <script src="app/home/home-quenti.controller.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
-    <script src="app/home/home-quenti.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-dialog.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-detail.controller.js"></script>
     <script src="app/entities/tipo-parametro/tipo-parametro-delete-dialog.controller.js"></script>
@@ -120,6 +121,9 @@
     <script src="app/entities/tipo-alerta/tipo-alerta.state.js"></script>
     <script src="app/entities/tipo-alerta/tipo-alerta.service.js"></script>
     <script src="app/entities/tipo-alerta/tipo-alerta.controller.js"></script>
+    <script src="app/entities/tests/tests.state.js"></script>
+    <script src="app/entities/tests/tests.service.js"></script>
+    <script src="app/entities/tests/tests.controller.js"></script>
     <script src="app/entities/servicio/servicio-dialog.controller.js"></script>
     <script src="app/entities/servicio/servicio-detail.controller.js"></script>
     <script src="app/entities/servicio/servicio-delete-dialog.controller.js"></script>
@@ -210,9 +214,9 @@
     <script src="app/components/util/data-util.service.js"></script>
     <script src="app/components/util/capitalize.filter.js"></script>
     <script src="app/components/util/base64.service.js"></script>
+    <script src="app/components/login-quenti/login-quenti.controller.js"></script>
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/login/login.controller.js"></script>
-    <script src="app/components/login-quenti/login-quenti.controller.js"></script>
     <script src="app/components/language/language.service.js"></script>
     <script src="app/components/language/language.filter.js"></script>
     <script src="app/components/language/language.controller.js"></script>
@@ -245,6 +249,9 @@
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management.state.js"></script>
     <script src="app/admin/user-management/user-management.controller.js"></script>
+    <script src="app/admin/tracker/tracker.state.js"></script>
+    <script src="app/admin/tracker/tracker.service.js"></script>
+    <script src="app/admin/tracker/tracker.controller.js"></script>
     <script src="app/admin/metrics/metrics.state.js"></script>
     <script src="app/admin/metrics/metrics.service.js"></script>
     <script src="app/admin/metrics/metrics.modal.controller.js"></script>

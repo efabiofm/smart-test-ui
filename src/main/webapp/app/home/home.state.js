@@ -43,7 +43,12 @@
             },
             resolve: {
                 pruebas: ['Prueba', function(Prueba){
-                    return Prueba.query();
+                    return Prueba.query().$promise.then(function(data){
+                        data.forEach(function(prueba){
+                            prueba.pruebaNombre = prueba.ambienteNombre + '+' + prueba.metodoNombre + '+' + prueba.moduloNombre;
+                        });
+                        return data;
+                    });
                 }],
                 sesion: ['Principal', 'Seguridad', 'User', function(Principal, Seguridad, User){
                    return Principal.identity().then(function(account){
@@ -51,7 +56,8 @@
                           return Seguridad.getByUserId({id: user.id}).$promise.then(function(seguridad){
                               return {
                                   token: seguridad.token,
-                                  userId: user.id
+                                  userId: user.id,
+                                  userName: user.firstName
                               };
                           });
                       })

@@ -2,6 +2,7 @@ package com.quenti.smarttestui.service.dto;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -14,13 +15,15 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Long id;
 
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
-    private Integer tiempoRespuesta;
+    private Long tiempoRespuesta;
 
     private String resultado;
 
     private Integer jhUserId;
+
+    private String jhUserName;
 
     private String body;
 
@@ -32,6 +35,10 @@ public class EjecucionPruebaDTO implements Serializable {
 
     private Long pruebaId;
 
+    private Long serviceProviderId;
+
+    private Long serviceGroupId;
+
     public Long getId() {
         return id;
     }
@@ -39,18 +46,18 @@ public class EjecucionPruebaDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
-    public Integer getTiempoRespuesta() {
+    public Long getTiempoRespuesta() {
         return tiempoRespuesta;
     }
 
-    public void setTiempoRespuesta(Integer tiempoRespuesta) {
+    public void setTiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
     public String getResultado() {
@@ -97,6 +104,30 @@ public class EjecucionPruebaDTO implements Serializable {
     public String getEstado() { return estado; }
 
     public void setEstado(String estado) { this.estado = estado; }
+
+    public String getJhUserName() {
+        return jhUserName;
+    }
+
+    public void setJhUserName(String jhUserName) {
+        this.jhUserName = jhUserName;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -21,24 +21,28 @@ public class PruebaDTO implements Serializable {
 
 
     private Long ambienteId;
-    
+
 
     private String ambienteNombre;
 
     private Long moduloId;
-    
+
 
     private String moduloNombre;
 
     private Long servicioId;
-    
+
 
     private String servicioNombre;
 
     private Long metodoId;
-    
+
 
     private String metodoNombre;
+
+    private Long serviceProviderId;
+
+    private Long serviceGroupId;
 
     public Long getId() {
         return id;
@@ -128,6 +132,22 @@ public class PruebaDTO implements Serializable {
 
     public void setMetodoNombre(String metodoNombre) {
         this.metodoNombre = metodoNombre;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
     }
 
     @Override

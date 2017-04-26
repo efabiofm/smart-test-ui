@@ -25,7 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,11 +44,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmartTestUiApp.class)
 public class EjecucionPruebaResourceIntTest {
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+        private static final LocalDateTime DEFAULT_FECHA = LocalDateTime.ofEpochSecond(0L, 0, ZoneOffset.UTC);
+    private static final LocalDateTime UPDATED_FECHA = LocalDateTime.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_TIEMPO_RESPUESTA = 1;
-    private static final Integer UPDATED_TIEMPO_RESPUESTA = 2;
+    private static final Long DEFAULT_TIEMPO_RESPUESTA = new Long(1);
+    private static final Long UPDATED_TIEMPO_RESPUESTA = new Long(2);
 
     private static final String DEFAULT_RESULTADO = "AAAAAAAAAA";
     private static final String UPDATED_RESULTADO = "BBBBBBBBBB";

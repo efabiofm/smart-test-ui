@@ -48,6 +48,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="service_provider_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_group_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 

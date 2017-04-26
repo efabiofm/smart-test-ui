@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -111,25 +113,20 @@ public class EjecucionPruebaResource {
      * @param id the id of the ejecucionPruebaDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/ejecucion-pruebas/{id}")
+    /*@DeleteMapping("/ejecucion-pruebas/{id}")
     @Timed
     public ResponseEntity<Void> deleteEjecucionPrueba(@PathVariable Long id) {
         log.debug("REST request to delete EjecucionPrueba : {}", id);
         ejecucionPruebaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ejecucionPrueba", id.toString())).build();
-    }
+    }*/
     @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
-    public String EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
-
-        System.out.println("imprima : 1");
-        JSONObject json = new JSONObject("{\n" +"  \"message\": \"La prueba esta en ejecucion\",\n" +"}");
-        ejecucionPruebaService.ejecutarPrueba(ejecucionPruebaDTO);
-        System.out.println("imprima : 3");
-        return  json.toString();
-
-
-
+    public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+        ejecucionPruebaDTO.setEstado("Pendiente");
+        ejecucionPruebaDTO.setFecha(LocalDateTime.now());
+        EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(ejecucionPruebaDTO);
+        return ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
     }
 
 }

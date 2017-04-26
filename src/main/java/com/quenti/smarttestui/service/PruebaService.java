@@ -99,10 +99,6 @@ public class PruebaService {
         Metodo metodo = prueba.getMetodo();
         Set<Parametro> parametros = metodo.getParametros();
 
-        /*HashMap<String,String> paramsMap = new HashMap<String,String>();
-        for(Parametro param : parametros){
-            paramsMap.put(param.getNombre(), param.getValor());
-        }*/
         Set<Parametro> paramsTemp = new HashSet<Parametro>();
         for(Parametro param : parametros){
             Parametro nvo = new Parametro();
@@ -112,10 +108,13 @@ public class PruebaService {
         }
 
         String uri = modulo.getUrl() +"/"+ servicio.getUrl() +"/"+ metodo.getUrl();
+
         PruebaUrlDTO pruebaUrlDTO = new PruebaUrlDTO();
         pruebaUrlDTO.setUrl(uri);
         pruebaUrlDTO.setParametros(paramsTemp);
         pruebaUrlDTO.setBody(prueba.getBody());
+        pruebaUrlDTO.setServiceGroupId(prueba.getServiceGroupId());
+        pruebaUrlDTO.setServiceProviderId(prueba.getServiceProviderId());
         return pruebaUrlDTO;
     }
 }

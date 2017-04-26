@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$state'];
 
-    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $state) {
         var vm = this;
         vm.pruebas = pruebas;
         vm.cargarEjecucion = cargarEjecucion;
@@ -23,11 +23,13 @@
             body: "{}",
             headers: {
                 token: sesion.token
-            }
+            },
+            params: []
         };
         vm.agregarParam = agregarParam;
         vm.removerParam = removerParam;
         vm.mostrarParams = true;
+        vm.ejecucionSelec = {};
 
         /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
@@ -35,6 +37,9 @@
             Prueba.getURI({id : ejecucion.id}).$promise.then(function (response) {
                 vm.ejecucion.url = response.url;
                 vm.ejecucion.params = response.parametros;
+                vm.ejecucion.body = response.body;
+                vm.ejecucion.headers.serviceGroupId = response.serviceGroupId;
+                vm.ejecucion.headers.serviceProviderId = response.serviceProviderId;
             });
 
         }
@@ -61,12 +66,14 @@
                 activo: true,
                 body: ejecucion.body,
                 fecha: new Date(),
-                jhUserId: sesion.userId //id del usuario que ejecuta la prueba
+                jhUserId: sesion.userId, //id del usuario que ejecuta la prueba,
+                jhUserName: sesion.userName,
+                serviceProviderId: ejecucion.headers.serviceProviderId,
+                serviceGroupId: ejecucion.headers.serviceGroupId
             }
 
             EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
-                vm.ejecutando = false;
-                vm.ejecucion.respuesta = JSON.stringify(response);
+                $state.go("ejecucion-prueba");
             });
         }
 

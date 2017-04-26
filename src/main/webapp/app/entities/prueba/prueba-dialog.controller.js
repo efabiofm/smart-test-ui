@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .controller('PruebaDialogController', PruebaDialogController);
 
-    PruebaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Prueba', 'Ambiente', 'Modulo', 'Servicio', 'Metodo', 'EjecucionPrueba', 'PlanPrueba'];
+    PruebaDialogController.$inject = ['$timeout', '$scope', 'ServiceProvider', '$uibModalInstance', 'entity', 'Prueba', 'Ambiente', 'Modulo', 'Servicio', 'Metodo', 'EjecucionPrueba', 'PlanPrueba'];
 
-    function PruebaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Prueba, Ambiente, Modulo, Servicio, Metodo, EjecucionPrueba, PlanPrueba) {
+    function PruebaDialogController ($timeout, $scope, ServiceProvider, $uibModalInstance, entity, Prueba, Ambiente, Modulo, Servicio, Metodo, EjecucionPrueba, PlanPrueba) {
         var vm = this;
         vm.obtenerModulos = obtenerModulos;
         vm.obtenerServicios = obtenerServicios;
@@ -23,6 +23,10 @@
         // vm.metodos = Metodo.query();
         vm.ejecucionpruebas = EjecucionPrueba.query();
         vm.planpruebas = PlanPrueba.query();
+
+        ServiceProvider.query().$promise.then(function(serviceProviders){
+            vm.serviceProviders = serviceProviders;
+        })
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

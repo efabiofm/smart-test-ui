@@ -14,6 +14,9 @@ public class PruebaUrlDTO implements Serializable {
     private String url;
     private Set<Parametro> parametros;
     private String body;
+    private Long serviceProviderId;
+
+    private Long serviceGroupId;
 
     public String getBody() {
         return body;
@@ -37,5 +40,21 @@ public class PruebaUrlDTO implements Serializable {
 
     public void setParametros(Set<Parametro> parametros) {
         this.parametros = parametros;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
     }
 }
