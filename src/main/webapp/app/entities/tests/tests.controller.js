@@ -45,7 +45,7 @@
         }
 
         function refreshEjecuciones() {
-            setInterval(loadEjecuciones, 2000);
+            //setInterval(loadEjecuciones, 2000);
         }
 
         vm.tests = [];
