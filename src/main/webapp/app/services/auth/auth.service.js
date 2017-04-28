@@ -46,6 +46,7 @@
             function authThen () {
                 var isAuthenticated = Principal.isAuthenticated();
                 var identity = Principal.identity().$$state.value;
+                $rootScope.isAdmin = identity.authorities.includes("ROLE_ADMIN");
 
                 // an authenticated user can't access to login and register pages
                 if (isAuthenticated && identity.login !== 'anonymoususer' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'home')) {
