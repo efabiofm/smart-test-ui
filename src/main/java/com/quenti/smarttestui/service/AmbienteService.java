@@ -81,7 +81,7 @@ public class AmbienteService {
     }
 
     /**
-     *  Delete the  ambiente by id.
+     *  soft delete the  ambiente by id.
      *
      *  @param id the id of the entity
      */
@@ -94,6 +94,11 @@ public class AmbienteService {
 
     }
 
+    /**
+     *  obtiene todos los modulos por ambiente
+     *
+     *  @param idAmbiente the id of ambiente
+     */
     @Transactional(readOnly = true)
         public List<ModuloDTO> obtenerModulosPorAmbiente(Long idAmbiente){
         Ambiente ambiente = ambienteRepository.findOne(idAmbiente);

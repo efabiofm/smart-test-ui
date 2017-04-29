@@ -43,6 +43,12 @@ public class LoginQuentiComponent {
     ObjectMapperCustom objectMapperCustom = new ObjectMapperCustom();
 
 
+    /**
+     * executes the login
+     *
+     * @param loginVM the loginVM to execute
+     * @return the UserQuentiDTO that is the result of a login execution
+     */
     public UserQuentiDTO init(LoginVM loginVM) {
         String result = "";
         UserQuentiDTO userMapeado = new UserQuentiDTO();
@@ -87,6 +93,12 @@ public class LoginQuentiComponent {
         return userMapeado;
     }
 
+    /**
+     * sets the up the organizational code for the login
+     *
+     * @param ptoken the token that needs for it to be executed
+     * @return boolean, true or false if the operation succeeded or failed
+     */
     public Boolean setOrganizationsCode(String ptoken){
 
         Boolean band = false;

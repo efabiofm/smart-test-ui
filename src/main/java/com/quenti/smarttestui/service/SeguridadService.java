@@ -82,14 +82,17 @@ public class SeguridadService {
         seguridadRepository.delete(id);
     }
 
+    /**
+     *  finds a seguridadDTO by id of a jhipster user
+     *
+     *  @param id the id of a jhipsterUserId
+     *  @return SeguridadDTO
+     */
     @Transactional(readOnly = true)
     public SeguridadDTO findBySeguridadId(Long id){
         log.debug("Request to get Seguridad : {}", id);
         Seguridad seguridad = seguridadRepository.findOneByjhUserId(id);
         SeguridadDTO seguridadDTO = seguridadMapper.seguridadToSeguridadDTO(seguridad);
-//        List<SeguridadDTO> result = seguridadRepository.findByjhUserId(id).stream()
-//            .map(seguridadMapper::seguridadToSeguridadDTO)
-//            .collect(Collectors.toCollection(LinkedList::new));
         return seguridadDTO;
     }
 }

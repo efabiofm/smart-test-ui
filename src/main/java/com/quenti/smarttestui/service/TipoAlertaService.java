@@ -74,7 +74,7 @@ public class TipoAlertaService {
     }
 
     /**
-     *  Delete the  tipoAlerta by id.
+     *  Soft delete the  tipoAlerta by id.
      *
      *  @param id the id of the entity
      */

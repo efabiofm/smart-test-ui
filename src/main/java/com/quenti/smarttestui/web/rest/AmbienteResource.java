@@ -111,7 +111,7 @@ public class AmbienteResource {
     /**
      * DELETE  /ambientes/:id : delete the "id" ambiente.
      *
-     * @param id the id of the ambienteDTO to delete
+     * @param id the id of the ambienteDTO to soft delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/ambientes/{id}")
@@ -122,6 +122,12 @@ public class AmbienteResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ambiente", id.toString())).build();
     }
 
+    /**
+     * GET : gets all the ambientes with all the modulos asociated
+     *
+     * @param id the id of the ambiente
+     * @return the list of all the modulos
+     */
     @GetMapping("/ambientes/getModules/{id}")
     @Timed
     public List<ModuloDTO> getModulosPorIdAmbiente(@PathVariable Long id){

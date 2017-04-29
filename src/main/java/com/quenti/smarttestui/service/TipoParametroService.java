@@ -74,7 +74,7 @@ public class TipoParametroService {
     }
 
     /**
-     *  Delete the  tipoParametro by id.
+     *  Soft delete the  tipoParametro by id.
      *
      *  @param id the id of the entity
      */

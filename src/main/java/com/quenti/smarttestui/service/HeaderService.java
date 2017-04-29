@@ -74,7 +74,7 @@ public class HeaderService {
     }
 
     /**
-     *  Delete the  header by id.
+     *  Soft Delete the  header by id.
      *
      *  @param id the id of the entity
      */

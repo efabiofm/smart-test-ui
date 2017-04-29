@@ -105,6 +105,12 @@ public class PlanPruebaService {
         planPruebaRepository.save(planPrueba);
     }
 
+    /**
+     *  Executes a test plan: executes all the tests individually inside a test plan
+     *
+     *  @param lstPruebas the set of pruebaDTO
+     *  @return list of EjecucionPruebaDTO
+     */
     @Transactional
     public List<EjecucionPruebaDTO> ejecutarPlanPruebas(Set<PruebaDTO> lstPruebas) throws InterruptedException {
         User user = userService.getUserWithAuthorities();
