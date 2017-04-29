@@ -7,8 +7,8 @@
 
     JhiTestsController.$inject = ['EjecucionPrueba'];
 
+    //controller for all the tests executions
     function JhiTestsController (EjecucionPrueba) {
-        // This controller uses a Websocket connection to receive user activities in real-time.
         var vm = this;
         vm.filtrar = '';
 
@@ -17,6 +17,7 @@
         loadEjecuciones();
         refreshEjecuciones();
 
+        //  Obtains all the ejecuciones and puts them on different lists so they can be shown accordingly
         function loadEjecuciones(){
             EjecucionPrueba.query().$promise.then(function (resultado){
                 vm.pruebasPendientes = [];
@@ -32,6 +33,7 @@
             });
         }
 
+        // refreshes all the ejecuciones every 2 seconds
         function refreshEjecuciones() {
             setInterval(loadEjecuciones, 2000);
         }
