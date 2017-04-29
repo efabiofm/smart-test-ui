@@ -46,7 +46,7 @@ public class ServicioResourceIntTest {
     private static final String DEFAULT_URL = "AAAAAAAAAA";
     private static final String UPDATED_URL = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -282,7 +282,7 @@ public class ServicioResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Servicio> servicioList = servicioRepository.findAll();
+        List<Servicio> servicioList = servicioRepository.findByActivoTrue();
         assertThat(servicioList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

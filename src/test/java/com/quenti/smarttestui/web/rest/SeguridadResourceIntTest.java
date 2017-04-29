@@ -215,7 +215,7 @@ public class SeguridadResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(seguridad.getId().intValue())))
             .andExpect(jsonPath("$.[*].token").value(hasItem(DEFAULT_TOKEN.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
-            .andExpect(jsonPath("$.[*].jhUserId").value(hasItem(DEFAULT_JH_USER_ID)));
+            .andExpect(jsonPath("$.[*].jhUserId").value(hasItem(DEFAULT_JH_USER_ID.intValue())));
     }
 
     @Test
@@ -231,7 +231,7 @@ public class SeguridadResourceIntTest {
             .andExpect(jsonPath("$.id").value(seguridad.getId().intValue()))
             .andExpect(jsonPath("$.token").value(DEFAULT_TOKEN.toString()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
-            .andExpect(jsonPath("$.jhUserId").value(DEFAULT_JH_USER_ID));
+            .andExpect(jsonPath("$.jhUserId").value(DEFAULT_JH_USER_ID.intValue()));
     }
 
     @Test

@@ -43,7 +43,7 @@ public class TipoParametroResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -237,7 +237,7 @@ public class TipoParametroResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the TipoParametro in the database
-        List<TipoParametro> tipoParametroList = tipoParametroRepository.findAll();
+        List<TipoParametro> tipoParametroList = tipoParametroRepository.findByActivoTrue();
         assertThat(tipoParametroList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -254,7 +254,7 @@ public class TipoParametroResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<TipoParametro> tipoParametroList = tipoParametroRepository.findAll();
+        List<TipoParametro> tipoParametroList = tipoParametroRepository.findByActivoTrue();
         assertThat(tipoParametroList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }
