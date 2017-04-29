@@ -91,6 +91,12 @@ public class EjecucionPruebaService {
         EjecucionPrueba ejecucionPrueba = ejecucionPruebaMapper.ejecucionPruebaDTOToEjecucionPrueba(ejecucionPruebaDTO);
         ejecucionPruebaRepository.save(ejecucionPrueba);
     }
+
+    /**
+     *  executes the test
+     *
+     *  @param idAmbiente the id of ambiente
+     */
     @Transactional
     @Async
     public JSONObject ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {

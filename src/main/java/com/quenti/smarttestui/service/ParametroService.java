@@ -74,7 +74,7 @@ public class ParametroService {
     }
 
     /**
-     *  Delete the  parametro by id.
+     *  Soft delete the  parametro by id.
      *
      *  @param id the id of the entity
      */

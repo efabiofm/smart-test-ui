@@ -17,6 +17,10 @@ import java.time.LocalDateTime;
  */
 public class ObjectMapperCustom extends org.codehaus.jackson.map.ObjectMapper{
 
+
+    /**
+     * ObjectMapperCustom is an implementation of the  interface ObjectMapper, this is made so that object dates are able to be serializable
+     */
     public ObjectMapperCustom() {
         SimpleModule sm = new SimpleModule("SomeName", new Version(1,1,1,""));
         sm.addSerializer(LocalDate.class, new JsonSerializer<LocalDate>() {

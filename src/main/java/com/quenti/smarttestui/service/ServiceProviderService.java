@@ -74,7 +74,7 @@ public class ServiceProviderService {
     }
 
     /**
-     *  Delete the  serviceProvider by id.
+     *  Soft delete the  serviceProvider by id.
      *
      *  @param id the id of the entity
      */
