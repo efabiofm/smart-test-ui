@@ -16,7 +16,6 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.fecha = DateUtils.convertLocalDateFromServer(data.fecha);
                     }
                     return data;
                 }
