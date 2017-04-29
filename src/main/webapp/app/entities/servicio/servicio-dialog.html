@@ -40,7 +40,13 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.servicio.modulo" for="field_modulo">Modulo</label>
-            <select class="form-control" id="field_modulo" multiple name="modulo" ng-model="vm.servicio.modulos" ng-options="modulo as modulo.nombre for modulo in vm.modulos track by modulo.id"></select>
+            <select class="form-control" id="field_modulo" multiple name="modulo" ng-model="vm.servicio.modulos" ng-options="modulo as modulo.nombre for modulo in vm.modulos track by modulo.id" ng-required="true"></select>
+            <div ng-show="editForm.modulo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.modulo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

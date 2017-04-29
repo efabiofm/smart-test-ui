@@ -45,7 +45,7 @@
                 pruebas: ['Prueba', function(Prueba){
                     return Prueba.query().$promise.then(function(data){
                         data.forEach(function(prueba){
-                            prueba.pruebaNombre = prueba.ambienteNombre + '+' + prueba.metodoNombre + '+' + prueba.moduloNombre;
+                            prueba.pruebaNombre = prueba.ambienteNombre + ' / ' + prueba.metodoNombre + ' / ' + prueba.moduloNombre;
                         });
                         return data;
                     });

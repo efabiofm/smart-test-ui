@@ -40,7 +40,13 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.metodo.servicio" for="field_servicio">Servicio</label>
-            <select class="form-control" id="field_servicio" multiple name="servicio" ng-model="vm.metodo.servicios" ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id"></select>
+            <select class="form-control" id="field_servicio" multiple name="servicio" ng-model="vm.metodo.servicios" ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id" ng-required="true"></select>
+            <div ng-show="editForm.servicio.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.servicio.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

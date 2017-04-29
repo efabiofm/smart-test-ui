@@ -73,7 +73,9 @@
             }
 
             EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
-                $state.go("ejecucion-prueba");
+                setTimeout(function(){
+                    vm.ejecutando = false;
+                },500)
             });
         }
 
