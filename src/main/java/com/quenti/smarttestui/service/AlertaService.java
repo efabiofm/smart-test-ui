@@ -74,7 +74,7 @@ public class AlertaService {
     }
 
     /**
-     *  Delete the  alerta by id.
+     *  soft Delete the  alerta by id.
      *
      *  @param id the id of the entity
      */

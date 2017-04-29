@@ -51,6 +51,11 @@ public class UserJWTController {
     @Inject
     private SeguridadService seguridadService;
 
+
+    /**
+     * @param loginVM the login object, response is the response from the servlet
+     * @return the ResponseEntity
+     */
     @PostMapping("/authenticate")
     @Timed
     public ResponseEntity<?> authorize(@Valid @RequestBody LoginVM loginVM, HttpServletResponse response) {
@@ -70,6 +75,11 @@ public class UserJWTController {
         }
     }
 
+    /**
+     * POST : This authenticate uses the API service login from Quenti, and if the user is correct on quenti it logs in in our application, if it doesnt exist it creates it
+     * @param loginVM the login object, response is the response from the servlet
+     * @return the ResponseEntity
+     */
     @PostMapping("/authenticate/quenti")
     @Timed
     public ResponseEntity<?> authorizeQuenti(@Valid @RequestBody LoginVM loginVM, HttpServletResponse response) {
@@ -130,15 +140,3 @@ public class UserJWTController {
         }
     }
 }
-
-//    login quenti
-//
-//            if login success then
-//                if user exists in the db
-//                not
-//                create user mannagedVM
-//                activo
-//                else
-//                return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
-//
-//    }

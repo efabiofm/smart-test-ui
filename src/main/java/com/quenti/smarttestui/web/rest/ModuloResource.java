@@ -120,6 +120,12 @@ public class ModuloResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("modulo", id.toString())).build();
     }
 
+    /**
+     *  obtiene todos los servicios por modulo
+     *
+     *  @param id the id of modulo
+     *  @return list of all the servicios
+     */
     @GetMapping("/modulos/getService/{id}")
     @Timed
     public List<ServicioDTO> getServiciosPorIdModulo(@PathVariable Long id){

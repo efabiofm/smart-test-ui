@@ -120,6 +120,12 @@ public class ServicioResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("servicio", id.toString())).build();
     }
 
+    /**
+     *  obtiene todos los metodos por servicio
+     *
+     *  @param id the id of servicio
+     *  @return list of all the metodos
+     */
     @GetMapping("/servicios/getMethod/{id}")
     @Timed
     public List<MetodoDTO> obtenerMetodosPorIdServicio(@PathVariable Long id){
