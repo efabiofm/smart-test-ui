@@ -25,7 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,11 +44,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmartTestUiApp.class)
 public class EjecucionPruebaResourceIntTest {
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+        private static final LocalDateTime DEFAULT_FECHA = LocalDateTime.now(ZoneId.systemDefault());
+    private static final LocalDateTime UPDATED_FECHA = LocalDateTime.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_TIEMPO_RESPUESTA = 1;
-    private static final Integer UPDATED_TIEMPO_RESPUESTA = 2;
+    private static final Long DEFAULT_TIEMPO_RESPUESTA = new Long(1);
+    private static final Long UPDATED_TIEMPO_RESPUESTA = new Long(2);
 
     private static final String DEFAULT_RESULTADO = "AAAAAAAAAA";
     private static final String UPDATED_RESULTADO = "BBBBBBBBBB";
@@ -57,7 +59,7 @@ public class EjecucionPruebaResourceIntTest {
     private static final String DEFAULT_BODY = "AAAAAAAAAA";
     private static final String UPDATED_BODY = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -172,7 +174,7 @@ public class EjecucionPruebaResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ejecucionPrueba.getId().intValue())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
-            .andExpect(jsonPath("$.[*].tiempoRespuesta").value(hasItem(DEFAULT_TIEMPO_RESPUESTA)))
+            .andExpect(jsonPath("$.[*].tiempoRespuesta").value(hasItem(DEFAULT_TIEMPO_RESPUESTA.intValue())))
             .andExpect(jsonPath("$.[*].resultado").value(hasItem(DEFAULT_RESULTADO.toString())))
             .andExpect(jsonPath("$.[*].jhUserId").value(hasItem(DEFAULT_JH_USER_ID)))
             .andExpect(jsonPath("$.[*].body").value(hasItem(DEFAULT_BODY.toString())))
@@ -258,22 +260,5 @@ public class EjecucionPruebaResourceIntTest {
         // Validate the EjecucionPrueba in the database
         List<EjecucionPrueba> ejecucionPruebaList = ejecucionPruebaRepository.findAll();
         assertThat(ejecucionPruebaList).hasSize(databaseSizeBeforeUpdate + 1);
-    }
-
-    @Test
-    @Transactional
-    public void deleteEjecucionPrueba() throws Exception {
-        // Initialize the database
-        ejecucionPruebaRepository.saveAndFlush(ejecucionPrueba);
-        int databaseSizeBeforeDelete = ejecucionPruebaRepository.findAll().size();
-
-        // Get the ejecucionPrueba
-        restEjecucionPruebaMockMvc.perform(delete("/api/ejecucion-pruebas/{id}", ejecucionPrueba.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
-
-        // Validate the database is empty
-        List<EjecucionPrueba> ejecucionPruebaList = ejecucionPruebaRepository.findAll();
-        assertThat(ejecucionPruebaList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

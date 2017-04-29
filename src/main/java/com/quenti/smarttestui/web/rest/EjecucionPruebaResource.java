@@ -5,6 +5,7 @@ import com.quenti.smarttestui.service.EjecucionPruebaService;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +31,7 @@ import java.util.stream.Collectors;
 public class EjecucionPruebaResource {
 
     private final Logger log = LoggerFactory.getLogger(EjecucionPruebaResource.class);
-        
+
     @Inject
     private EjecucionPruebaService ejecucionPruebaService;
 
@@ -105,17 +108,18 @@ public class EjecucionPruebaResource {
     }
 
     /**
-     * DELETE  /ejecucion-pruebas/:id : delete the "id" ejecucionPrueba.
+     * POST  /ejecucion-pruebas : Create a new ejecucionPrueba.
      *
-     * @param id the id of the ejecucionPruebaDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param ejecucionPruebaDTO the ejecucionPruebaDTO to create
+     * @return JSONObject that contains the data of a json
      */
-    @DeleteMapping("/ejecucion-pruebas/{id}")
+    @PostMapping("/ejecucion-pruebas/execPrueba")
     @Timed
-    public ResponseEntity<Void> deleteEjecucionPrueba(@PathVariable Long id) {
-        log.debug("REST request to delete EjecucionPrueba : {}", id);
-        ejecucionPruebaService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ejecucionPrueba", id.toString())).build();
+    public JSONObject EjecutarPrueba(@RequestBody EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+        ejecucionPruebaDTO.setEstado("Pendiente");
+        ejecucionPruebaDTO.setFecha(LocalDateTime.now());
+        EjecucionPruebaDTO nvaEjecucion = ejecucionPruebaService.save(ejecucionPruebaDTO);
+        return ejecucionPruebaService.ejecutarPrueba(nvaEjecucion);
     }
 
 }

@@ -46,7 +46,7 @@ class BitacoraGatlingTest extends Simulation {
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
-        .check(status.is(401))).exitHereIfFailed
+        .check(status.is(200))).exitHereIfFailed
         .pause(10)
         .exec(http("Authentication")
         .post("/api/authenticate")

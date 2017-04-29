@@ -20,7 +20,14 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+
+            'getMethod': {
+                method: 'GET',
+                url : 'api/servicios/getMethod/:id',
+                isArray: true,
+            }
+
         });
     }
 })();

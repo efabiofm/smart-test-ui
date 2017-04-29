@@ -16,7 +16,9 @@
             "jhUserId": "Jh User Id",
             "body": "Body",
             "activo": "Active",
-            "prueba": "Test"
+            "prueba": "Test",
+            "estado": "State",
+            "usuario": "User"
         }
     }
 }

@@ -46,7 +46,7 @@ public class AmbienteResourceIntTest {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -263,7 +263,7 @@ public class AmbienteResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Ambiente> ambienteList = ambienteRepository.findAll();
+        List<Ambiente> ambienteList = ambienteRepository.findByActivoTrue();
         assertThat(ambienteList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

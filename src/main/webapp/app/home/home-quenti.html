@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-md-11">
         <label class="control-label" data-translate="home.labels.tests">Pruebas</label>
-        <select class="form-control" ng-model="vm.ejecucionSelec" ng-options="p as p.id for p in vm.pruebas" ng-change="vm.cargarEjecucion(vm.ejecucionSelec)">
+        <select class="form-control" ng-model="vm.ejecucionSelec" ng-options="p as p.pruebaNombre for p in vm.pruebas" ng-change="vm.cargarEjecucion(vm.ejecucionSelec)">
             <option value="" data-translate="home.placeholder"></option>
         </select>
     </div>
-    <div class="col-md-1">
-        <label class="control-label">&nbsp;</label>
-        <button type="button" class="btn btn-sm btn-success">
-            <span class="glyphicon glyphicon-play"></span>
-            <span class="hidden-xs hidden-sm" data-translate="home.labels.run">Correr</span>
-        </button>
+    <div class="col-md-1" ng-if="!vm.ejecutando">
+        <span ng-click="vm.ejecutarPrueba(vm.ejecucion)" class="glyphicon glyphicon-play-circle btn-not-running"></span>
     </div>
+    <div class="col-md-1" ng-if="vm.ejecutando">
+        <i class="glyphicon glyphicon-ok fa-3x btn-running text-success"></i>
+    </div>
+
 </div>
 <hr>
 
@@ -23,22 +23,37 @@
     </div>
     <div class="col-md-10">
         <label class="control-label" data-translate="home.labels.resource">Recurso</label>
-        <input type="text" class="form-control" ng-model="vm.ejecucion.url">
-        <button class="btn btn-default btn-params" ng-click="mostrarParams = !mostrarParams">Params</button>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="vm.ejecucion.url" style="z-index: 0">
+            <span class="input-group-addon btn-params" ng-click="vm.mostrarParams = !vm.mostrarParams">Params</span>
+        </div>
     </div>
 </div>
 <hr>
 
 <!--Parámetros-->
-<div ng-show="mostrarParams">
+<div ng-show="vm.mostrarParams">
     <label class="control-label" data-translate="home.labels.parameters">Parámetros</label>
-    <div class="row">
-        <div class="col-md-2 center-label">Param 1:</div>
-        <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="vm.ejecucion.param1">
+    <div class="form-group row" ng-repeat="param in vm.ejecucion.params track by $index">
+        <div class="col-md-2 center-label" data-translate="home.labels.key">Llave</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="param.nombre">
+        </div>
+        <div class="col-md-1 center-label" data-translate="home.labels.value">Valor</div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="param.valor">
         </div>
         <div class="col-md-1">
-            <span class="glyphicon glyphicon-plus"></span>
+            <span class="glyphicon glyphicon-minus-sign" ng-click="vm.removerParam($index)"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <a ng-click="vm.agregarParam()">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;
+                <span data-translate="home.labels.add.param">Agregar parámetro</span>
+            </a>
         </div>
     </div>
     <hr>
@@ -46,29 +61,40 @@
 
 <!--Headers-->
 <label class="control-label">Headers</label>
-<div class="row">
+<div class="row form-group">
     <div class="col-md-2 center-label">Token:</div>
-    <div class="col-md-9">
-        <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token">
+    <div class="col-md-10">
+        <input type="text" class="form-control" ng-model="vm.ejecucion.headers.token" ng-disabled="true">
     </div>
-    <div class="col-md-1">
-        <span class="glyphicon glyphicon-plus"></span>
+</div>
+<div class="row form-group">
+    <div class="col-md-2 center-label">service-provider-id</div>
+    <div class="col-md-10">
+        <input type="number" class="form-control" ng-model="vm.ejecucion.headers.serviceProviderId">
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-2 center-label">service-group-id</div>
+    <div class="col-md-10">
+        <input type="number" class="form-control" ng-model="vm.ejecucion.headers.serviceGroupId">
     </div>
 </div>
 <hr>
 
 <!--Resultado-->
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label class="control-label">JSON</label>
             <textarea rows="15" class="form-control text-scroll" ng-model="vm.ejecucion.body"></textarea>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label class="control-label" data-translate="home.labels.response">Respuesta</label>
-            <textarea rows="15" class="form-control text-scroll" ng-disabled="true"></textarea>
-        </div>
-    </div>
+
+    <!--<div class="col-md-6">-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="home.labels.response">Respuesta</label>-->
+            <!--<textarea rows="15" class="form-control text-scroll" ng-disabled="true" ng-model="vm.ejecucion.respuesta"></textarea>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
+

@@ -1,11 +1,14 @@
 package com.quenti.smarttestui.service;
 
+import com.quenti.smarttestui.components.RequestComponent;
 import com.quenti.smarttestui.domain.EjecucionPrueba;
 import com.quenti.smarttestui.repository.EjecucionPruebaRepository;
 import com.quenti.smarttestui.service.dto.EjecucionPruebaDTO;
 import com.quenti.smarttestui.service.mapper.EjecucionPruebaMapper;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,9 @@ public class EjecucionPruebaService {
 
     @Inject
     private EjecucionPruebaMapper ejecucionPruebaMapper;
+
+    @Inject
+    private RequestComponent requestComponent;
 
     /**
      * Save a ejecucionPrueba.
@@ -84,5 +90,16 @@ public class EjecucionPruebaService {
         ejecucionPruebaDTO.setActivo(false);
         EjecucionPrueba ejecucionPrueba = ejecucionPruebaMapper.ejecucionPruebaDTOToEjecucionPrueba(ejecucionPruebaDTO);
         ejecucionPruebaRepository.save(ejecucionPrueba);
+    }
+
+    /**
+     *  executes the test
+     *
+     *  @param idAmbiente the id of ambiente
+     */
+    @Transactional
+    @Async
+    public JSONObject ejecutarPrueba(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
+        return requestComponent.init(ejecucionPruebaDTO);
     }
 }

@@ -43,7 +43,7 @@ public class TipoAlertaResourceIntTest {
     private static final String DEFAULT_METODO = "AAAAAAAAAA";
     private static final String UPDATED_METODO = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -254,7 +254,7 @@ public class TipoAlertaResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<TipoAlerta> tipoAlertaList = tipoAlertaRepository.findAll();
+        List<TipoAlerta> tipoAlertaList = tipoAlertaRepository.findByActivoTrue();
         assertThat(tipoAlertaList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

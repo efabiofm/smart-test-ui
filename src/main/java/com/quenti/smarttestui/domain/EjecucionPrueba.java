@@ -4,6 +4,7 @@ package com.quenti.smarttestui.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -20,10 +21,10 @@ public class EjecucionPrueba implements Serializable {
     private Long id;
 
     @Column(name = "fecha")
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @Column(name = "tiempo_respuesta")
-    private Integer tiempoRespuesta;
+    private Long tiempoRespuesta;
 
     @Column(name = "resultado")
     private String resultado;
@@ -37,6 +38,21 @@ public class EjecucionPrueba implements Serializable {
     @Column(name = "activo")
     private Boolean activo;
 
+    @Column(name = "url")
+    private String url;
+
+    @Column(name = "estado")
+    private String estado;
+
+    @Column(name = "serviceProviderId")
+    private Long serviceProviderId;
+
+    @Column(name = "serviceGroupId")
+    private Long serviceGroupId;
+
+    @Column(name = "jhUserName")
+    private String jhUserName;
+
     @ManyToOne
     private Prueba prueba;
 
@@ -48,29 +64,29 @@ public class EjecucionPrueba implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public EjecucionPrueba fecha(LocalDate fecha) {
+    public EjecucionPrueba fecha(LocalDateTime fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
-    public Integer getTiempoRespuesta() {
+    public Long getTiempoRespuesta() {
         return tiempoRespuesta;
     }
 
-    public EjecucionPrueba tiempoRespuesta(Integer tiempoRespuesta) {
+    public EjecucionPrueba tiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
         return this;
     }
 
-    public void setTiempoRespuesta(Integer tiempoRespuesta) {
+    public void setTiempoRespuesta(Long tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
 
@@ -87,6 +103,32 @@ public class EjecucionPrueba implements Serializable {
         this.resultado = resultado;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public EjecucionPrueba url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public EjecucionPrueba estado(String estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public Integer getJhUserId() {
         return jhUserId;
     }
@@ -98,6 +140,19 @@ public class EjecucionPrueba implements Serializable {
 
     public void setJhUserId(Integer jhUserId) {
         this.jhUserId = jhUserId;
+    }
+
+    public String getJhUserName() {
+        return jhUserName;
+    }
+
+    public EjecucionPrueba jhUserName(String jhUserName) {
+        this.jhUserName = jhUserName;
+        return this;
+    }
+
+    public void setJhUserName(String jhUserName) {
+        this.jhUserName = jhUserName;
     }
 
     public String getBody() {
@@ -137,6 +192,32 @@ public class EjecucionPrueba implements Serializable {
 
     public void setPrueba(Prueba prueba) {
         this.prueba = prueba;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public EjecucionPrueba serviceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+        return this;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public EjecucionPrueba serviceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
+        return this;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
     }
 
     @Override

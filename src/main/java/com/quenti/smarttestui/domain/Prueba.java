@@ -26,6 +26,12 @@ public class Prueba implements Serializable {
     @Column(name = "body", nullable = false)
     private String body;
 
+    @Column(name = "serviceProviderId", nullable = true)
+    private Long serviceProviderId;
+
+    @Column(name = "serviceGroupId", nullable = true)
+    private Long serviceGroupId;
+
     @Column(name = "activo")
     private Boolean activo;
 
@@ -81,6 +87,32 @@ public class Prueba implements Serializable {
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public Long getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public Prueba serviceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+        return this;
+    }
+
+    public void setServiceProviderId(Long serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getServiceGroupId() {
+        return serviceGroupId;
+    }
+
+    public Prueba serviceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
+        return this;
+    }
+
+    public void setServiceGroupId(Long serviceGroupId) {
+        this.serviceGroupId = serviceGroupId;
     }
 
     public Ambiente getAmbiente() {

@@ -15,8 +15,13 @@
     /*border-bottom: 1px solid #d5d5d5;*/
 }
 
+.stu-container {
+    width: 100%;
+}
+
 .stu-container > .well {
     margin-top: 70px;
+    margin-left: 160px;
 }
 
 .stu-nav-container {
@@ -63,9 +68,22 @@
 }
 
 .btn-params {
+    background: #fff;
+}
+
+.btn-not-running {
     top: 25px;
-    right: 15px;
-    position: absolute;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.btn-not-running:hover {
+    color: #18bc9c;
+}
+
+.btn-running {
+    position: relative;
+    top: 25px;
 }
 
 textarea {
@@ -76,4 +94,13 @@ textarea {
     position: fixed;
     width: 100%;
     z-index: 1;
+}
+
+.btn-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.btn-disabled span {
+    pointer-events: none;
 }

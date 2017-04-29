@@ -1,7 +1,9 @@
 package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.quenti.smarttestui.domain.Modulo;
 import com.quenti.smarttestui.service.AmbienteService;
+import com.quenti.smarttestui.service.dto.ModuloDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.AmbienteDTO;
 
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -29,7 +32,7 @@ import java.util.stream.Collectors;
 public class AmbienteResource {
 
     private final Logger log = LoggerFactory.getLogger(AmbienteResource.class);
-        
+
     @Inject
     private AmbienteService ambienteService;
 
@@ -108,7 +111,7 @@ public class AmbienteResource {
     /**
      * DELETE  /ambientes/:id : delete the "id" ambiente.
      *
-     * @param id the id of the ambienteDTO to delete
+     * @param id the id of the ambienteDTO to soft delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/ambientes/{id}")
@@ -118,5 +121,20 @@ public class AmbienteResource {
         ambienteService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ambiente", id.toString())).build();
     }
+
+    /**
+     * GET : gets all the ambientes with all the modulos asociated
+     *
+     * @param id the id of the ambiente
+     * @return the list of all the modulos
+     */
+    @GetMapping("/ambientes/getModules/{id}")
+    @Timed
+    public List<ModuloDTO> getModulosPorIdAmbiente(@PathVariable Long id){
+
+        return ambienteService.obtenerModulosPorAmbiente(id);
+
+    }
+
 
 }

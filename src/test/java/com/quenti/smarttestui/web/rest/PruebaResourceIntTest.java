@@ -43,7 +43,7 @@ public class PruebaResourceIntTest {
     private static final String DEFAULT_BODY = "AAAAAAAAAA";
     private static final String UPDATED_BODY = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -254,7 +254,7 @@ public class PruebaResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Prueba> pruebaList = pruebaRepository.findAll();
+        List<Prueba> pruebaList = pruebaRepository.findByActivoTrue();
         assertThat(pruebaList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

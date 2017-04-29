@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -20,7 +21,16 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+
+            'update': { method:'PUT' },
+
+
+            'getModules': {
+                method: 'GET',
+                url : 'api/ambientes/getModules/:id',
+                isArray: true,
+            }
+
         });
     }
 })();

@@ -51,6 +51,11 @@ public class UserJWTController {
     @Inject
     private SeguridadService seguridadService;
 
+
+    /**
+     * @param loginVM the login object, response is the response from the servlet
+     * @return the ResponseEntity
+     */
     @PostMapping("/authenticate")
     @Timed
     public ResponseEntity<?> authorize(@Valid @RequestBody LoginVM loginVM, HttpServletResponse response) {
@@ -70,6 +75,11 @@ public class UserJWTController {
         }
     }
 
+    /**
+     * POST : This authenticate uses the API service login from Quenti, and if the user is correct on quenti it logs in in our application, if it doesnt exist it creates it
+     * @param loginVM the login object, response is the response from the servlet
+     * @return the ResponseEntity
+     */
     @PostMapping("/authenticate/quenti")
     @Timed
     public ResponseEntity<?> authorizeQuenti(@Valid @RequestBody LoginVM loginVM, HttpServletResponse response) {
@@ -78,65 +88,55 @@ public class UserJWTController {
         Long userId = null;
 
         if (!uqDTO.getObjTokenDTO().equals("null")) { //si quenti devuelve token:
-            Optional<User> usuarioReal = userService.getUserWithAuthoritiesByLogin(loginVM.getUsername());
-            if (usuarioReal.toString().equals("Optional.empty")) { //si no existe en jhipster, se crea:
-                String customEmail = loginVM.getUsername().toLowerCase() + "@localhost";
-                User newUser = userService.createUser(loginVM.getUsername(),loginVM.getPassword(),uqDTO.getFirstName(),
-                    uqDTO.getLastName(),customEmail,"en");
-                userId = newUser.getId();
-            } else {
-                userId = usuarioReal.get().getId();
-            }
-
-            //después de encontrar el usuario o de crearlo, se autentica:
-            UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
-
-            try {
-                Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
-                String jwt = tokenProvider.createToken(authentication, rememberMe);
-                response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
-
-                SeguridadDTO seguridadDTO = new SeguridadDTO();
-
-
-                SeguridadDTO seguridadDTO2 = seguridadService.findBySeguridadId(userId);
-
-                if (seguridadDTO2 == null){
-                    seguridadDTO.setToken(uqDTO.getObjTokenDTO());
-                    seguridadDTO.setFecha(LocalDate.now());
-                    seguridadDTO.setJhUserId(userId);
-                    seguridadService.save(seguridadDTO);
-                }else {
-                    if(!seguridadDTO2.getToken().equals(uqDTO.getObjTokenDTO())){
-                        seguridadDTO2.setToken(uqDTO.getObjTokenDTO());
-                        seguridadService.save(seguridadDTO2);
-                    }
+            Boolean band = loginQuentiComponent.setOrganizationsCode(uqDTO.getObjTokenDTO());
+            if(band){
+                Optional<User> usuarioReal = userService.getUserWithAuthoritiesByLogin(loginVM.getUsername());
+                if (usuarioReal.toString().equals("Optional.empty")) { //si no existe en jhipster, se crea:
+                    String customEmail = loginVM.getUsername().toLowerCase() + "@localhost";
+                    User newUser = userService.createUser(loginVM.getUsername(),loginVM.getPassword(),uqDTO.getFirstName(),
+                        uqDTO.getLastName(),customEmail,"en");
+                    userId = newUser.getId();
+                } else {
+                    userId = usuarioReal.get().getId();
                 }
 
+                //después de encontrar el usuario o de crearlo, se autentica:
+                UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
 
+                try {
+                    Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
+                    String jwt = tokenProvider.createToken(authentication, rememberMe);
+                    response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
+                    SeguridadDTO seguridadDTO = new SeguridadDTO();
+                    SeguridadDTO seguridadDTO2 = seguridadService.findBySeguridadId(userId);
 
-                return ResponseEntity.ok(new JWTToken(jwt));
-            } catch (AuthenticationException exception) {
-                return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
+                    if (seguridadDTO2 == null){
+                        seguridadDTO.setToken(uqDTO.getObjTokenDTO());
+                        seguridadDTO.setFecha(LocalDate.now());
+                        seguridadDTO.setJhUserId(userId);
+                        seguridadService.save(seguridadDTO);
+                    }else {
+                        if(!seguridadDTO2.getToken().equals(uqDTO.getObjTokenDTO())){
+                            seguridadDTO2.setToken(uqDTO.getObjTokenDTO());
+                            seguridadService.save(seguridadDTO2);
+                        }
+                    }
+
+                    return ResponseEntity.ok(new JWTToken(jwt));
+                } catch (AuthenticationException exception) {
+                    return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
+                }
+
+            } // Step 2 SEGU.
+            else { //credenciales invalidos de quenti
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
         } else { //credenciales invalidos de quenti
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 }
-
-//    login quenti
-//
-//            if login success then
-//                if user exists in the db
-//                not
-//                create user mannagedVM
-//                activo
-//                else
-//                return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
-//
-//    }

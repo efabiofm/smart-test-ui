@@ -16,7 +16,6 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.fecha = DateUtils.convertLocalDateFromServer(data.fecha);
                     }
                     return data;
                 }
@@ -36,7 +35,14 @@
                     copy.fecha = DateUtils.convertLocalDateToServer(copy.fecha);
                     return angular.toJson(copy);
                 }
+            },
+
+            'ejecutarPrueba': {
+                method: 'POST',
+                url : 'api/ejecucion-pruebas/execPrueba'
             }
+
+
         });
     }
 })();

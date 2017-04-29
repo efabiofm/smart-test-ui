@@ -1,9 +1,13 @@
 package com.quenti.smarttestui.service;
 
 import com.quenti.smarttestui.domain.Modulo;
+import com.quenti.smarttestui.domain.Servicio;
 import com.quenti.smarttestui.repository.ModuloRepository;
 import com.quenti.smarttestui.service.dto.ModuloDTO;
+import com.quenti.smarttestui.service.dto.ServicioDTO;
 import com.quenti.smarttestui.service.mapper.ModuloMapper;
+import com.quenti.smarttestui.service.mapper.SeguridadMapper;
+import com.quenti.smarttestui.service.mapper.ServicioMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +32,9 @@ public class ModuloService {
 
     @Inject
     private ModuloMapper moduloMapper;
+
+    @Inject
+    private ServicioMapper servicioMapper;
 
     /**
      * Save a modulo.
@@ -85,4 +92,19 @@ public class ModuloService {
         Modulo modulo = moduloMapper.moduloDTOToModulo(moduloDTO);
         moduloRepository.save(modulo);
     }
+
+    /**
+     *  obtiene todos los servicios por modulo
+     *
+     *  @param idModulo the id of modulo
+     */
+    @Transactional(readOnly = true)
+    public List<ServicioDTO> obtenerServiciosPorModulo(Long idModulo){
+        Modulo modulo = moduloRepository.findOne(idModulo);
+        List<ServicioDTO> servicioDTOS = modulo.getServicios().stream()
+            .map(servicioMapper::servicioToServicioDTO)
+            .collect(Collectors.toCollection(LinkedList::new));
+        return servicioDTOS;
+    }
+
 }

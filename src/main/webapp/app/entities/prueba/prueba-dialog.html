@@ -28,27 +28,62 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.ambiente" for="field_ambiente">Ambiente</label>
-            <select class="form-control" id="field_ambiente" name="ambiente" ng-model="vm.prueba.ambienteId" ng-options="ambiente.id as ambiente.nombre for ambiente in vm.ambientes"            >
+            <select class="form-control" id="field_ambiente" name="ambiente" ng-model="vm.prueba.ambienteId" ng-change="vm.obtenerModulos(vm.prueba.ambienteId)" ng-options="ambiente.id as ambiente.nombre for ambiente in vm.ambientes" required>
                 <option value=""></option>
             </select>
+            <div ng-show="editForm.ambiente.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.ambiente.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.modulo" for="field_modulo">Modulo</label>
-            <select class="form-control" id="field_modulo" name="modulo" ng-model="vm.prueba.moduloId" ng-options="modulo.id as modulo.nombre for modulo in vm.modulos"            >
+            <select class="form-control" id="field_modulo" name="modulo" ng-model="vm.prueba.moduloId" ng-change="vm.obtenerServicios(vm.prueba.moduloId)" ng-options="modulo.id as modulo.nombre for modulo in vm.modulos" required>
                 <option value=""></option>
             </select>
+            <div ng-show="editForm.modulo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.modulo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label data-translate="smartTestUiApp.prueba.servicio" for="field_servicio">Servicio</label>
-            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.prueba.servicioId" ng-options="servicio.id as servicio.nombre for servicio in vm.servicios"            >
+            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.prueba.servicioId" ng-change="vm.obtenerMetodos(vm.prueba.servicioId)" ng-options="servicio.id as servicio.nombre for servicio in vm.servicios" required>
+                <option value=""></option>
+            </select>
+            <div ng-show="editForm.servicio.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.servicio.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label data-translate="smartTestUiApp.prueba.metodo" for="field_metodo">Metodo</label>
+            <select class="form-control" id="field_metodo" name="metodo" ng-model="vm.prueba.metodoId" ng-options="metodo.id as metodo.nombre for metodo in vm.metodos" required>
+                <option value=""></option>
+            </select>
+            <div ng-show="editForm.metodo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.metodo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_service-provider">Service Provider ID</label>
+            <select class="form-control" id="field_service-provider" name="service-provider" ng-model="vm.prueba.serviceProviderId" ng-options="service.serviceProviderId as service.nombre for service in vm.serviceProviders"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
-            <label data-translate="smartTestUiApp.prueba.metodo" for="field_metodo">Metodo</label>
-            <select class="form-control" id="field_metodo" name="metodo" ng-model="vm.prueba.metodoId" ng-options="metodo.id as metodo.nombre for metodo in vm.metodos"            >
-                <option value=""></option>
-            </select>
+            <label for="field_service-group" >Service Group ID</label>
+            <input type="number" class="form-control" id="field_service-group" name="service-group"
+                   ng-model="vm.prueba.serviceGroupId" />
         </div>
     </div>
     <div class="modal-footer">

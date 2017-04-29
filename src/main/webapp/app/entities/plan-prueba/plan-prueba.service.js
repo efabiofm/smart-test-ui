@@ -20,7 +20,16 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+
+            'ejecutarPrueba': {
+                method: 'GET',
+                url : 'api/plan-pruebas/execPlanPrueba/:id',
+                transformResponse: function (data) {
+                    return data;
+                }
+            }
+
         });
     }
 })();

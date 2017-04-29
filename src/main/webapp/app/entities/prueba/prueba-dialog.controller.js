@@ -5,20 +5,30 @@
         .module('smartTestUiApp')
         .controller('PruebaDialogController', PruebaDialogController);
 
-    PruebaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Prueba', 'Ambiente', 'Modulo', 'Servicio', 'Metodo', 'EjecucionPrueba', 'PlanPrueba'];
+    PruebaDialogController.$inject = ['$timeout', '$scope', 'ServiceProvider', '$uibModalInstance', 'entity', 'Prueba', 'Ambiente', 'Modulo', 'Servicio', 'Metodo', 'EjecucionPrueba', 'PlanPrueba'];
 
-    function PruebaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Prueba, Ambiente, Modulo, Servicio, Metodo, EjecucionPrueba, PlanPrueba) {
+    function PruebaDialogController ($timeout, $scope, ServiceProvider, $uibModalInstance, entity, Prueba, Ambiente, Modulo, Servicio, Metodo, EjecucionPrueba, PlanPrueba) {
         var vm = this;
+        vm.obtenerModulos = obtenerModulos;
+        vm.obtenerServicios = obtenerServicios;
+        vm.obtenerMetodos = obtenerMetodos;
 
         vm.prueba = entity;
         vm.clear = clear;
         vm.save = save;
         vm.ambientes = Ambiente.query();
-        vm.modulos = Modulo.query();
-        vm.servicios = Servicio.query();
-        vm.metodos = Metodo.query();
         vm.ejecucionpruebas = EjecucionPrueba.query();
         vm.planpruebas = PlanPrueba.query();
+
+        if(vm.prueba.id){
+            obtenerModulos(vm.prueba.ambienteId);
+            obtenerServicios(vm.prueba.moduloId);
+            obtenerMetodos(vm.prueba.servicioId);
+        };
+
+        ServiceProvider.query().$promise.then(function(serviceProviders){
+            vm.serviceProviders = serviceProviders;
+        })
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -47,6 +57,23 @@
             vm.isSaving = false;
         }
 
+        function obtenerModulos(id) {
+            Ambiente.getModules({id:id}).$promise.then(function (modulos) {
+                vm.modulos = modulos;
+            });
+        }
+
+        function obtenerServicios(id) {
+            Modulo.getService({id:id}).$promise.then(function (servicios) {
+                vm.servicios = servicios;
+            });
+        }
+
+        function obtenerMetodos(id) {
+            Servicio.getMethod({id:id}).$promise.then(function (metodos) {
+                vm.metodos = metodos;
+            });
+        }
 
     }
 })();

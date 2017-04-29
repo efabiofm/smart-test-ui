@@ -18,7 +18,8 @@
             },
             "nombre": "Nombre",
             "activo": "Activo",
-            "prueba": "Prueba"
+            "prueba": "Prueba",
+            "ejecutar": "Ejecutar"
         }
     }
 }

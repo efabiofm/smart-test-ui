@@ -43,14 +43,14 @@
 
             return authReturn;
 
-            function authThen () {
+            function authThen (data) {
                 var isAuthenticated = Principal.isAuthenticated();
-                var identity = Principal.identity().$$state.value;
+                $rootScope.isAdmin = data ? data.authorities.includes("ROLE_ADMIN") : false;
 
                 // an authenticated user can't access to login and register pages
-                if (isAuthenticated && identity.login !== 'anonymoususer' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'home')) {
-                    if ( identity.authorities.indexOf("ROLE_ADMIN") !== -1 ) {
-                        $state.go('home-admin');
+                if (isAuthenticated && data.login !== 'anonymoususer' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'home')) {
+                    if ( $rootScope.isAdmin ) {
+                        $state.go('ejecucion-prueba');
                     } else {
                         $state.go('home-quenti');
                     }

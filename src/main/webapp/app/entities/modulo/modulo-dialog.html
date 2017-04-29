@@ -40,7 +40,13 @@
 
         <div class="form-group">
             <label data-translate="smartTestUiApp.modulo.ambiente" for="field_ambiente">Ambiente</label>
-            <select class="form-control" id="field_ambiente" multiple name="ambiente" ng-model="vm.modulo.ambientes" ng-options="ambiente as ambiente.nombre for ambiente in vm.ambientes track by ambiente.id"></select>
+            <select class="form-control" id="field_ambiente" multiple name="ambiente" ng-model="vm.modulo.ambientes" ng-options="ambiente as ambiente.nombre for ambiente in vm.ambientes track by ambiente.id" ng-required="true"></select>
+        </div>
+        <div ng-show="editForm.ambiente.$invalid">
+            <p class="help-block"
+               ng-show="editForm.ambiente.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

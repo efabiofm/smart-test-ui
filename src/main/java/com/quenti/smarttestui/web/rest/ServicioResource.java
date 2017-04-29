@@ -2,6 +2,7 @@ package com.quenti.smarttestui.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.quenti.smarttestui.service.ServicioService;
+import com.quenti.smarttestui.service.dto.MetodoDTO;
 import com.quenti.smarttestui.web.rest.util.HeaderUtil;
 import com.quenti.smarttestui.service.dto.ServicioDTO;
 
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 public class ServicioResource {
 
     private final Logger log = LoggerFactory.getLogger(ServicioResource.class);
-        
+
     @Inject
     private ServicioService servicioService;
 
@@ -118,5 +119,18 @@ public class ServicioResource {
         servicioService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("servicio", id.toString())).build();
     }
+
+    /**
+     *  obtiene todos los metodos por servicio
+     *
+     *  @param id the id of servicio
+     *  @return list of all the metodos
+     */
+    @GetMapping("/servicios/getMethod/{id}")
+    @Timed
+    public List<MetodoDTO> obtenerMetodosPorIdServicio(@PathVariable Long id){
+        return servicioService.obtenerMetodosPorServicio(id);
+    }
+
 
 }

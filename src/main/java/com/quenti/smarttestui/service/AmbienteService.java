@@ -2,10 +2,14 @@ package com.quenti.smarttestui.service;
 
 import com.quenti.smarttestui.domain.Ambiente;
 import com.quenti.smarttestui.repository.AmbienteRepository;
+import com.quenti.smarttestui.repository.ModuloRepository;
 import com.quenti.smarttestui.service.dto.AmbienteDTO;
+import com.quenti.smarttestui.service.dto.ModuloDTO;
 import com.quenti.smarttestui.service.mapper.AmbienteMapper;
+import com.quenti.smarttestui.service.mapper.ModuloMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +32,9 @@ public class AmbienteService {
 
     @Inject
     private AmbienteMapper ambienteMapper;
+
+    @Inject
+    private ModuloMapper moduloMapper;
 
     /**
      * Save a ambiente.
@@ -74,7 +81,7 @@ public class AmbienteService {
     }
 
     /**
-     *  Delete the  ambiente by id.
+     *  soft delete the  ambiente by id.
      *
      *  @param id the id of the entity
      */
@@ -86,4 +93,19 @@ public class AmbienteService {
         ambienteRepository.save(ambiente);
 
     }
+
+    /**
+     *  obtiene todos los modulos por ambiente
+     *
+     *  @param idAmbiente the id of ambiente
+     */
+    @Transactional(readOnly = true)
+        public List<ModuloDTO> obtenerModulosPorAmbiente(Long idAmbiente){
+        Ambiente ambiente = ambienteRepository.findOne(idAmbiente);
+        List<ModuloDTO> moduloDTOS = ambiente.getModulos().stream()
+            .map(moduloMapper::moduloToModuloDTO)
+            .collect(Collectors.toCollection(LinkedList::new));
+        return moduloDTOS;
+    }
+
 }

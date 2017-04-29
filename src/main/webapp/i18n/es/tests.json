@@ -1,0 +1,26 @@
+{
+    "smartTestUiApp": {
+        "tests" : {
+            "home": {
+                "title": "Ejecuciones de prueba en proceso",
+                "title2": "Ejecuciones de prueba completados",
+                "search": "Buscar para ejecución prueba"
+            },
+            "created": "A new Plan Prueba is created with identifier {{ param }}",
+            "updated": "A Plan Prueba is updated with identifier {{ param }}",
+            "deleted": "A Plan Prueba is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Plan Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Ejecuciones de pruebas"
+            },
+            "fecha": "Fecha",
+            "resultado": "Resultado",
+            "usuario": "Usuario",
+            "estado": "Estado",
+            "prueba": "Prueba",
+            "tiempo": "Tiempo respuesta"
+        }
+    }
+}

@@ -1,8 +1,11 @@
 package com.quenti.smarttestui.service;
 
+import com.quenti.smarttestui.domain.Metodo;
 import com.quenti.smarttestui.domain.Servicio;
 import com.quenti.smarttestui.repository.ServicioRepository;
+import com.quenti.smarttestui.service.dto.MetodoDTO;
 import com.quenti.smarttestui.service.dto.ServicioDTO;
+import com.quenti.smarttestui.service.mapper.MetodoMapper;
 import com.quenti.smarttestui.service.mapper.ServicioMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +31,9 @@ public class ServicioService {
 
     @Inject
     private ServicioMapper servicioMapper;
+
+    @Inject
+    private MetodoMapper metodoMapper;
 
     /**
      * Save a servicio.
@@ -85,4 +91,20 @@ public class ServicioService {
         Servicio servicio = servicioMapper.servicioDTOToServicio(servicioDTO);
         servicioRepository.save(servicio);
     }
+
+    /**
+     *  Obtains all the metodos by service
+     *
+     *  @param idServicio the id of servicio
+     *  @return a list of all the metodos
+     */
+    @Transactional(readOnly = true)
+    public List<MetodoDTO> obtenerMetodosPorServicio(Long idServicio){
+        Servicio servicio = servicioRepository.findOne(idServicio);
+        List<MetodoDTO> metodoDTOS = servicio.getMetodos().stream()
+            .map(metodoMapper::metodoToMetodoDTO)
+            .collect(Collectors.toCollection(LinkedList::new));
+        return  metodoDTOS;
+    }
+
 }
