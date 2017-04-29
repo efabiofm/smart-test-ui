@@ -74,7 +74,7 @@ public class TipoEventoService {
     }
 
     /**
-     *  Delete the  tipoEvento by id.
+     *  Soft delete the  tipoEvento by id.
      *
      *  @param id the id of the entity
      */

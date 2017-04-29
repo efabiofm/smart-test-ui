@@ -46,7 +46,7 @@ public class HeaderResourceIntTest {
     private static final String DEFAULT_TOKEN = "AAAAAAAAAA";
     private static final String UPDATED_TOKEN = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -263,7 +263,7 @@ public class HeaderResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Header> headerList = headerRepository.findAll();
+        List<Header> headerList = headerRepository.findByActivoTrue();
         assertThat(headerList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

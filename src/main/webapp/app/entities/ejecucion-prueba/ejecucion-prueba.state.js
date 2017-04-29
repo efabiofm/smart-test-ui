@@ -52,7 +52,11 @@
                 }],
                 entity: ['$stateParams', 'EjecucionPrueba', function($stateParams, EjecucionPrueba) {
                     return EjecucionPrueba.get({id : $stateParams.id}).$promise.then(function(data){
-                        data.resultado = JSON.parse(data.resultado);
+                        try{
+                            data.resultado = JSON.parse(data.resultado);
+                        }catch(e){
+                            console.log(e);
+                        }
                         data.body = JSON.parse(data.body);
                         return data;
                     });

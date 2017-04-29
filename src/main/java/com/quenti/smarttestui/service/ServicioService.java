@@ -92,6 +92,12 @@ public class ServicioService {
         servicioRepository.save(servicio);
     }
 
+    /**
+     *  Obtains all the metodos by service
+     *
+     *  @param idServicio the id of servicio
+     *  @return a list of all the metodos
+     */
     @Transactional(readOnly = true)
     public List<MetodoDTO> obtenerMetodosPorServicio(Long idServicio){
         Servicio servicio = servicioRepository.findOne(idServicio);

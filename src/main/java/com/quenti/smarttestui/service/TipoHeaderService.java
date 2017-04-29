@@ -74,7 +74,7 @@ public class TipoHeaderService {
     }
 
     /**
-     *  Delete the  tipoHeader by id.
+     *  Soft delete the  tipoHeader by id.
      *
      *  @param id the id of the entity
      */

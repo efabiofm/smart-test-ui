@@ -13,16 +13,18 @@
         vm.obtenerServicios = obtenerServicios;
         vm.obtenerMetodos = obtenerMetodos;
 
-
         vm.prueba = entity;
         vm.clear = clear;
         vm.save = save;
         vm.ambientes = Ambiente.query();
-        // vm.modulos = Modulo.query();//Ambiente.getModules({id:prueba.id});
-        // vm.servicios = Servicio.query();
-        // vm.metodos = Metodo.query();
         vm.ejecucionpruebas = EjecucionPrueba.query();
         vm.planpruebas = PlanPrueba.query();
+
+        if(vm.prueba.id){
+            obtenerModulos(vm.prueba.ambienteId);
+            obtenerServicios(vm.prueba.moduloId);
+            obtenerMetodos(vm.prueba.servicioId);
+        };
 
         ServiceProvider.query().$promise.then(function(serviceProviders){
             vm.serviceProviders = serviceProviders;

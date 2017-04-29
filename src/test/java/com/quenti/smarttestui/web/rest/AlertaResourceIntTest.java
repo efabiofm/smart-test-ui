@@ -43,7 +43,7 @@ public class AlertaResourceIntTest {
     private static final String DEFAULT_MENSAJE = "AAAAAAAAAA";
     private static final String UPDATED_MENSAJE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -254,7 +254,7 @@ public class AlertaResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Alerta> alertaList = alertaRepository.findAll();
+        List<Alerta> alertaList = alertaRepository.findByActivoTrue();
         assertThat(alertaList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

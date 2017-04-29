@@ -90,6 +90,12 @@ public class PruebaService {
 
     }
 
+    /**
+     *  obtains the URL of a certain test by id; by asking every entity all the things it needs
+     *
+     *  @param id the id of prueba
+     *  @return PruebaUrlDTO
+     */
     @Transactional(readOnly =  true)
     public PruebaUrlDTO ObtenerURIPorIdPrueba(Long id){
 

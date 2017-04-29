@@ -93,6 +93,11 @@ public class ModuloService {
         moduloRepository.save(modulo);
     }
 
+    /**
+     *  obtiene todos los servicios por modulo
+     *
+     *  @param idModulo the id of modulo
+     */
     @Transactional(readOnly = true)
     public List<ServicioDTO> obtenerServiciosPorModulo(Long idModulo){
         Modulo modulo = moduloRepository.findOne(idModulo);

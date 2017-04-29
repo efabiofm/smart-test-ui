@@ -43,7 +43,7 @@ public class TipoEventoResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -254,7 +254,7 @@ public class TipoEventoResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<TipoEvento> tipoEventoList = tipoEventoRepository.findAll();
+        List<TipoEvento> tipoEventoList = tipoEventoRepository.findByActivoTrue();
         assertThat(tipoEventoList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

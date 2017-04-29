@@ -47,7 +47,13 @@
         </div>
         <div class="form-group">
             <label data-translate="smartTestUiApp.parametro.metodo" for="field_metodo">Metodo</label>
-            <select class="form-control" id="field_metodo" multiple name="metodo" ng-model="vm.parametro.metodos" ng-options="metodo as metodo.nombre for metodo in vm.metodos track by metodo.id"></select>
+            <select class="form-control" id="field_metodo" multiple name="metodo" ng-model="vm.parametro.metodos" ng-options="metodo as metodo.nombre for metodo in vm.metodos track by metodo.id" ng-required="true"></select>
+            <div ng-show="editForm.metodo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.metodo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

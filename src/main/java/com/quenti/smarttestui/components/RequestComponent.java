@@ -34,9 +34,13 @@ public class RequestComponent {
 
     RequestDTO requestDTO = new RequestDTO();
 
+    /**
+     * executes a test
+     *
+     * @param ejecucionPruebaDTO the ejecucionPruebaDTO to execute
+     * @return the JSONObject that is the result of a ejecucionPrueba
+     */
     public JSONObject init(EjecucionPruebaDTO ejecucionPruebaDTO) throws InterruptedException {
-        //TODO: (No muy necesario) No devolver un string sino un JSON porque en Postman se ve como un string ---> Listo
-        //TODO: Determinar como mostrar Json en pantalla
 
         Long jhUserId = new Long(ejecucionPruebaDTO.getJhUserId());
         String token = seguridadService.findBySeguridadId(jhUserId).getToken(); //token del usuario actual
@@ -62,12 +66,16 @@ public class RequestComponent {
         try{
             result = makePostCall(requestDTO);
             ejecucionPruebaDTO.setResultado(result.toString());
-            JSONObject apiResult = result.getJSONObject("apiResult");
-            if(apiResult != null){
-                Boolean success = apiResult.getBoolean("operationSuccessful");
-                ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+            if(!result.isNull("apiResult")){
+                JSONObject apiResult = result.getJSONObject("apiResult");
+                if(!apiResult.isNull("operationSuccessful")){
+                    Boolean success = apiResult.getBoolean("operationSuccessful");
+                    ejecucionPruebaDTO.setEstado(success?"Pass":"Fail");
+                }else{
+                    ejecucionPruebaDTO.setEstado("Fail");
+                }
             }else{
-                ejecucionPruebaDTO.setEstado("Fail");
+                ejecucionPruebaDTO.setEstado("Pass");
             }
         } catch(Exception e){
             ejecucionPruebaDTO.setEstado("Fail");
@@ -80,6 +88,10 @@ public class RequestComponent {
         return result;
     }
 
+    /**
+     * @param testDTO the testDTO to execute
+     * @return the JSONObject that is the result of a ejecucionPrueba
+     */
     private JSONObject makePostCall(RequestDTO testDTO) {
         //TODO: Hacer que no se caiga si el request no tiene cuerpo --->Listo
 

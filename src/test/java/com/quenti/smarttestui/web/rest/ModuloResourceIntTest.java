@@ -46,7 +46,7 @@ public class ModuloResourceIntTest {
     private static final String DEFAULT_URL = "AAAAAAAAAA";
     private static final String UPDATED_URL = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -282,7 +282,7 @@ public class ModuloResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Modulo> moduloList = moduloRepository.findAll();
+        List<Modulo> moduloList = moduloRepository.findByActivoTrue();
         assertThat(moduloList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

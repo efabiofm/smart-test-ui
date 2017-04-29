@@ -74,7 +74,7 @@ public class MetodoService {
     }
 
     /**
-     *  Delete the  metodo by id.
+     *  Soft Delete the  metodo by id.
      *
      *  @param id the id of the entity
      */

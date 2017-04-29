@@ -5,10 +5,10 @@
         .module('smartTestUiApp')
         .controller('JhiTestsController', JhiTestsController);
 
-    JhiTestsController.$inject = ['$cookies', '$http', 'JhiTestsService', 'EjecucionPrueba'];
+    JhiTestsController.$inject = ['EjecucionPrueba'];
 
-    function JhiTestsController ($cookies, $http, JhiTestsService, EjecucionPrueba) {
-        // This controller uses a Websocket connection to receive user activities in real-time.
+    //controller for all the tests executions
+    function JhiTestsController (EjecucionPrueba) {
         var vm = this;
         vm.filtrar = '';
 
@@ -17,9 +17,9 @@
         loadEjecuciones();
         refreshEjecuciones();
 
+        //  Obtains all the ejecuciones and puts them on different lists so they can be shown accordingly
         function loadEjecuciones(){
             EjecucionPrueba.query().$promise.then(function (resultado){
-                //vm.pruebas = resultado;
                 vm.pruebasPendientes = [];
                 vm.pruebasCompletadas = [];
                 for(var index in resultado){
@@ -30,34 +30,15 @@
                         vm.pruebasCompletadas.push(prueba);
                     }
                 }
-                //cambiarEstado();
-
             });
         }
 
-
-        function cambiarEstado() {
-            for (var x in vm.pruebas) {
-                if(vm.pruebas[x].estado==null){
-
-                }
-            }
-        }
-
+        // refreshes all the ejecuciones every 2 seconds
         function refreshEjecuciones() {
             setInterval(loadEjecuciones, 2000);
         }
 
         vm.tests = [];
-
-        // console.log("c y s");
-        // JhiTestsService.subscribe();
-        // JhiTestsService.connect();
-
-        // JhiTestsService.receive().then(null, null, function(test) {
-        //     console.log(test)
-        //     vm.tests.push(test);
-        // });
 
     }
 })();

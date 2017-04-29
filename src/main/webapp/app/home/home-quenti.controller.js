@@ -31,8 +31,9 @@
         vm.mostrarParams = true;
         vm.ejecucionSelec = {};
 
-        /*Obtiene URL a invocar para ejecutar la prueba segun el id de Prueba*/
 
+        //Loads all the information about a URL to then procceed to ejecutarPrueba
+        // @param ejecucion receives the ejecucion to get the id of prueba
         function cargarEjecucion(ejecucion){
             Prueba.getURI({id : ejecucion.id}).$promise.then(function (response) {
                 vm.ejecucion.url = response.url;
@@ -44,6 +45,8 @@
 
         }
 
+        // Executes the test, building everything that it needs
+        // @param ejecucion that has all the information for build the ejecucionPrueba
         function ejecutarPrueba(ejecucion) {
             //TODO: Enviar el service-provider-id y service-group-id en las ejecuciones que lo necesiten
 
@@ -73,10 +76,13 @@
             }
 
             EjecucionPrueba.ejecutarPrueba(ejecParaEnviar).$promise.then(function (response) {
-                $state.go("ejecucion-prueba");
+                setTimeout(function(){
+                    vm.ejecutando = false;
+                },500)
             });
         }
 
+        //Adds more parametros to the list ejecucion.params
         function agregarParam(){
             vm.ejecucion.params.push({
                 nombre: null,
@@ -84,6 +90,7 @@
             });
         }
 
+        //Removes parametros from lista ejecucion.params
         function removerParam(index){
             vm.ejecucion.params.splice(index, 1);
         }
