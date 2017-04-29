@@ -46,7 +46,7 @@ public class ServiceProviderResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -282,7 +282,7 @@ public class ServiceProviderResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<ServiceProvider> serviceProviderList = serviceProviderRepository.findAll();
+        List<ServiceProvider> serviceProviderList = serviceProviderRepository.findByActivoTrue();
         assertThat(serviceProviderList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

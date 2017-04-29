@@ -43,7 +43,7 @@ public class PlanPruebaResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_ACTIVO = false;
+    private static final Boolean DEFAULT_ACTIVO = true;
     private static final Boolean UPDATED_ACTIVO = true;
 
     @Inject
@@ -254,7 +254,7 @@ public class PlanPruebaResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<PlanPrueba> planPruebaList = planPruebaRepository.findAll();
+        List<PlanPrueba> planPruebaList = planPruebaRepository.findByActivoTrue();
         assertThat(planPruebaList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }
