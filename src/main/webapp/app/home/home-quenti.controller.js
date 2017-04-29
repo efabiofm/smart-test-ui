@@ -5,11 +5,12 @@
         .module('smartTestUiApp')
         .controller('HomeQuentiController', HomeQuentiController);
 
-    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$state'];
+    HomeQuentiController.$inject = ['pruebas', 'sesion', 'Prueba',  'EjecucionPrueba', '$state', 'serviceProviders'];
 
-    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $state) {
+    function HomeQuentiController (pruebas, sesion, Prueba, EjecucionPrueba, $state, serviceProviders) {
         var vm = this;
         vm.pruebas = pruebas;
+        vm.serviceProviders = serviceProviders;
         vm.cargarEjecucion = cargarEjecucion;
         vm.ejecutarPrueba = ejecutarPrueba;
         vm.listaMetodos = [

@@ -24,6 +24,16 @@
         <dd>
             <a ui-sref="metodo-detail({id:vm.prueba.metodoId})">{{vm.prueba.metodoNombre}}</a>
         </dd>
+
+        <dt ng-show="vm.prueba.serviceProviderId"><span data-translate="smartTestUiApp.prueba.serviceProviderId">Service Provider Id</span></dt>
+        <dd>
+            <a ui-sref="service-provider-detail({id:vm.prueba.serviceProviderId})">{{vm.prueba.serviceProviderId}}</a>
+        </dd>
+
+        <dt ng-show="vm.prueba.serviceGroupId"><span data-translate="smartTestUiApp.prueba.serviceGroupId">Service Group Id</span></dt>
+        <dd>
+            {{vm.prueba.serviceGroupId}}
+        </dd>
     </dl>
 
     <button type="submit"

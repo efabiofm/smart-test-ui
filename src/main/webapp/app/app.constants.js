@@ -4,6 +4,6 @@
     angular
         .module('smartTestUiApp')
         .constant('VERSION', "2.0.0")
-        .constant('DEBUG_INFO_ENABLED', true)
+        .constant('DEBUG_INFO_ENABLED', false)
 ;
 })();

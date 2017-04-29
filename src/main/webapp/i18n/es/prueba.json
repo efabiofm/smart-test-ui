@@ -23,7 +23,9 @@
             "servicio": "Servicio",
             "metodo": "Método",
             "ejecucionPrueba": "Ejecución Prueba",
-            "planPrueba": "Plan Prueba"
+            "planPrueba": "Plan Prueba",
+            "serviceGroupId": "Service Group Id",
+            "serviceProviderId": "Service Provider Id"
         }
     }
 }

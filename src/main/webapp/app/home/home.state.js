@@ -63,6 +63,9 @@
                       })
                    });
                 }],
+                serviceProviders: ['ServiceProvider', function(ServiceProvider){
+                   return ServiceProvider.query();
+                }],
                 mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');
                     return $translate.refresh();
