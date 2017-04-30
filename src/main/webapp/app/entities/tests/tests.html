@@ -2,7 +2,11 @@
     <h2 data-translate="smartTestUiApp.tests.home.title">Ejecucion Pruebas</h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive">
+    <div class="no-results" ng-show="vm.pruebasPendientes.length === 0">
+        <span class="glyphicon glyphicon-list"></span>
+        <span data-translate="smartTestUiApp.tests.sinPendientes"></span>
+    </div>
+    <div class="table-responsive" ng-show="vm.pruebasPendientes.length > 0">
         <table class="jh-table table table-striped">
             <thead>
             <tr>
@@ -44,14 +48,18 @@
             <h2 data-translate="smartTestUiApp.tests.home.title2">Ejecucion Pruebas </h2>
         </div>
         <jhi-alert></jhi-alert>
-        <div class="col-md-4">
+        <div class="col-md-4" ng-show="vm.pruebasCompletadas.length > 0">
             <span class="glyphicon glyphicon-filter"></span>
             Filtrar:
             <input type="text" ng-model="filtrar" class="form-control">
         </div>
     </div>
 </br>
-    <div class="table-responsive">
+    <div class="no-results" ng-show="vm.pruebasCompletadas.length === 0">
+        <span class="glyphicon glyphicon-list"></span>
+        <span data-translate="smartTestUiApp.tests.sinCompletados"></span>
+    </div>
+    <div class="table-responsive" ng-show="vm.pruebasPendientes.length > 0">
         <table class="jh-table table table-striped">
             <thead>
             <tr>
@@ -77,9 +85,10 @@
                 </td>
                 <td>{{ejecucionPrueba.tiempoRespuesta + ' ms'}}</td>
                 <td>{{ejecucionPrueba.jhUserName}}</td>
-                <td>
+                <td ng-show="ejecucionPrueba.pruebaId">
                     <a ui-sref="prueba-detail({id:ejecucionPrueba.pruebaId})">{{ejecucionPrueba.pruebaId}}</a>
                 </td>
+                <td ng-show="!ejecucionPrueba.pruebaId">N/A</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

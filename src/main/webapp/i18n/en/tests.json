@@ -20,7 +20,9 @@
             "usuario": "User",
             "estado": "State",
             "prueba": "Test",
-            "tiempo": "Response Time"
+            "tiempo": "Response Time",
+            "sinPendientes": "No pending tests found.",
+            "sinCompletados": "No completed tests found"
         }
     }
 }

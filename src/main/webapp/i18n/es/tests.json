@@ -20,7 +20,9 @@
             "usuario": "Usuario",
             "estado": "Estado",
             "prueba": "Prueba",
-            "tiempo": "Tiempo respuesta"
+            "tiempo": "Tiempo respuesta",
+            "sinPendientes": "No hay pruebas en progreso.",
+            "sinCompletados": "No hay pruebas completadas"
         }
     }
 }

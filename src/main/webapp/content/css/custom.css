@@ -104,3 +104,8 @@ textarea {
 .btn-disabled span {
     pointer-events: none;
 }
+
+.no-results {
+    font-size: 20px;
+    color: #b4bcc2;
+}
