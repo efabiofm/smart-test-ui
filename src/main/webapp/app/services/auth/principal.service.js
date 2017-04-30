@@ -5,9 +5,9 @@
         .module('smartTestUiApp')
         .factory('Principal', Principal);
 
-    Principal.$inject = ['$q', 'Account'];
+    Principal.$inject = ['$q', 'Account', 'JhiTestsService'];
 
-    function Principal ($q, Account) {
+    function Principal ($q, Account, JhiTestsService) {
         var _identity,
             _authenticated = false;
 
@@ -79,6 +79,7 @@
                 _identity = account.data;
                 _authenticated = true;
                 deferred.resolve(_identity);
+
             }
 
             function getAccountCatch () {

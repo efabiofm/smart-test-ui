@@ -1,4 +1,4 @@
-package com.quenti.smarttestui.config.locale;
+package com.quenti.smarttestui.config;
 
 import com.quenti.smarttestui.security.AuthoritiesConstants;
 import org.slf4j.Logger;
@@ -25,11 +25,17 @@ import java.util.Map;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
-}
+public class WebsocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
+
     private final Logger log = LoggerFactory.getLogger(WebsocketConfiguration.class);
 
     public static final String IP_ADDRESS = "IP_ADDRESS";
+
+    private final JHipsterProperties jHipsterProperties;
+
+    public WebsocketConfiguration(JHipsterProperties jHipsterProperties) {
+        this.jHipsterProperties = jHipsterProperties;
+    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -38,7 +44,7 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket/tracker","testWebSocket")
+        registry.addEndpoint("/websocket/tests")
             .setHandshakeHandler(new DefaultHandshakeHandler() {
                 @Override
                 protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
@@ -48,11 +54,13 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
                         authorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.ANONYMOUS));
                         principal = new AnonymousAuthenticationToken("WebsocketConfiguration", "anonymous", authorities);
                     }
+
                     return principal;
                 }
             })
             .withSockJS()
             .setInterceptors(httpSessionHandshakeInterceptor());
+
     }
 
     @Bean
